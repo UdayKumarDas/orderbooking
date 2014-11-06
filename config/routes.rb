@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   resources :customers
-
- 
+get 'users/createUserForHotel'
+ get 'hotels/createnewhotel'
+ get 'hotels/createHotel'
   get 'offers/index'
 
   get 'offers/show'

@@ -100,4 +100,20 @@ class HotelsController < ApplicationController
       redirect_to(:controller=>'hotels',:action=>'index')
     end
   end
+  def createnewhotel
+    @hotels=Hotel.all
+  end
+  def createHotel
+    @hotel=Hotel.new(params_createHotel)
+    if @hotel.save
+      flash[:notice]="New Hotel is created successfully"
+      redirect_to(:action=>'createnewhotel')
+    else
+      flash[:notice]="Hotel not created"
+      redirect_to(:action=>'createnewhotel')
+    end
+  end
+  def params_createHotel
+    params.require(:hotel).permit(:hotel_Name,:hotel_location)
+  end
 end

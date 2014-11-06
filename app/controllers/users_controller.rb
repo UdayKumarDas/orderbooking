@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout false
  
- before_action :confirm_logged_in, :except=> [:login,:attempt_login,:logout]
+ before_action :confirm_logged_in, :except=> [:login,:attempt_login,:logout,:createUserForHotel,:params_createUserForHotel]
   def index
     render :controller=>'categories',:action => 'index'
      @users=User.all      
@@ -93,6 +93,19 @@ def show
   end
   def showMenu
   @menus=Menu.where(params[:hotel_id] ).sorted  
+end
+def createUserForHotel
+  @user=User.new(params_createUserForHotel)
+  if @user.save
+    flash[:notice]="New user is created for the hotel"
+    redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+  else
+    flash[:notice]="New user not created "
+    redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+  end
+end
+def params_createUserForHotel
+  params.require(:user).permit(:username,:password,:email,:hotel_id)
 end
 end
 
