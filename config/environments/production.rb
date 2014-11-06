@@ -79,5 +79,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  validatesTimeliness.enable_datetime_select_extension!
+  #validatesTimeliness.enable_datetime_select_extension!
 end
