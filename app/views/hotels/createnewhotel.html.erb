@@ -1,0 +1,29 @@
+<html>
+	<head></head>
+	<body>
+		
+		<%= form_for(:hotel,:url=>{:action=>"createHotel"}) do |hotel|%>
+		<%= hotel.label :hotel_Name%>
+		<%= hotel.text_field :hotel_Name%>
+		<%= hotel.label :hotel_location%>
+		<%= hotel.text_field :hotel_location%>
+		<%= submit_tag "Create new hotel"%>
+		<%end%>
+		<br /><br />
+		<%= form_for(:user,:url=>{:controller=>'users',:action=>"createUserForHotel"}) do |hotel|%>
+		<%= hotel.label :hotel_id%>
+		<%= hotel.select :hotel_id, options_from_collection_for_select(@hotels,"id","hotel_Name") %>
+		<br /><br />
+		<%= hotel.label :username%>
+		<%= hotel.text_field :username%>
+		<br /><br />
+		<%= hotel.label :password%>
+		<%= hotel.text_field :password%>
+		<br /><br />
+		<%= hotel.label :email%>
+		<%= hotel.text_field :email%>
+		<br /><br />
+		<%= submit_tag "Create new hotel user"%>
+		<%end%>
+	</body>
+</html>
