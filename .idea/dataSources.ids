@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails OrderBooking: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="1327b2a4-eb8e-4a64-9857-d23d6a166fdf">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/OrderBookingSystem_production</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfdadfcbdfd9dfd9</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+      </library>
+      <library>
+        <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.31-bin.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails OrderBooking: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="64802088-d251-42e6-9249-027e4cd48626">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/OrderBookingSystem</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfdadfcbdfd9dfd9</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+      </library>
+      <library>
+        <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.31-bin.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails OrderBooking: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="7ae6ca5c-0a09-43c1-b0a2-0c7d487e7e34">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/OrderBookingSystem_test</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfdadfcbdfd9dfd9</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+      </library>
+      <library>
+        <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.31-bin.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>

@@ -1,0 +1,49 @@
+<html>
+<head></head>
+<style> 
+
+	</style>
+
+<body style="background-image: url('../images/paper_background.jpg');">
+<div>
+	<li><%= link_to("Logout",:action=>'logout')%></li>
+	<div>Logged in as:<b style="color: green"><%= session[:user_name]%></b></div>
+	<ul>
+		
+		
+	</ul>
+	
+</div>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th> Category Name</th>
+    
+      <th colspan="5"></th>
+    </tr>
+  </thead><% if flash[:notice] %>
+    <div style="color:green"><%= flash[:notice] %></div>
+  <% end %>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>        
+         <td><%= link_to 'Customize Menu Items' ,:controller=>'menus',:action=>'show',:id=>params[:id],:hotel_id=>params[:hotel_id]%></td>
+        <td><%= link_to 'Edit' %></td>
+        <td><%= link_to 'Destroy' %></td>
+      </tr>
+    <% end %>
+    
+    
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create New Category',{:action=>'new'} %>
+</body>
+</html>

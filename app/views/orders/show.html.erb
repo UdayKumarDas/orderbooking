@@ -1,0 +1,486 @@
+<html>
+	<style>
+		table, td, th {
+			border: 1px solid black;
+			height: 20px;
+			width: 750px;
+			text-align: center;
+		}
+
+		th {
+			background-color: blue;
+			color: red;
+		}
+		td {
+			background-color: #848484;
+			color: #F7FE2E;
+		}
+
+		.search_result_row, .head-resto {
+			padding: 0;
+		}
+
+		.sorted-resto {
+			background-color: #fff;
+		}
+		.search_result_row {
+			border-bottom: 1px solid #e6e4b1;
+			color: #333;
+			padding: 0.5em;
+		}
+		.grid-view {
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.3em 1%;
+			width: 99%;
+		}
+		a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+			background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+			border: 0 none;
+			font-size: 100%;
+			margin: 0;
+			outline: 0 none;
+			padding: 0;
+			vertical-align: baseline;
+		}
+		.grid-view .grid_13 {
+			min-height: 118px;
+			padding: 0 4px 0 8px;
+		}
+		.grid-view .grid_13 {
+			min-height: 140px;
+			padding: 0 4px 0 8px;
+		}
+		.grid-view .grid_13 {
+			min-height: 230px;
+		}
+		.grid-view .grid_13, .grid-view .grid_14, .grid-view .grid_16d, .grid-view .grid_5c {
+			text-align: left;
+			width: 100%;
+		}
+		.container_16 .grid_13 {
+			width: 79.25%;
+		}
+		.tal {
+			text-align: left;
+		}
+		.grid_1, .grid_10, .grid_11, .grid_11a, .grid_11ab, .grid_11b, .grid_11c, .grid_12, .grid_13, .grid_13a, .grid_13l, .grid_14a, .grid_14b, .grid_15a, .grid_2, .grid_2a, .grid_3, .grid_3a, .grid_3b, .grid_3f, .grid_3fu, .grid_3l, .grid_4, .grid_4d, .grid_4f, .grid_5, .grid_5a, .grid_5b, .grid_5c, .grid_5d, .grid_5e, .grid_5f, .grid_5h, .grid_6, .grid_6a, .grid_7, .grid_8, .grid_8a, .grid_8ab, .grid_8b, .grid_8d, .grid_9, grid_5db {
+			float: left;
+		}
+		a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+			background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+			border: 0 none;
+			font-size: 100%;
+			margin: 0;
+			outline: 0 none;
+			padding: 0;
+			vertical-align: baseline;
+		}
+
+		.list-wrap {
+			margin-left: 30%;
+			background-color: #e9e9e9;
+			float: left;
+			padding: 5px 1%;
+			width: 41%;
+		}
+
+		.AddButton {
+			background-color: red;
+		}
+		.menu_list {
+			width: 200px;
+			float: left;
+			border: 1px solid #ff7200;
+			margin-left: 150px;
+			height: 300px;
+			text-align: center;
+			background-color: #F5D0A9;
+		}
+		.seach-but {
+			background-color: #81c02f;
+			border: 0 solid #000000;
+			color: #ffffff;
+			font-size: 1.1em;
+			font-weight: bold;
+			height: auto;
+			margin-left: 5px;
+			padding: 0.5em;
+			right: 5px;
+			transition: background-color 0.5s ease 0s, color 0.3s ease 0s;
+		}
+		a.btn-orange {
+			width: 70px;
+			background-color: #81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			margin: 1% 0;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			text-decoration: none;
+		}
+		.linkstyle {
+			width: 70px;
+			height: 40px;
+			font: 16px Arial;
+			text-decoration: none;
+			background-color: #EEEEEE;
+			color: #333333;
+			padding: 2px 6px 2px 6px;
+			border-top: 1px solid #CCCCCC;
+			border-right: 1px solid #333333;
+			border-bottom: 1px solid #333333;
+			border-left: 1px solid #CCCCCC;
+			margin: 1% 0;
+		}
+		.container_head {
+			background-color: #f9b004;
+			background-image: linear-gradient(to right, #f9b004 0px, #f9b004 50%, #f9b004 100%);
+			border-bottom: 3px solid #fff;
+			height: 100px;
+		}
+		.top-resultbar {
+			background-color: #efefef;
+			border: 1px solid #ddd;
+			height: 42px;
+			margin: 4px 0 46px;
+			padding: 0 10px;
+			position: relative;
+			width: 100%;
+		}
+		.menu_link {
+			text-decoration: none;
+			color: #FFFFFF;
+			border-right-color: #FFFFFF;
+		}
+		a.btn-orange2 {
+			width: 200px;
+			background-color: #81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			margin: 1% 0;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			text-decoration: none;
+		}
+		.btn-gray {
+			float: right;
+			border: 0 none;
+			color: #616161;
+			cursor: default;
+			display: inline-block;
+			font-family: lato;
+			font-size: 0.9em;
+			font-weight: 400;
+			margin: 1% 0;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+		}
+		a.btn-orange1 {
+
+			text-decoration: none;
+			text-transform: uppercase;
+			padding-left: 14px;
+			color: #F4A506;
+		}
+
+	</style>
+	<script language='javascript'>
+		function display() {
+			if (document.frmRadio.selType[0].checked) {
+				document.getElementById('div1').style.display = 'none';
+				document.getElementById('div2').style.display = 'block';
+			} else {
+				document.getElementById('div2').style.display = 'none';
+				document.getElementById('div1').style.display = 'block';
+			}
+
+		}
+
+
+		$(':radio').change(function(event) {
+			var id = $(this).data('id');
+			$('#' + id).addClass('none').siblings().removeClass('none');
+		});
+	</script>
+	<body style="background-image: url('../images/menu-free-background4.jpg')">
+		<div style="position: absolute;float: right;padding-left: 140px;padding-top: 20px;">
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "CONTACT US |",{},class: "menu_link"%>
+			<%= link_to "ABOUT US",{},class: "menu_link"%>
+
+		</div>
+
+		<div class="container_head" >
+			<div style="">
+				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+			</div>
+		</div>
+		<br />
+		<div style="background-color: #F2DEDE;width: 30%;margin-left: 20px;">
+			<div style="text-align: center;">
+				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+			</div>
+			<hr />
+			<br />
+			<%= form_for(:order,:url=>{:action=>'update'}) do |f|%>
+
+			<%= f.radio_button :pay_type, "payment_mode",:value=>' Credit Card ( Mastercard, Visa ) ',:checked=>true%><b> Credit Card ( Mastercard, Visa ) </b>
+			<br />
+			<%= f.radio_button :pay_type, "payment_mode",:value=>'  Debit Card  ',:checked=>true%><b> Debit Card </b>
+			<br />
+			<%= f.radio_button :pay_type, "payment_mode",:value=>' Net Banking  ',:checked=>true%><b> Net Banking </b>
+			<br />
+			<%= f.radio_button :pay_type, "payment_mode",:value=>' Cash on Delivery ',:checked=>true%><b> Cash on Delivery </b>
+
+			<%end%>
+		</div>
+		<%= params[:address2]%>
+		<div style="background-color: #F1F1F1;width: 30%;position: absolute;margin-left: 50%;margin-top: -16%;">
+			<div style="text-align: center;font-size: 24px;background-color: #F1F1F1;height: 40px;">
+				<b style="color: #F99406;">Your Order List</b>
+			</div>
+
+			<div style="text-align: center;font-size: 20px;background-color: #F4A506;height: 24%;">
+				<b style="color: #F1F1F1"><%= @hotel.hotel_Name%></b>
+			</div>
+
+			<div style="font-size: 15px;height: 24%;">
+				<b style="color: #F4A506">QTY&nbsp;&nbsp;&nbsp;&nbsp;  ITEM NAME </b><b style="color: #F4A506;float: right;margin-right: 18px;">PRICE</b>
+			</div>
+			<br />
+			<% @line_item.each do |line_item| %>
+			&nbsp;&nbsp;
+			<%= @quantity=line_item.quantity%>
+			&nbsp;&times;&nbsp;
+			<% dd=line_item.menu_id%>
+			<% @menu1=Menu.find(dd)%>
+			<%= @menu_name= @menu1.menu_item_name%>
+			<div style="width:60px;float: right">
+				<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'12x12',:alt=>'Logo')%><%= @menu1.price%>
+			</div>
+
+			<br />
+			<p style="color: #AA4C89">
+				<% @offers.each do |offer| %>
+
+				<% if offer.menuName_buy1 == @menu_name &&  (offer.menuName_buy2==nil||offer.menuName_buy2=='') && (offer.menuName_buy3==nil||offer.menuName_buy3=='') %>
+
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+				<%if @quantity >= offer.qty_buy1 %>
+
+				&nbsp;&nbsp;You Get
+
+				<%= (@quantity/offer.qty_buy1)*offer.qty_get%>
+
+				<%= offer.menuName_get%> Free
+
+				<%end%>
+				<%end%>
+				<%end%><%end%>
+			</p>
+			<hr style="color: #FFFFFF" />
+
+			<%end%>
+
+			<% @buy2get1.each do |offer| %>
+
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+			<% debug @get_Idbuy1=Menu.where(:menu_item_name=>offer.menuName_buy1) %>
+			<% debug @get_Idbuy2=Menu.where(:menu_item_name=>offer.menuName_buy2) %>
+
+			<% @line_item.each do |line_item| %>
+
+			<% @get_Idbuy1.each do |buy1|%>
+			<% if line_item.menu_id==buy1.id%>
+			<% qty_buy1=line_item.quantity%>
+			<% @qty_buy1= qty_buy1/offer.qty_buy1%>
+
+			<%end%><%end%>
+
+			<% @get_Idbuy2.each do |buy2|%>
+			<% if line_item.menu_id==buy2.id%>
+			<% qty_buy2=line_item.quantity%>
+			<% @qty_buy2= qty_buy2/offer.qty_buy2%>
+			<%end%><%end%>
+
+			<%end%>
+			<%if @qty_buy1.to_i>=1 && @qty_buy2.to_i>=1 %>
+			<% arr=[@qty_buy1,@qty_buy2]%>
+			<% qty_bye2get1=arr.sort!.first%>
+			<p style="color: #AA4C89">
+				&nbsp;&nbsp;You get <%= qty_bye2get1%>&nbsp;<%= offer.menuName_get%> Free
+			</p>
+
+			<%end%>
+			<%end%><%end%>
+
+			<% @buy3get1.each do |offer| %>
+
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+			<% debug @get_Idbuy1=Menu.where(:menu_item_name=>offer.menuName_buy1) %>
+			<% debug @get_Idbuy2=Menu.where(:menu_item_name=>offer.menuName_buy2) %>
+			<% debug @get_Idbuy3=Menu.where(:menu_item_name=>offer.menuName_buy3) %>
+
+			<% @line_item.each do |line_item| %>
+
+			<% @get_Idbuy1.each do |buy1|%>
+			<% if line_item.menu_id==buy1.id%>
+			<% qty_buy1=line_item.quantity%>
+			<% @qty_buy1= qty_buy1/offer.qty_buy1%>
+
+			<%end%><%end%>
+
+			<% @get_Idbuy2.each do |buy2|%>
+			<% if line_item.menu_id==buy2.id%>
+			<% qty_buy2=line_item.quantity%>
+			<% @qty_buy2= qty_buy2/offer.qty_buy2%>
+			<%end%><%end%>
+
+			<% @get_Idbuy3.each do |buy3|%>
+			<% if line_item.menu_id==buy3.id%>
+			<% qty_buy3=line_item.quantity%>
+			<% @qty_buy3= qty_buy3/offer.qty_buy3%>
+			<%end%><%end%>
+
+			<%end%>
+			<%if @qty_buy1.to_i>=1 && @qty_buy2.to_i>=1 && @qty_buy3.to_i>=1 %>
+			<% arr=[@qty_buy1,@qty_buy2,@qty_buy3]%>
+			<% qty_buy3get1= arr.sort!.first%>
+			<p style="color: #AA4C89">
+				&nbsp;&nbsp;You get <%= qty_buy3get1%>&nbsp;<%= offer.menuName_get%> Free
+			</p>
+
+			<%end%>
+
+			<%end%><%end%>
+
+			<% @buy4get1.each do |offer| %>
+
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+			<% debug @get_Idbuy11=Menu.where(:menu_item_name=>offer.menuName_buy1) %>
+			<% debug @get_Idbuy21=Menu.where(:menu_item_name=>offer.menuName_buy2) %>
+			<% debug @get_Idbuy31=Menu.where(:menu_item_name=>offer.menuName_buy3) %>
+			<% debug @get_Idbuy41=Menu.where(:menu_item_name=>offer.menuName_buy4) %>
+
+			<% @line_item.each do |line_item| %>
+
+			<% @get_Idbuy11.each do |buy1|%>
+			<% if line_item.menu_id==buy1.id%>
+			<% qty_buy1=line_item.quantity%>
+			<% @qty_buy11= qty_buy1/offer.qty_buy1%>
+
+			<%end%><%end%>
+
+			<% @get_Idbuy21.each do |buy2|%>
+			<% if line_item.menu_id==buy2.id%>
+			<% qty_buy2=line_item.quantity%>
+			<% @qty_buy21= qty_buy2/offer.qty_buy2%>
+			<%end%><%end%>
+
+			<% @get_Idbuy31.each do |buy3|%>
+			<% if line_item.menu_id==buy3.id%>
+			<% qty_buy3=line_item.quantity%>
+			<% @qty_buy31= qty_buy3/offer.qty_buy3%>
+			<%end%><%end%>
+
+			<% @get_Idbuy41.each do |buy4|%>
+			<% if line_item.menu_id==buy4.id%>
+			<% qty_buy4=line_item.quantity%>
+			<% @qty_buy41= qty_buy4/offer.qty_buy4%>
+			<%end%><%end%>
+
+			<%end%>
+
+			<%if @qty_buy11.to_i>=1 && @qty_buy21.to_i>=1 && @qty_buy31.to_i>=1 && @qty_buy41.to_i>=1 %>
+			<% arr=[@qty_buy11,@qty_buy21,@qty_buy31,@qty_buy41]%>
+			<% qty_buy4get1= arr.sort!.first%>
+			<p style="color: #AA4C89">
+				&nbsp;&nbsp;You get <%= qty_buy4get1%>&nbsp;<%= offer.menuName_get%> Free
+			</p>
+
+			<%end%>
+
+			<%end%><%end%>
+
+			<% @buy5get1.each do |offer| %>
+
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+			<% debug @get_Idbuy111=Menu.where(:menu_item_name=>offer.menuName_buy1) %>
+			<% debug @get_Idbuy211=Menu.where(:menu_item_name=>offer.menuName_buy2) %>
+			<% debug @get_Idbuy311=Menu.where(:menu_item_name=>offer.menuName_buy3) %>
+			<% debug @get_Idbuy411=Menu.where(:menu_item_name=>offer.menuName_buy4) %>
+			<% debug @get_Idbuy511=Menu.where(:menu_item_name=>offer.menuName_buy5) %>
+
+			<% @line_item.each do |line_item| %>
+
+			<% @get_Idbuy111.each do |buy1|%>
+			<% if line_item.menu_id==buy1.id%>
+			<% qty_buy1=line_item.quantity%>
+			<% @qty_buy111= qty_buy1/offer.qty_buy1%>
+
+			<%end%><%end%>
+
+			<% @get_Idbuy211.each do |buy2|%>
+			<% if line_item.menu_id==buy2.id%>
+			<% qty_buy2=line_item.quantity%>
+			<% @qty_buy211= qty_buy2/offer.qty_buy2%>
+			<%end%><%end%>
+
+			<% @get_Idbuy311.each do |buy3|%>
+			<% if line_item.menu_id==buy3.id%>
+			<% qty_buy3=line_item.quantity%>
+			<% @qty_buy311= qty_buy3/offer.qty_buy3%>
+			<%end%><%end%>
+
+			<% @get_Idbuy411.each do |buy4|%>
+			<% if line_item.menu_id==buy4.id%>
+			<% qty_buy4=line_item.quantity%>
+			<% @qty_buy411= qty_buy4/offer.qty_buy4%>
+			<%end%><%end%>
+
+			<% @get_Idbuy511.each do |buy5|%>
+			<% if line_item.menu_id==buy5.id%>
+			<% qty_buy5=line_item.quantity%>
+			<% @qty_buy511= qty_buy5/offer.qty_buy5%>
+			<%end%><%end%>
+
+			<%end%>
+
+			<%if @qty_buy111.to_i>=1 && @qty_buy211.to_i>=1 && @qty_buy311.to_i>=1 && @qty_buy411.to_i>=1 && @qty_buy511.to_i>=1 %>
+			<% arr=[@qty_buy111,@qty_buy211,@qty_buy311,@qty_buy411,@qty_buy511]%>
+			<% qty_buy5get1= arr.sort!.first%>
+			<p style="color: #AA4C89">
+				&nbsp;&nbsp;You get <%= qty_buy5get1%>&nbsp;<%= offer.menuName_get%> Free
+			</p>
+
+			<%end%>
+
+			<%end%><%end%>
+			<%if  cookies[:total_price].present? && cookies[:discount_price].present?%>
+			<div style="background-color: #F2DEDE;font-size: 13px;text-align:  right;padding-right: 35px;" >
+				SUB TOTAL <%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><b><%= cookies[:total_price]%></b>
+				<br />
+				DISCOUNT &nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><b><%= cookies[:discount_price]%></b>
+			</div>
+			<%end%>
+			<% debug @offersAvailable%>
+			<div class="btn-gray" title="Add more items to place order" rel="tooltip">
+				<b style="font-size: 16px;"> Order Total</b>&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'15x15',:alt=>'Logo')%><b style="font-size: 20px;"><%= cookies[:pricexx]%></b>
+			</div>
+			<br />
+			<%= link_to(  "BACK TO MENU", {:controller=>'menus',:action=>'index',:hotel_id=>cookies[:hotelId]}, class: "btn-orange1" )%>
+		</div>
+<%= params[:address1]%>
+	</body>
+
+</html>

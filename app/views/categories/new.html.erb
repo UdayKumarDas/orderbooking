@@ -1,0 +1,33 @@
+<html>
+<style>	a.btn-orange {
+			text-decoration: none;
+    background-color: #81c02f;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1% 0;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+     
+   margin-right: 60px;
+}
+
+a.btn-orange:hover {
+    background-color: #81c02f;
+    color: #000;
+}</style>
+
+<body style="background-color: #ADD8E6;">
+	<div style="text-align: center;">
+		<%= link_to("<< Go back",{:action=>'index'},class: "btn-orange")%>
+	<%= form_for(:category,:url=>{:controller=>'categories',:action=>'create'}) do |f|%>			
+		
+		<div>	<b>Name:</b><%= f.text_field(:name)%></div>
+		<br />
+	<div><%= submit_tag("Create New Category")%></div>
+	<%end%>
+	</div>
+	</body>
+</html>

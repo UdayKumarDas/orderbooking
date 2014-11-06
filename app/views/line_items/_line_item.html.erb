@@ -1,0 +1,61 @@
+<html>
+	<style>
+		.cart_list {
+			margin: 0;
+			min-height: 15em;
+			overflow-y: auto;
+			padding: 0 5px;
+			width: 100%;
+		}
+		.cart_itema .name {
+			color: #303030;
+			font-size: 1em;
+			line-height: 1em;
+			margin: 0;
+			padding: 0.2em 0;
+			text-align: left;
+			width: 98%;
+		}
+		.btnLineItem {
+			width: 27px;
+			height: 27px;
+			background-image: url('../images/plus.ico')
+		}
+		.btnLineItem1 {
+			width: 27px;
+			height: 27px;
+			background-image: url('../images/minus.ico')
+		}
+		.btnLineItem2 {
+			width: 27px;
+			height: 27px;
+			background-image: url('../images/mark.ico')
+		}
+	</style>
+	<body>
+		<div class="name">
+
+			<div style="width: 84%; float: left;text-align: left;">
+				<div style="width:100%;text-align: center;">
+					<%= line_item.quantity %>&times;
+					<%= line_item.menu.menu_item_name  %>
+				</div><div style="clear:both;height:5px; width: 100%"></div>
+				<div style="width:100%;text-align: center;">
+					<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'11x11',:alt=>'Logo')%><%= (line_item.total_price) %>
+				</div>
+
+			</div>
+			<div style="float:right;width:14%;text-align: right;">
+				<% image_submit_tag('../images/plus.ico')%>
+				<%= link_to image_tag('plus.ico',:size=>'22x22'),:controller=>"line_items",:action=>"create", :menu_id => line_item.menu_id,:remote => true  %>
+
+				<%= link_to image_tag('minus.ico',:size=>'22x22'),:controller=>"line_items",:action=>"minus", :menu_id => line_item.menu_id,:remote => true  %>
+				<%= link_to image_tag('mark.ico',:size=>'22x22'),:controller=>"line_items",:action=>"destroy", :id1=>line_item.id,:remote => true   %>
+			</div>
+			<div style="clear:both;height:5px; width: 100%"></div>
+		</div>
+
+		<hr />
+	</body>
+
+</html>

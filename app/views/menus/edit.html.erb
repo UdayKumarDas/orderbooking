@@ -1,0 +1,55 @@
+<html>
+	<head></head>
+	<body style="background-color: #F7F7F7;">
+
+
+<div style="text-align: center;width: 100%;">
+	<h1 style="color: yellow;">Editing Menu Item</h1>
+
+<table style="padding-left: 40%;">
+  
+
+  <tbody>
+   <%= form_for(:menu,:url=>{:controller=>'menus',:action=>'update',:id=>@menu.id}) do |f|%>
+      <tr>
+        <td><%= f.label :menu_item_name %>
+   </td>
+        <td>  <%= f.text_field :menu_item_name %>
+   </td>        
+      </tr>
+      <tr>
+        <td> <%= f.label :price %>
+   
+   </td>
+        <td>   <%= f.number_field :price %>
+   </td>        
+      </tr>
+      <tr>
+        <td> <%= f.label :item_type %>
+    
+   </td>
+        <td>  <%= f.text_field :item_type %>
+   </td>        
+      </tr>
+      <tr>
+        <td><%= f.label :Image_upload %>
+			
+   </td>
+        <td> <%= f.file_field :image %>
+   </td>        
+      </tr>
+        <tr>
+        <td>
+			
+   </td>
+        <td> <%= f.submit %>
+   </td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</body>
+</html>	
+
+

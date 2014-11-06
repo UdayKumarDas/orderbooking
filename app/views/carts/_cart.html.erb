@@ -1,0 +1,214 @@
+<html>
+	<style>
+		.cart {
+			width: 300px;
+			float: left;
+			border: 1px solid #ff7200;
+			margin-left: 30px;
+			max-width: 400px;
+			text-align: center;
+			background-color: #F0F0F0;
+		}
+
+		.buttonTo {
+			font-size: 18px;
+			border: 2px solid #AD235E;
+			border-radius: 100px;
+			width: 150px;
+			height: 150px;
+			background: url(images/btn-arrow.png) no-repeat;
+		}
+		.btn-gray {
+			background-color: #e2e2e2;
+			border: 0 none;
+			color: #616161;
+			cursor: default;
+			display: inline-block;
+			font-family: lato;
+			font-size: 0.9em;
+			font-weight: 400;
+			margin: 1% 0;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+		}
+		a.btn-orange1 {
+			background-color: #81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			padding: 0.5em 1em;
+			margin-right: -6px;
+			text-decoration: none;
+			text-transform: uppercase;
+			width: 183px;
+		}
+
+		a.btn-orange1:hover {
+			background-color: #81c02f;
+			color: #000;
+		}
+		.cart_itema .name {
+			color: #303030;
+			font-size: 1em;
+			line-height: 1em;
+			margin: 0;
+			padding: 0.2em 0;
+			text-align: left;
+			width: 98%;
+		}
+
+		.cart_list {
+			margin: 0;
+			min-height: 15em;
+			overflow-y: auto;
+			padding: 0 5px;
+			width: 100%;
+		}
+	</style>
+	<body >
+		<div id="sunil" class="cart" style="" >
+			<div style="background-color: #ff7200;text-align: center;font-size: 19px;font: bold;color: white">
+				Your Order <b style="float: right;padding-right: 6px;width: 16px;"><%if cart.total_price>=1%>
+
+				<%= link_to image_tag('delete.ico',:size=>'20x20'),{:controller=>'carts',:action=>'destroy',:id=>cart.id},:html=>{"data-original-title"=>'Empty cart',:rel=>'tooltip'} %>
+				<%end%></b>
+			</div>
+			<ul class="cart_list">
+				<li class="cart_itema">
+					<div class="",style="text-align: center; ">
+						<%= render(cart.line_items) %>
+						<br />
+						<div style="background-color:   ">
+							<div>
+								<%  @offers1.each do |offer|%>
+								<% if (cart.total_price.to_i >=  offer.amountforDiscount.to_i) %>
+								<% offer.amountforDiscount%>
+								<% @validOffer= offer.percentageOff%>
+
+								<% break%>
+								<%end%>
+								<%end%>
+								<% debug @offers3%>
+								<br />
+								<%  @offers.each do |offer|%>
+
+							</div>
+							<div style="clear:both;"></div>
+							<div style="background-color: #F2DEDE" >
+								<% if (offer.startDate_get).present? &&  (offer.endDate_get).present?%>
+								<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+								<%if @validOffer.present?%>
+
+								Sub Total&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:total_price]=(cart.total_price) %>
+								<br />
+								Discount&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:discount_price]=(cart.total_price.to_i)*(@validOffer.to_i)/100 %> <b><% @totalAmount =(cart.total_price.to_i)*(@validOffer.to_i)/100 %></b>
+								<%end%><%end%>
+							</div>
+							<br />
+							<% @TotalPrice=0%>
+
+							<%  @offers2.each do |offer|%>
+							<% debug @line_item1%>
+							<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+							<% debug  @menuName= Menu.find_by_menu_item_name(offer.menuName_get)%>
+							<%@line_item_for_offers.each do |line_item|%>
+							<%if line_item.menu_id==@menuName.id && offer.disAmountOrPercentage.present?%>
+							<% @validprice=(@menuName.price)*(offer.disAmountOrPercentage)/100%>
+
+							<%end%>
+
+							<%end%>
+
+							<% debug @line_item2=LineItem.where(:cart_id=>cart.id,:menu_id=>@menuName.id)%>
+							<%  @line_item2.each do |menuItem|%>
+							<% @validItem= menuItem.menu_id%>
+							<% @validQuantity= menuItem.quantity%>
+							<% @TotalPrice+=@validprice*@validQuantity%>
+							<%end%>
+							<%end%>
+
+							<%end%>
+
+							<% @totalPrice=0%>
+							<%  @offers3.each do |offer|%>
+							<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+							<% debug  @menuName1= Menu.find_by_menu_item_name(offer.menuName_get)%>
+							<%@line_item_for_offers.each do |line_item|%>
+							<%if line_item.menu_id==@menuName1.id && offer.disAmountOrPercentage.present?%>
+							<% @validprice1=offer.disAmountOrPercentage%>
+
+							<%end%>
+
+							<%end%>
+
+							<% debug @line_item3=LineItem.where(:cart_id=>cart.id,:menu_id=>@menuName1.id)%>
+							<%  @line_item3.each do |menuItem|%>
+							<% @validItem1= menuItem.menu_id%>
+							<% @validQuantity1= menuItem.quantity%>
+							<% @totalPrice+=@validprice1.to_i*@validQuantity1.to_i%>
+							<%end%>
+							<%end%>
+
+							<%end%>
+
+							<%if @validOffer==nil && (@validItem1.present?||@validItem.present?)%>
+							<div style="background-color: #F2DEDE" >
+								Sub Total&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:total_price]=(cart.total_price) %>
+								<br />
+								Discount&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:discount_price]= @totalPrice+@TotalPrice %>
+
+							</div>
+
+							<%end%> <b> Order Total &nbsp;
+							<% if cart.total_price>= 1%>
+							<% if @totalAmount.present?%>
+							<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= (cart.total_price.to_i)-(@totalAmount.to_i)%></b>
+
+							<% cookies[:pricexx]=(cart.total_price.to_i)-(@totalAmount.to_i)%>
+							<%end%>
+							<% if @totalAmount==nil%>
+							<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= (cart.total_price.to_i)- (@totalPrice+@TotalPrice)%></b>
+
+							<% cookies[:pricexx]=(cart.total_price.to_i)- (@totalPrice+@TotalPrice)%>
+							<%end%>
+
+							<%end%>
+
+							<% break %>
+
+							<br />
+							<%end%>
+							<%end%>
+
+						</div>
+
+						<br />
+
+						<div style="clear:both;"></div>
+						<div id="divCart" style="width:100%;">
+
+							<div class="btn-gray" title="Add more items to place order" rel="tooltip">
+								<b>Min Order</b>&nbsp;<b><%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%>	<%= @hotel.min_order%></b>
+
+							</div>
+							<br />
+							<% if  cookies[:uName]==nil%>
+							<%= link_to_if( cart.total_price >= @hotel.min_order, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrder'}, class: "btn-orange1" )%>
+							<%else%>
+							<%= link_to_if( cart.total_price >= @hotel.min_order, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrderStep2'}, class: "btn-orange1" )%>
+							<%end%>
+
+						</div>
+					</div>
+				</li>
+
+			</ul>
+			<br />
+
+		</div>
+
+	</body>
+</html>
+

@@ -1,0 +1,19 @@
+<html>
+	<style></style>
+	<body>
+		<%= cookies[:hotel_id_for_login_user]%>
+		
+		 <%= form_for(:hotel,:url=>{:controller=>'hotels',:action=>'update'}) do |hotel|%>
+      <%= hotel.label :min_order%>
+    <%= hotel.text_field :min_order %>
+  
+         <%= hotel.label :hotelImage %>
+			
+   
+     <%= hotel.file_field :hotelImage %>
+  
+      <%= hotel.submit %>
+      <%end%>
+	</body>
+	
+</html>

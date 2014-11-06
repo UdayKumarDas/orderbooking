@@ -1,0 +1,23 @@
+<%= link_to "Back"("<<Back To Menus", {:controller=>'categories',:action=>'show',:id=>@menu.id})%>
+	<%= link_to(:back)%>
+<table summary="Menu list">
+
+	<tr>
+		
+	<th>Menu Item Name</th>
+	<th>Item Type</th>
+	<th>Price</th>
+		
+	</tr>
+	
+	<tr>
+		<td><%= @menu.menu_item_name%></td>
+		<td><%= @menu.item_type%></td>
+		<td><%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%>&nbsp;<%= @menu.price%></td>
+		
+	</tr>
+	
+</table>
+</body>
+</html>
+

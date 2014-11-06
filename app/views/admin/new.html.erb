@@ -1,0 +1,6 @@
+<%= form_for(:category,:url=>{:controller=>'categories',:action=>'create'}) do |f|%>			
+			<b>Name:</b>
+		<div><%= f.text_field(:name)%></div>
+		<br />
+	<div><%= submit_tag("Create New Category")%></div>
+	<%end%>

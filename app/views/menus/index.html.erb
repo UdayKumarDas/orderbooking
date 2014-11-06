@@ -1,0 +1,373 @@
+<html>
+
+	<head>
+		<%= stylesheet_link_tag 'orders'%>
+		<%= stylesheet_link_tag 'component'%>
+		<%= stylesheet_link_tag 'content'%>
+
+		<%= javascript_include_tag 'classie'%>
+	</head>
+	<%= csrf_meta_tags %>
+	<style>
+	</style>
+	<script ></script>
+	<body style="background-image: url('../images/menu-free-background4.jpg');">
+
+		<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "CONTACT US |",{},class: "menu_link"%>
+			<%= link_to "ABOUT US",{},class: "menu_link"%>
+			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
+
+			<% if cookies[:uName].present?%>
+			<div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
+				<ul>
+
+					<li class=' has-sub'>
+						<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
+						<ul>
+							<li class=''>
+								<a href='#' style="font-size: 11px;"><%= image_tag('settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
+
+							</li>
+							<li class=''>
+								<a href='#' style="font-size: 11px;"><%= image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
+
+							</li>
+							<li class=''>
+								<a href='http://localhost:3000/menus/logout' id="logout" style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
+
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<%end%>
+		</div>
+		<div style="width: 120px;float: right;margin-top: 25px;">
+			<%= image_tag('cart.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<b style="font-size: 20px;color: #FFFFFF";"><%= @totalQuantity%></b>
+
+			</div>
+			<div class="container_head" >
+			<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+			</div>
+			<br />
+
+			<div class="grid_16 header-box desktop">
+			<%= image_tag @hotel.hotelImage_url,:size=>'160x90'%>&nbsp;&nbsp;
+			<b style="color: #f9b004;text-align: center;font-size: 20px;position: absolute;"><%= @hotel.hotel_Name%></b>
+			<b style="color: #380B61;font-size: 15px;position: absolute;padding-top: 30px;"><%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.hotel_location%></b>
+			</div>
+
+			<div style="clear: both;"></div>
+			<div class="menu_list">
+			<% cookies[:xxx]%>
+			<br />
+			<%= cookies[:category_id_forMenus]%>
+
+			<% @offersFormenus.each do |offer|%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+			<%= link_to 'Offers' ,{:action=>'index',:hotel_id=>params[:hotel_id],:menuName=>'offer'},class: "btn-orange" %>
+			<% break%>
+
+			<%end%><%end%><%end%><br />
+			<br />
+			<%@categories.each_with_index do |d,index| %>
+			<%= link_to d.name ,{:action=>'index',:id=>d.id,:hotel_id=>d.hotel_id},class: "btn-orange" %>
+			<br />
+			<br />
+			<%end%>
+			<br />
+			<%= params[:quantity]%>
+			</div>
+			<div id="menu-container" class="list-wrap" >
+			<% if params[:menuName].blank?%>
+			<%= image_tag('kitchen.jpg',:size=>'492x120')%>
+			<%end%>
+
+			<% if params[:menuName]=='offer'%>
+			<%= image_tag('menu_offer_banner.jpg',:size=>'492x120')%>
+			<br /><br />
+			<ol>
+			<%= params[:catId_get]%>
+			<% @count = 0%>
+			<% @offersFormenus.each do |offer|%>
+
+			<% if offer.amountforDiscount != nil && offer.percentageOff != nil%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+
+			<%= offer.percentageOff%> <b>% OFF on order of</b> <%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Rs.')%><%= offer.amountforDiscount%>
+			<p style="margin-left: 25px;">Offer valid till <%= offer.endDate_get%> </p>
+			</br>
+			<%end%>
+			<%end%><%end%>
+
+			<% if offer.offer_type=='buy1get1'%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+
+			<b>Buy</b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%> <b>And Get</b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+			<p style="margin-left: 25px;">Offer valid till <%= offer.endDate_get%> </p>
+			<br />
+			<%end%><%end%><%end%>
+
+			<% if offer.offer_type=='buy2get1'%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+
+			<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%>,<b>Buy </b><%= offer.qty_buy2%>&nbsp;<%= offer.menuName_buy2%> <b>And Get </b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+			<p style="margin-left: 25px;">Offer valid till <%= offer.endDate_get%> </p><br />
+			<%end%><%end%>
+			<%end%>
+
+			<% if offer.offer_type=='buy3get1'%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+
+			<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%>,<b>Buy </b><%= offer.qty_buy2%>&nbsp;<%= offer.menuName_buy2%>,<b>Buy </b><%= offer.qty_buy3%>&nbsp;<%= offer.menuName_buy3%> <b>And Get </b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+			<p style="margin-left: 25px;">Offer valid till <%= offer.endDate_get%> </p><br />
+			<%end%><%end%>
+			<%end%>
+
+			<% if offer.offer_type=='buy4get1'%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+
+			<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%>,<b>Buy </b><%= offer.qty_buy2%>&nbsp;<%= offer.menuName_buy2%>,<b>Buy </b><%= offer.qty_buy3%>&nbsp;<%= offer.menuName_buy3%>,<b>Buy </b><%= offer.qty_buy4%>&nbsp;<%= offer.menuName_buy4%> <b>And Get </b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+			<p style="margin-left: 25px;">Offer valid till <%= offer.endDate_get%> </p><br />
+			<%end%><%end%>
+			<%end%>
+
+			<% if offer.offer_type=='buy5get1'%>
+			<% if (offer.startDate).present? || (offer.startDate_get).present?  &&  (offer.endDate).present? || (offer.endDate_get).present? %>
+			<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+
+			<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%>,<b>Buy </b><%= offer.qty_buy2%>&nbsp;<%= offer.menuName_buy2%>,<b>Buy </b><%= offer.qty_buy3%>&nbsp;<%= offer.menuName_buy3%>,<b>Buy </b><%= offer.qty_buy4%>&nbsp;<%= offer.menuName_buy4%>,<b>Buy </b><%= offer.qty_buy5%>&nbsp;<%= offer.menuName_buy5%> <b>And Get </b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+			<p style="margin-left: 25px;">Offer valid till <%= offer.endDate_get%> </p><br />
+			<%end%><%end%>
+			<%end%>
+			<%end%>
+
+			<% @offers2.each do |discount|%>
+			<% if (discount.startDate).present? || (discount.startDate_get).present?  &&  (discount.endDate).present? || (discount.endDate_get).present? %>
+			<% if Date.today.between?((discount.startDate_get),(discount.endDate_get)) || Date.today==discount.endDate_get || Date.today==discount.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+			<b>Buy </b> 1 <%= discount.menuName_get%><b> And Get </b> <%= discount.disAmountOrPercentage%><%= discount.disType_get%><b> OFF </b> on this item.
+			<p style="margin-left: 25px;">Offer valid till <%= discount.endDate_get%> </p><br /><%end%><%end%>
+			<%end%>
+
+			<% @offers3.each do |discount|%>
+			<% if (discount.startDate).present? || (discount.startDate_get).present?  &&  (discount.endDate).present? || (discount.endDate_get).present? %>
+			<% if Date.today.between?((discount.startDate_get),(discount.endDate_get)) || Date.today==discount.endDate_get || Date.today==discount.startDate_get%>
+
+			<b>(<%= @count += 1 %>).</b>
+			<b>Buy </b> 1 <%= discount.menuName_get%><b> And Get </b> <%= discount.disType_get%><%= discount.disAmountOrPercentage%><b> OFF </b> on this item.
+			<p style="margin-left: 25px;">Offer valid till <%= discount.endDate_get%> </p><br /><%end%>
+
+			</ol><%end%>
+			<%end%>
+			<%end%>
+			<br />
+
+			<% if params[:name]== params[:name]%>
+
+			<%@menus.each do |d|%>
+
+			<div id="#" class="search_result_row grid-view sorted-resto" style="opacity: 1;background-color: #7E4B4B">
+			<%= image_tag d.image_url,:size=>'70x70'%>
+			&nbsp;&nbsp;&nbsp;<b style="color: white;text-align: center;font-size: 20px;position: absolute;margin-top: 20px;"><%= d.menu_item_name%></b>
+
+			<div style="width: 32%;height: 34px;background-color: #BDBDBD;float:right;margin: 0.5em 0;
+			min-width: 9em;margin-top: 21px;">
+			<div style=" float:left;padding-top:7px;padding-left: 8px;">
+			<b style="color: #380B61;font-size: 20px;margin-top: 10px;">	<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'15x15',:alt=>'Logo')%><%= d.price%> </b>
+			</div>
+			<div style="width: 95px; float:right;padding-top:7px;">
+
+			<%= form_tag(:controller => 'line_items',:action=>"create", :menu_id => d.id,:quantity1=>params[:quantity1]) do %>
+			<%= number_field_tag :quantity1,nil,:in=>1...500,:class=>'numberStyle',:value=>1%>
+
+			<%= submit_tag 'ADD',class: "AddButton",:quantity=>params[:quantity],:remote => true  %>
+
+			<%end%>
+
+			</div>
+			</div>
+
+			</div>
+			<% @hideIt=d.category_id%>
+			<% @categoryId=d.category_id%>
+			<% end%><% end%>
+			<%if @categoryId.present?%>
+			<% @categoryName=Category.find(@categoryId)%>
+			<% if params[:menuName].blank?%>
+			<b style="color: #F1F1F1;font-size: 26px;position: absolute;top: 350px;left: 480px;"><%= @categoryName.name%></b><% end%>
+			
+			
+			<% end%>
+				<% if params[:menuName]=='offer'%>
+			<b style="color: #F1F1F1;font-size: 26px;position: absolute;top: 350px;left: 480px;">OFFERS</b>
+			<%end%>
+			<div id="hideDiv" class="home_banner">
+	<% if params[:menuName].blank?%>
+			<% if (@hideIt==nil)%>
+			<%@menus2.each do |d|%>
+			<div id="#" class="search_result_row grid-view sorted-resto" style="opacity: 1;background-color: #7E4B4B">
+			<%= image_tag d.image_url,:size=>'70x70'%>
+			&nbsp;&nbsp;&nbsp;<b style="color: white;text-align: center;font-size: 20px;position: absolute;margin-top: 20px;"><%= d.menu_item_name%></b>
+
+			<div style="width: 15%;height: 34px;background-color: #BDBDBD;float:right;margin: 0.5em 0;
+			min-width: 9em;margin-top: 21px;">
+			<div style=" float:left;padding-top:7px;padding-left: 8px;">
+			<b style="color: #380B61;font-size: 20px;margin-top: 10px;"> <%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'15x15',:alt=>'Logo')%><%= d.price%> </b>
+			</div>
+			<div style="width: 95px; float:right;padding-top:7px;">
+
+			<%= form_tag(:controller => 'line_items',:action=>"create", :menu_id => d.id,:quantity1=>params[:quantity1]) do %>
+			<%= number_field_tag :quantity1,nil,:in=>1...500,:class=>'numberStyle',:value=>1%>
+
+			<%= submit_tag 'ADD',class: "AddButton",:quantity=>params[:quantity],:remote => true  %>
+
+			<%end%>
+
+		</div>
+		</div>
+
+		</div>
+		<% @categoryId1=d.category_id%>
+		<% end%>
+		<% end%>
+
+		<%end%>
+		<%if @categoryId1.present?%>
+		<% @categoryName1=Category.find(@categoryId1)%>
+
+		<b style="color: #F1F1F1;font-size: 26px;position: absolute;top: 350px;left: 480px;"><%= @categoryName1.name%></b><% end%>
+
+		</div>
+
+		</div>
+		<br />
+		<div id="cart">
+			<%= render @cart %>
+
+		</div>
+		<% if cookies[:uName].blank?%>
+		<%= form_tag(:controller=>'menus',:action=>'loginUser') do%>
+		<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed" style="position: absolute;left:700px;top:10px;">
+			<button type="button" >
+				Login
+			</button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-form content-style-form-1">
+						<span class=" icon-close"><%= image_tag('mark.ico') %></span>
+						<h2>Login</h2>
+						<form>
+							<p>
+								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox")%>
+
+							</p>
+							<p>
+								<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox")%>
+							</p>
+							<p>
+								<%= submit_tag "Login",class: "LoginButton"%>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+			<%end%> <%end%>
+	</body>
+
+	<script>
+		(function() {
+			var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+			// trick to prevent scrolling when opening/closing button
+			function noScrollFn() {
+				window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0);
+			}
+
+			function noScroll() {
+				window.removeEventListener('scroll', scrollHandler);
+				window.addEventListener('scroll', noScrollFn);
+			}
+
+			function scrollFn() {
+				window.addEventListener('scroll', scrollHandler);
+			}
+
+			function canScroll() {
+				window.removeEventListener('scroll', noScrollFn);
+				scrollFn();
+			}
+
+			function scrollHandler() {
+				if (!didScroll) {
+					didScroll = true;
+					setTimeout(function() {
+						scrollPage();
+					}, 60);
+				}
+			};
+
+			function scrollPage() {
+				scrollPosition = {
+					x : window.pageXOffset || docElem.scrollLeft,
+					y : window.pageYOffset || docElem.scrollTop
+				};
+				didScroll = false;
+			};
+
+			scrollFn();
+
+			[].slice.call(document.querySelectorAll('.morph-button')).forEach(function(bttn) {
+				new UIMorphingButton(bttn, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+					},
+					onBeforeClose : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				});
+			});
+
+			// for demo purposes only
+			[
+			].slice.call(document.querySelectorAll('form button')).forEach(function(bttn) {
+				bttn.addEventListener('click', function(ev) {
+					ev.preventDefault();
+				});
+			});
+		})();
+	</script>
+</html>

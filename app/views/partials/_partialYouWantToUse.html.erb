@@ -1,0 +1,25 @@
+<% doajax = false unless (defined? doajax)%>
+
+
+<%= form_for(@menu,remote: doajax) do |f| %>
+<div class="divRight">
+	<p id="notice">
+		<%= notice %>
+	</p>
+	<h2>Your Order</h2>
+	<ul>		
+		<% for item in @cart.line_items %>
+		&nbsp;&nbsp;
+		<li>
+			<%= item.quantity %> &times;<%= item.menu.menu_item_name %>&nbsp;&nbsp;
+			<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%>
+			<b style="color: #380B61;font-size: 15px"><%= item.quantity*item.menu.price%> </b>
+		</li>
+
+		<% end %>
+	</ul>
+	<%= button_to 'Empty cart', @cart, :method => :delete %>
+	<br />
+	
+</div>
+<% end %>

@@ -1,0 +1,183 @@
+<html>
+	<head></head>
+	<style>
+		#login {
+    z-index: 22;
+}
+#register, #login {
+    background: none repeat scroll 0 0 rgb(247, 247, 247);
+    border: 1px solid rgba(147, 184, 189, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(105, 108, 109, 0.7), 0 0 8px 5px rgba(208, 223, 226, 0.4) inset;
+    margin-left: 500px;
+    margin-top: 150px;
+    padding: 18px 6% 60px;
+    position: absolute;
+    top: 0;
+    width: 15%;
+}
+.animate {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease;
+   }
+   .container_demo {
+    font-family: "Trebuchet MS","Myriad Pro",Arial,sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}#wrapper h1:after {
+    background: -moz-linear-gradient(left center , rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: " ";
+    display: block;
+    height: 2px;
+    margin-top: 10px;
+    width: 100%;
+}
+#wrapper h1 {
+}
+#wrapper h1 {
+    color: rgb(6, 106, 117);
+    font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 2px 0 30px;
+    text-align: center;
+}
+.authform .right {
+    float: right !important;
+}
+.btn-primary, .submit, .authform .button, .button-xs {
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: white;
+}
+.btn, .submit, .authform .button, .button-xs {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+
+body {
+	background: #448ed3 ;
+	font-family: "Lato" ;
+}
+.wrap {
+	width:300px;
+	height: auto;
+	margin: auto;
+	margin-top: 10%;
+}
+.avatar {
+	width: 100%;
+	margin: auto;
+	width: 85px;
+	border-radius: 100px;
+	height: 85px;
+	background: #f9b004 ;
+	position: relative;
+	bottom: -15px;
+}
+.avatar img {
+	display: block;
+    height: 76px;
+    margin: auto;
+    width: 91px;
+}
+.wrap input {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    display: block;
+    font-family: Lato;
+    font-weight: lighter;
+    height: 65px;
+    margin: auto;
+    outline: medium none;
+    padding: 18px 20px;
+    width: calc(100% - 3px);
+}
+.bar {
+	width: 100%;
+	height: 1px;
+	background: #fff ;
+}
+.bar i {
+	width: 95%;
+	margin: auto;
+	height: 1px ;
+	display: block;
+	background: #d1d1d1;
+}
+.wrap input[type="text"] {
+	border-radius: 7px 7px 0px 0px ;
+}
+.wrap input[type="password"] {
+	border-radius: 0px 0px 7px 7px ;
+}
+.forgot_link {
+	color: #83afdf;
+    font-size: 11px;
+    left: 230px;
+    position: relative;
+    text-decoration: none;
+    top: -36px;
+}
+.wrap button {
+	width: 100%;
+	border-radius: 7px;
+	background: #b6ee65;
+	text-decoration: center;
+	border: none;
+	color: #51771a;
+  margin-top:-5px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	outline: none;
+	font-size: 13px;	
+	border-bottom: 3px solid #307d63;
+	cursor: pointer;
+}
+	</style>
+	<body style="background-color: #ADD8E6;">
+		<div class="container_demo" >
+	
+
+<%= form_tag(:controller=>'categories',:action=>'attempt_login') do%>
+<div class="wrap">
+	<div style="text-align: center;color: #F4A506;">
+		<%if  flash[:notice].present?%>
+<%=  flash[:notice]%>
+<%end%>
+	</div>
+		<div class="avatar">
+      <%= image_tag('logo3.png') %>
+		</div>
+		<%= text_field_tag(:username, nil, placeholder:'username',:required=>true)%>
+		<div class="bar">
+			<i></i>
+		</div>
+		<%= password_field_tag(:password, nil, placeholder:'password',:required=>true)%>
+		<a href="" class="forgot_link">forgot ?</a>
+		<button>Sign in</button>
+	</div>
+		<%end%>
+	</body>
+	
+</html>

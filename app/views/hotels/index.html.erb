@@ -1,0 +1,384 @@
+<html>
+	<head>
+		<%= stylesheet_link_tag 'orders'%>
+		<%= stylesheet_link_tag 'component'%>
+		<%= stylesheet_link_tag 'content'%>
+
+		<%= javascript_include_tag 'classie'%>
+	</head>
+	<!-- link to a set of effects -->
+	<style type="text/css">
+		<link href="styles.css" rel="stylesheet" type="text/css" />
+
+		.search_result_row, .head-resto {
+			padding: 0;
+		}
+
+		.sorted-resto {
+			background-color: #fff;
+		}
+		.search_result_row {
+			border-bottom: 1px solid #e6e4b1;
+			color: #333;
+			padding: 0.5em;
+		}
+		.grid-view {
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 0 0.4em 15px;
+			min-height: 250px;
+			padding: 1.3em 1%;
+			width: 21%;
+		}
+		a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+			background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+			border: 0 none;
+			font-size: 100%;
+			margin: 0;
+			outline: 0 none;
+			padding: 0;
+			vertical-align: baseline;
+		}
+		.grid-view .grid_13 {
+			min-height: 118px;
+			padding: 0 4px 0 8px;
+		}
+		.grid-view .grid_13 {
+			min-height: 140px;
+			padding: 0 4px 0 8px;
+		}
+		.grid-view .grid_13 {
+			min-height: 230px;
+		}
+		.grid-view .grid_13, .grid-view .grid_14, .grid-view .grid_16d, .grid-view .grid_5c {
+			text-align: left;
+			width: 100%;
+		}
+		.container_16 .grid_13 {
+			width: 79.25%;
+		}
+		.tal {
+			text-align: left;
+		}
+		.grid_1, .grid_10, .grid_11, .grid_11a, .grid_11ab, .grid_11b, .grid_11c, .grid_12, .grid_13, .grid_13a, .grid_13l, .grid_14a, .grid_14b, .grid_15a, .grid_2, .grid_2a, .grid_3, .grid_3a, .grid_3b, .grid_3f, .grid_3fu, .grid_3l, .grid_4, .grid_4d, .grid_4f, .grid_5, .grid_5a, .grid_5b, .grid_5c, .grid_5d, .grid_5e, .grid_5f, .grid_5h, .grid_6, .grid_6a, .grid_7, .grid_8, .grid_8a, .grid_8ab, .grid_8b, .grid_8d, .grid_9, grid_5db {
+			float: left;
+		}
+		a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+			background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+			border: 0 none;
+			font-size: 100%;
+			margin: 0;
+			outline: 0 none;
+			padding: 0;
+			vertical-align: baseline;
+		}
+		a.btn-orange {
+			text-decoration: none;
+			background-color: #81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			margin: 1% 0;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			margin-right: 60px;
+		}
+
+		a.btn-orange:hover {
+			background-color: #81c02f;
+			color: #000;
+		}
+		.menu_list {
+			width: 200px;
+			float: left;
+			border: 1px solid #ff7200;
+			margin-left: 150px;
+			height: 300px;
+			text-align: center;
+			background-color: #F5D0A9;
+		}
+	</style>
+	<style>
+		table, td, th {
+			border: 1px solid black;
+			height: 20px;
+			width: 750px;
+			text-align: center;
+		}
+
+		th {
+			background-color: blue;
+			color: red;
+		}
+		td {
+			background-color: #848484;
+			color: #F7FE2E;
+		}
+		.list-wrap {
+			text-align: center;
+			margin-left: 120px;
+			background-color: #e9e9e9;
+			float: left;
+			padding: 7px 3%;
+			width: 79%;
+		}
+		.container_head {
+			background-color: #f9b004;
+			background-image: linear-gradient(to right, #f9b004 0px, #f9b004 50%, #f9b004 100%);
+			border-bottom: 3px solid #fff;
+			height: 100px;
+		}
+		.top-resultbar {
+			background-color: #efefef;
+			border: 1px solid #ddd;
+			height: 42px;
+			margin: 4px 0 46px;
+			padding: 0 10px;
+			position: relative;
+			width: 100%;
+		}
+		.menu_link {
+			text-decoration: none;
+			color: #FFFFFF;
+			border-right-color: #FFFFFF;
+		}
+
+		a.btn-orange2 {
+			text-decoration: none;
+			background-color: black;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			float: right;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			top: 10px;
+		}
+
+		a.btn-orange2:hover {
+			background-color: #81c02f;
+			color: #000;
+		}
+
+		a.btn-orange3 {
+			text-decoration: none;
+			background-color: 81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			float: right;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			top: 10px;
+		}
+
+		a.btn-orange3:hover {
+			background-color: black;
+			color: #FFFFFF;
+		}
+		
+	</style>
+	<style>
+		body {
+
+			background-image: url('/publics/images/Background-Food-Spices_018.jpg')
+		}
+	</style>
+	<body style="background-image: url('../images/menu-free-background4.jpg')">
+		<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "CONTACT US |",{},class: "menu_link"%>
+			<%= link_to "ABOUT US",{},class: "menu_link"%>
+			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
+			<% if cookies[:uName].present?%>
+			<div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
+				<ul>
+
+					<li class=' has-sub'>
+						<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
+						<ul>
+							<li class=''>
+								<a href='#' style="font-size: 11px;"><%= image_tag('settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
+
+							</li>
+							<li class=''>
+								<a href='#' style="font-size: 11px;"><% image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
+
+							</li>
+							<li class=''>
+								<a href='http://localhost:3000/menus/logout' id="logout" style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
+
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<%end%>
+		</div>
+
+		<div class="container_head" >
+			<div style="">
+				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+			</div>
+		</div>
+		<br />
+
+		<div  class="list-wrap">
+		
+			<br />
+			<div style="background-color:  #ffffff;margin-left: 13px;width: 97%; ">
+				<b style="font-size: 20px;color: orange;"><%= @hotels.count%></b><b style="font-size: 16px;color: orange;"> Hotels<% cookies[:hotelIdCheck]= cookies[:hotelId]%></b><b style="font-size: 14px;color: #808080;"> 
+					available in <%= cookies[:hotelLocation]%></b>
+			</div>
+			<% if   flash[:message]%>
+			<div style="color:#FF7200;background-color: #FFFFFF;font-size: 20px;">
+				<%= flash[:message]%>
+			</div>
+			<%end%>
+			<br />
+
+			<% @hotels.each do |h|  %>
+			<div id="#" class="search_result_row grid-view sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+				<b style="color: #f9b004;text-align: center;font-size: 20px;"><%= h.hotel_Name%><% @hotelName=h.hotel_Name%></b>
+				<br />
+				<%= image_tag h.hotelImage_url,:size=>'160x120'%>
+				<br />
+				<br />
+				<%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<b style="color: #380B61;font-size: 15px"><%= cookies[:hotelLocation]= h.hotel_location%></b>
+				<br />
+				<% h.offers.each do |offer| %>
+				<% if offer.amountforDiscount != nil &&  offer.percentageOff != nil%>
+				<p style="color: #FA603D">
+					<b><%= offer.percentageOff%>% OFF on order of Rs.<%= offer.amountforDiscount%> and Above</b>
+				</p>
+				<p>
+					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
+				</p>
+				<% end %>
+
+				<% if offer.qty_buy2==nil && offer.qty_get.present?%>
+
+				<p style="color: #008080">
+					<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%> <b>And Get</b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+				</p>
+				<br />
+				<%end%>
+
+				<% end %>
+				<div style=" margin-left:46px;margin-top: 40px; ">
+					<%= link_to("ViewMenu",{:controller=>'menus',:hotel_id=>h.id,:hotel_Name=>h.hotel_Name}, class:'btn-orange')%>
+				</div>
+			</div>
+			<% end%>
+		</div>
+		<%= @offers%>
+		<% if cookies[:uName].blank?%>
+		<%= form_tag(:controller=>'hotels',:action=>'loginUser') do%>
+		<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed" style="position: absolute;left:700px;top:10px;">
+			<button type="button" >
+				Login
+			</button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-form content-style-form-1">
+						<span class="icon-close" ><b><%= image_tag('mark.ico') %></b></span>
+						<h2>Login</h2>
+						<form>
+							<p>
+								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox")%>
+
+							</p>
+							<p>
+								<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox")%>
+							</p>
+							<p>
+								<%= submit_tag "Login",class: "LoginButton"%>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+			<%end%> <%end%>
+			<script>
+				(function() {
+					var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+					// trick to prevent scrolling when opening/closing button
+					function noScrollFn() {
+						window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0);
+					}
+
+					function noScroll() {
+						window.removeEventListener('scroll', scrollHandler);
+						window.addEventListener('scroll', noScrollFn);
+					}
+
+					function scrollFn() {
+						window.addEventListener('scroll', scrollHandler);
+					}
+
+					function canScroll() {
+						window.removeEventListener('scroll', noScrollFn);
+						scrollFn();
+					}
+
+					function scrollHandler() {
+						if (!didScroll) {
+							didScroll = true;
+							setTimeout(function() {
+								scrollPage();
+							}, 60);
+						}
+					};
+
+					function scrollPage() {
+						scrollPosition = {
+							x : window.pageXOffset || docElem.scrollLeft,
+							y : window.pageYOffset || docElem.scrollTop
+						};
+						didScroll = false;
+					};
+
+					scrollFn();
+
+					[].slice.call(document.querySelectorAll('.morph-button')).forEach(function(bttn) {
+						new UIMorphingButton(bttn, {
+							closeEl : '.icon-close',
+							onBeforeOpen : function() {
+								// don't allow to scroll
+								noScroll();
+							},
+							onAfterOpen : function() {
+								// can scroll again
+								canScroll();
+							},
+							onBeforeClose : function() {
+								// don't allow to scroll
+								noScroll();
+							},
+							onAfterClose : function() {
+								// can scroll again
+								canScroll();
+							}
+						});
+					});
+
+					// for demo purposes only
+					[
+					].slice.call(document.querySelectorAll('form button')).forEach(function(bttn) {
+						bttn.addEventListener('click', function(ev) {
+							ev.preventDefault();
+						});
+					});
+				})();
+			</script>
+
+	</body>
+</html>

@@ -1,0 +1,27 @@
+var menus = new Array();
+<% for menu in @menus %>
+menus.push(new Array(<%= menu.category_id%>,
+'<%= h menu.menu_item_name%>',<%= menu.id%>));
+<% end %>
+
+function categorySelected()
+{
+	category_id= $('person_category_id').getvalue();
+options= $('person_menu_id').options;
+options.length=1;
+ menus.each(function(menu) {
+    if (menu[0] == category_id) {
+      options[options.length] = new Option(menu[1], menu[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('menu_field').hide();
+  } else {
+    $('menu_field').show();
+  }
+}
+
+document.observe('dom:loaded', function() {
+  categorySelected();
+  $('person_category_id').observe('change', categorySelected);
+});

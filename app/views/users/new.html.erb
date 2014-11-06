@@ -1,0 +1,19 @@
+<html>
+	<head></head>
+	<body style="background-image: url('../images/paper_background.jpg');>
+<%= link_to("<< Back to home page",{:action=>'index'})%>
+<div>
+	<h2>Create Category</h2>
+	<%= form_for(:category,:url=>{:action=>'create'}) do |f|%>
+	<table summary="Category form view">
+		<tr>
+			<th>Name</th>
+			<td><%= f.text_field(:name)%></td>
+		</tr>
+		
+	</table>
+	<div><%= submit_tag("Create new category",:hotel_id=> session[:hotel_id_for_login_user])%></div>
+	<%end%>
+</div>
+</body>
+</html>

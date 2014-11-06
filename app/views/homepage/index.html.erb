@@ -1,0 +1,316 @@
+<html>
+	<head> <link rel="public/stylesheets" href="menu.css"></head>
+	<style>
+	@charset "UTF-8";
+/* Starter CSS for Flyout Menu */
+#cssmenu,
+#cssmenu ul,
+#cssmenu li #cssmenu a {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  font-family: Helvetica;
+  line-height: 1;
+}
+#cssmenu {
+  width: auto;
+}
+#cssmenu ul {
+  zoom: 1;
+ 
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #839b4e;
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+#cssmenu ul:before {
+  content: '';
+  display: block;
+}
+#cssmenu ul:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#cssmenu a,
+#cssmenu a:link,
+#cssmenu a:visited {
+  padding: 15px 20px;
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 0 -1px 1px #FFFFFF;
+  border-right: 1px solid #FFFFFF;
+}
+#cssmenu a:hover {
+  color: #586835;
+  text-shadow: 0 1px 1px #bdcd9c;
+}
+#cssmenu li {
+  float: left;
+  border-right: 1px solid #FFFFFF;
+}
+#cssmenu li:hover {
+  background: #9cb369 url(images/pattern.png) top left repeat;
+}
+#cssmenu li:first-child {
+  border-left: none;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+		.list-wrap {
+			margin-top: 19px;
+			margin-left: 30px;
+			background-color: #e9e9e9;
+			float: left;
+			padding: 5px 1%;
+			width: 36%;
+		}
+
+		.AddButton {
+			background-color: #ffffff;
+		}
+		.menu_list {
+			width: 250px;
+			float: left;
+			border: 1px solid #ff7200;
+			margin-left: 150px;
+			margin-top: 19px;
+			height: 300px;
+			text-align: center;
+			background-color: #F5D0A9;
+		}
+		.seach-but {
+			background-color: #81c02f;
+			border: 0 solid #000000;
+			color: #ffffff;
+			font-size: 1.1em;
+			font-weight: bold;
+			height: auto;
+			margin-left: 5px;
+			padding: 0.5em;
+			right: 5px;
+			transition: background-color 0.5s ease 0s, color 0.3s ease 0s;
+		}
+	
+		.linkstyle {
+			width: 70px;
+			height: 40px;
+			font: 16px Arial;
+			text-decoration: none;
+			background-color: #EEEEEE;
+			color: #333333;
+			padding: 2px 6px 2px 6px;
+			border-top: 1px solid #CCCCCC;
+			border-right: 1px solid #333333;
+			border-bottom: 1px solid #333333;
+			border-left: 1px solid #CCCCCC;
+			margin: 1% 0;
+		}
+		a.btn-orange {
+			text-decoration: none;
+			background-color: black;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			margin-left: 950px;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			
+		}
+
+		a.btn-orange:hover {
+			background-color: #81c02f;
+			color: #000;
+		}
+		.container_head {
+			background-color: #f9b004;
+			background-image: linear-gradient(to right, #f9b004 0px, #f9b004 50%, #f9b004 100%);
+			border-bottom: 3px solid #fff;
+			height: 200px;
+		}
+		.img_preview {
+			height: 20%;
+		}
+		.serachdiv {
+			background-image: url('../images/slider-3.jpg');
+			text-align: center;
+			width: 100%;
+			height: 650px;
+		}
+		.search-box, .close-icon, .search-wrapper {
+			position: relative;
+			padding: 10px;
+		}
+		.search-wrapper {
+			width: 500px;
+			margin: auto;
+			margin-top: 50px;
+		}
+		.search-box {
+			width: 80%;
+			border: 1px solid #ccc;
+			outline: 0;
+			border-radius: 15px;
+			background-color: white;
+		}
+		.search-box:focus {
+			box-shadow: 0 0 15px 5px #b0e0ee;
+			border: 2px solid #bebede;
+		}
+		.close-icon {
+			border: 1px solid transparent;
+			background-color: transparent;
+			display: inline-block;
+			vertical-align: middle;
+			outline: 0;
+			cursor: pointer;
+		}
+		.close-icon:after {
+			content: "X";
+			display: block;
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			background-color: #FA9595;
+			z-index: 1;
+			right: 35px;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			padding: 2px;
+			border-radius: 50%;
+			text-align: center;
+			color: white;
+			font-weight: normal;
+			font-size: 12px;
+			box-shadow: 0 0 2px #E50F0F;
+			cursor: pointer;
+		}
+		.search-box:not(:valid) ~
+		.close-icon {
+			display: none;
+		}
+.menu_link
+{
+	text-decoration:none;
+	color: #FFFFFF;
+	border-right-color: #FFFFFF;
+}
+a.btn-orange2 {
+			text-decoration: none;
+			background-color: black;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			float:right;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			top:10px;
+			
+		}
+
+		a.btn-orange2:hover {
+			background-color: #81c02f;
+			color: #000;
+		}
+		
+		a.btn-orange3 {
+			text-decoration: none;
+			background-color: 81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			float:right;
+			padding: 0.5em 1em;
+			text-transform: uppercase;
+			top:10px;
+			
+		}
+
+		a.btn-orange3:hover {
+			background-color: black;
+			color: #FFFFFF;
+			
+		}
+		.btnSearch
+		{
+			text-decoration: none;
+			background-color: 81c02f;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 700;
+			line-height: normal;
+			
+			padding: 0.5em 1em;
+			text-transform: uppercase;		
+			
+		}
+		button.btnSearch:hover {
+			background-color: black;
+			color: #FFFFFF;
+		}
+	</style>
+
+	<body style="background-image: url('../images/menu-free-background4.jpg') ">
+		
+<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "CONTACT US |",{},class: "menu_link"%>
+			<%= link_to "ABOUT US",{},class: "menu_link"%>
+			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
+			<%= link_to "LOGIN",{:controller=>'homepage',:action=>'login'},class: "btn-orange3"%>
+		</div>
+				
+		<div style="background-color: #EFFBFB;height: 800px;width: 1156px;margin-left: 91px";  >
+			<div class="container_head" >
+				
+				<br />
+				<br />
+
+				<div style="margin-left: 43%;width:100px;">
+					<%= image_tag('logo3.png') %>
+				</div>
+
+			</div>
+			
+			<div class="serachdiv">
+
+				<div style="margin-bottom: 300px;text-align: center; padding-top: 50px;">
+<% if flash[:hh] %>
+				<div style="color:#FF7200;background-color: #FFFFFF;font-size: 20px;">
+					<%= flash[:hh] %>
+				</div>
+				<% end %>
+				
+					<h2 style="font-size: 30px; color:#fff;">Best Places to eat in your city</h2>
+					<br>
+					<%= form_tag :controller => 'hotels',:search=>params[:search],method: :get do %>
+					<div id="box" style="width: 400px;margin-left: 33%">
+						<%= text_field_tag :search, nil, :class => 'search-box', :required => true,:placeholder=>'Type Your City Name(Bhubaneswar,Cuttack)'%>
+					</div>
+					<br />
+					<%= submit_tag "Search", :name=>'btnsearch',class: "btnSearch"%>
+				</div>
+				<%end%>
+				<br />
+			</div>
+		</div>
+
+	</body>
+
+</html>

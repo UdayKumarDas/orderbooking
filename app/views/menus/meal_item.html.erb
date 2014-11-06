@@ -1,0 +1,184 @@
+<%if !flash[:notice].blank?%>
+<div>
+	<%= flash[:notice]%>
+</div>
+<%end%>
+
+<style>
+	table, td, th {
+		border: 1px solid black;
+		height: 20px;
+		width: 750px;
+		text-align: center;
+	}
+
+	th {
+		background-color: blue;
+		color: red;
+	}
+	td {
+		background-color: #848484;
+		color: #F7FE2E;
+	}
+
+	.search_result_row, .head-resto {
+		padding: 0;
+	}
+
+	.sorted-resto {
+		background-color: #fff;
+	}
+	.search_result_row {
+		border-bottom: 1px solid #e6e4b1;
+		color: #333;
+		padding: 0.5em;
+	}
+	.grid-view {
+		border: 1px solid #ddd;
+		float: left;
+		margin: 0.4em 2% 0.4em 0;
+		min-height: 50px;
+		padding: 0.3em 1%;
+		width: 99%;
+	}
+	a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+		border: 0 none;
+		font-size: 100%;
+		margin: 0;
+		outline: 0 none;
+		padding: 0;
+		vertical-align: baseline;
+	}
+	.grid-view .grid_13 {
+		min-height: 118px;
+		padding: 0 4px 0 8px;
+	}
+	.grid-view .grid_13 {
+		min-height: 140px;
+		padding: 0 4px 0 8px;
+	}
+	.grid-view .grid_13 {
+		min-height: 230px;
+	}
+	.grid-view .grid_13, .grid-view .grid_14, .grid-view .grid_16d, .grid-view .grid_5c {
+		text-align: left;
+		width: 100%;
+	}
+	.container_16 .grid_13 {
+		width: 79.25%;
+	}
+	.tal {
+		text-align: left;
+	}
+	.grid_1, .grid_10, .grid_11, .grid_11a, .grid_11ab, .grid_11b, .grid_11c, .grid_12, .grid_13, .grid_13a, .grid_13l, .grid_14a, .grid_14b, .grid_15a, .grid_2, .grid_2a, .grid_3, .grid_3a, .grid_3b, .grid_3f, .grid_3fu, .grid_3l, .grid_4, .grid_4d, .grid_4f, .grid_5, .grid_5a, .grid_5b, .grid_5c, .grid_5d, .grid_5e, .grid_5f, .grid_5h, .grid_6, .grid_6a, .grid_7, .grid_8, .grid_8a, .grid_8ab, .grid_8b, .grid_8d, .grid_9, grid_5db {
+		float: left;
+	}
+	a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+		border: 0 none;
+		font-size: 100%;
+		margin: 0;
+		outline: 0 none;
+		padding: 0;
+		vertical-align: baseline;
+	}
+	
+	.list-wrap {
+
+		margin-left: 30px;
+		background-color: #e9e9e9;
+		float: left;
+		padding: 5px 1%;
+		width: 36%;
+	}
+
+	.AddButton {
+		background-color: red;
+	}
+	.menu_list {
+			width: 200px;
+			float: left;
+			border: 1px solid #ff7200;
+			margin-left: 150px;
+		    height: 300px;
+			text-align: center;
+			background-color: #F5D0A9;
+		}
+		.seach-but {
+    background-color: #81c02f;
+    border: 0 solid #000000;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: bold;
+    height: auto;
+    margin-left: 5px;
+    padding: 0.5em;   
+    right: 5px;
+    transition: background-color 0.5s ease 0s, color 0.3s ease 0s;
+}
+a.btn-orange {
+		width:70px;
+		background-color: #81c02f;
+		color: #fff;
+		display: inline-block;
+		font-size: 0.9em;
+		font-weight: 700;
+		line-height: normal;
+		margin: 1% 0;
+		padding: 0.5em 1em;
+		text-transform: uppercase;
+		
+	}
+.linkstyle {
+	width: 70px;
+	height: 40px;
+  font:  16px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  margin: 1% 0;
+  
+}
+</style>
+<body>
+	<br />
+	<br />
+	<div class="menu_list"> <br /><br />
+		<%= link_to("MEAL",{:controller=>'menus',:hotel_id=>params[:hotel_id], :remote => true }, class:'linkstyle ')%>
+		<br /><br />
+		<%= link_to("DRINKS",{:controller=>'menus'}, class:'linkstyle')%>
+		<br /><br />
+		<%= link_to("SNACKS",{:controller=>'menus'}, class:'linkstyle')%>
+		<br />
+	</div>
+	<div id="menu-container" class="list-wrap">
+		<%= image_tag('kitchen.jpg',:size=>'492x150')%>
+		<br />
+		<%@menus.each do |d|%>
+		<div id="#" class="search_result_row grid-view sorted-resto" style="opacity: 1;background-color: #7E4B4B">
+			<b style="color: #2ECCFA;text-align: center;font-size: 20px;"><%= d.menu_item_name%></b>
+
+			<div style="width: 15%;height: 34px;background-color: #BDBDBD;float:right;margin: 0.5em 0;
+			min-width: 9em;">
+				<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%>&nbsp;<b style="color: #380B61;font-size: 15px"><%= d.price%> </b> 
+				
+				<div style="width: 15px;margin-left: 40px;">
+					<%= button_to 'Add', :type => "button",:controller=>"line_items",:action=>"create", :menu_id => d,:class=>"AddButton"  %>
+				</div>
+
+			</div>
+		</div>
+
+		<% end%>
+	</div>
+	<br />
+	<div id="cart">
+		<%= render @cart %>
+	</div>
+</body>

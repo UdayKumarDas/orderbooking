@@ -1,0 +1,12 @@
+
+	<div>
+	<h2>Delete Menu</h2>	
+	<%= form_for(:menu,:url=>{:action=>'destroy',:id=>params[:id]}) do |f|%>
+	<p>	Are you sure you want to permanently delete this menu</p>
+	<p><%= @menu.menu_item_name%></p>
+	<%end%>
+	<br />
+	
+	<%= submit_tag("Delete Menu")%>
+	
+	</div>
