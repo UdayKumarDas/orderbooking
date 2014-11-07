@@ -561,7 +561,7 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 			}
 		}
 	</script>
-	<body style="background-image: url('../images/menu-free-background4.jpg')">
+	<body style="background-image: url('/assets/menu-free-background4.jpg')">
 		<div style="position: absolute;float: right;padding-left: 140px;padding-top: 20px;">
 			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
 			<%= link_to "CONTACT US |",{},class: "menu_link"%>
@@ -573,7 +573,7 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 <div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
 <ul>
   
-   <li class=' has-sub'><a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<% @hotelUsercc= HotelUser.find(cookies[:user_id2])%><%= cookies[:uName]= @hotelUsercc.userName%></a>
+   <li class=' has-sub'><a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<% @hotelUsercc= HotelUser.find(cookies[:user_id2])%><%=  @hotelUsercc.userName%></a>
       <ul>
          <li class=''><a href='#' style="font-size: 11px;"><%= image_tag('settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD
          </a>

@@ -52,6 +52,7 @@ class MenusController < ApplicationController
   def logout
 
     cookies[:uName]=nil
+    cookies[:user_id2]=nil
     redirect_to(:controller=>'homepage',:action=>'index')
   end
 

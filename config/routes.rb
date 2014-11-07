@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   resources :customers
+  get 'hotels/index'
   get 'hotel_users/signup'
-get 'hotels/createUserForHotel'
- get 'hotels/createnewhotel'
- get 'hotels/createHotel'
+  get 'hotels/createUserForHotel'
+  get 'hotels/createnewhotel'
+  get 'hotels/createHotel'
+
   get 'offers/index'
 
   get 'offers/show'
@@ -19,13 +21,13 @@ get 'hotels/createUserForHotel'
 
   root 'homepage#index'
   #resources :menus
- get 'line_items/create'
+  get 'line_items/create'
   get 'line_items/ddd'
-   get 'line_items/destroy'
+  get 'line_items/destroy'
   #resources :categories
   #resources :line_items
-get 'carts/destroy'
- # resources :carts
+  get 'carts/destroy'
+  # resources :carts
   #resources :orders
   #resources :hotels
   #resources :admin
@@ -36,18 +38,17 @@ get 'carts/destroy'
 
   #root 'users#login'
 
-  get 'hotels/index'
-  get 'hotels/edit'
   get 'menus/index'
   get 'menus/edit'
   #get 'hotels/show'
   get 'categories/index'
   get 'categories/show'
   get 'categories/new'
+  get 'homepage/login'
+
   #get 'access/login', :to=> "categories#login"
   # post '/menus', :to=> 'menus#index', as: 'patient',:render=>'menus#index'
   match ':controller(/:action(/:id))(.:option)',:via=>[:get,:post]
- 
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
