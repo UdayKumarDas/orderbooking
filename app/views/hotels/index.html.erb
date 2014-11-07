@@ -197,7 +197,7 @@
 			<%= link_to "ABOUT US",{},class: "menu_link"%>
 			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
 			<% if cookies[:uName].present?%>
-			<div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
+			<div id='cssmenu' style="width: 100px;float:right;margin-right: -188px;top: -6px;">
 				<ul>
 
 					<li class=' has-sub'>
@@ -281,17 +281,20 @@
 		<%= @offers%>
 		<% if cookies[:uName].blank?%>
 		<%= form_tag(:controller=>'hotels',:action=>'loginUser') do%>
-		<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed" style="position: absolute;left:700px;top:10px;">
-			<button type="button" >
-				Login
-			</button>
-			<div class="morph-content">
-				<div>
-					<div class="content-style-form content-style-form-1">
-						<span class="icon-close" ><b><%= image_tag('mark.ico') %></b></span>
-						<h2>Login</h2>
-						<form>
-							<p>
+		<div class="">
+            <div class="">
+                <a href="#login_form" id="login_pop" style="top: 23px;position: absolute;text-decoration: none;color: black;font: bold;width:80px;margin-left:  -152px; ">LOGIN</a>
+               
+            </div>
+
+        </div>
+
+        <!-- popup form #1 -->
+        <a href="#x" class="overlay" id="login_form"></a>
+        <div class="popup">
+            <h2>Welcome Guest!</h2>
+            <p>Please enter your login and password here</p>
+            <p>
 								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox")%>
 
 							</p>
@@ -301,84 +304,10 @@
 							<p>
 								<%= submit_tag "Login",class: "LoginButton"%>
 							</p>
-						</form>
-					</div>
-				</div>
-			</div>
+            <a class="close" href="#close"></a>
+        </div>
+
 			<%end%> <%end%>
-			<script>
-				(function() {
-					var docElem = window.document.documentElement, didScroll, scrollPosition;
-
-					// trick to prevent scrolling when opening/closing button
-					function noScrollFn() {
-						window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0);
-					}
-
-					function noScroll() {
-						window.removeEventListener('scroll', scrollHandler);
-						window.addEventListener('scroll', noScrollFn);
-					}
-
-					function scrollFn() {
-						window.addEventListener('scroll', scrollHandler);
-					}
-
-					function canScroll() {
-						window.removeEventListener('scroll', noScrollFn);
-						scrollFn();
-					}
-
-					function scrollHandler() {
-						if (!didScroll) {
-							didScroll = true;
-							setTimeout(function() {
-								scrollPage();
-							}, 60);
-						}
-					};
-
-					function scrollPage() {
-						scrollPosition = {
-							x : window.pageXOffset || docElem.scrollLeft,
-							y : window.pageYOffset || docElem.scrollTop
-						};
-						didScroll = false;
-					};
-
-					scrollFn();
-
-					[].slice.call(document.querySelectorAll('.morph-button')).forEach(function(bttn) {
-						new UIMorphingButton(bttn, {
-							closeEl : '.icon-close',
-							onBeforeOpen : function() {
-								// don't allow to scroll
-								noScroll();
-							},
-							onAfterOpen : function() {
-								// can scroll again
-								canScroll();
-							},
-							onBeforeClose : function() {
-								// don't allow to scroll
-								noScroll();
-							},
-							onAfterClose : function() {
-								// can scroll again
-								canScroll();
-							}
-						});
-					});
-
-					// for demo purposes only
-					[
-					].slice.call(document.querySelectorAll('form button')).forEach(function(bttn) {
-						bttn.addEventListener('click', function(ev) {
-							ev.preventDefault();
-						});
-					});
-				})();
-			</script>
-
+			
 	</body>
 </html>
