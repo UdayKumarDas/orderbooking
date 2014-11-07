@@ -220,7 +220,7 @@ table, td, th {
 			float: right;
 		}
 		#cssmenu {
-  background: ;
+  
   margin: 0;
   width: auto;
   padding: 0;
@@ -237,7 +237,7 @@ table, td, th {
 }
 #cssmenu ul:after,
 #cssmenu:after {
-  content: " ";
+  
   display: block;
   font-size: 0;
   height: 0;
