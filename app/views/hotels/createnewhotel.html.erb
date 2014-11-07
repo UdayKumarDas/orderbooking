@@ -10,7 +10,7 @@
 		<%= submit_tag "Create new hotel"%>
 		<%end%>
 		<br /><br />
-		<%= form_for(:user,:url=>{:controller=>'users',:action=>"createUserForHotel"}) do |hotel|%>
+		<%= form_for(:user,:url=>{:controller=>'hotels',:action=>"createUserForHotel"}) do |hotel|%>
 		<%= hotel.label :hotel_id%>
 		<%= hotel.select :hotel_id, options_from_collection_for_select(@hotels,"id","hotel_Name") %>
 		<br /><br />

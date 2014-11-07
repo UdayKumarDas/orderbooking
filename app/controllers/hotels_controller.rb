@@ -116,4 +116,17 @@ class HotelsController < ApplicationController
   def params_createHotel
     params.require(:hotel).permit(:hotel_Name,:hotel_location)
   end
+  def createUserForHotel
+  @user=User.new(params_createUserForHotel)
+  if @user.save
+    flash[:notice]="New user is created for the hotel"
+    redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+  else
+    flash[:notice]="New user not created "
+    redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+  end
+end
+def params_createUserForHotel
+  params.require(:user).permit(:username,:password,:email,:hotel_id)
+end
 end
