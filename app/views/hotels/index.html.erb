@@ -292,11 +292,11 @@
             <h2>Welcome Guest!</h2>
             <p>Please enter your login and password here</p>
             <p>
-								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox")%>
+								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox",:required=>true)%>
 
 							</p>
 							<p>
-								<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox")%>
+								<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox",:required=>true)%>
 							</p>
 							<p>
 								<%= submit_tag "Login",class: "LoginButton"%>
