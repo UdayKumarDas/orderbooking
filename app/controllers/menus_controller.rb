@@ -29,7 +29,8 @@ class MenusController < ApplicationController
 
     else
       flash[:message]="Sorry, we do not have any menus present in #{params[:hotel_Name]}."
-      redirect_to(:back)
+      params[:search]=cookies[:searchValue]
+      redirect_to(:controller=>'hotels',:action=>'index',:search=>cookies[:searchValue])
     end
 
     @categories=Category.where(:hotel_id=>params[:hotel_id])

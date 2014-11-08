@@ -1,11 +1,27 @@
 class HotelsController < ApplicationController
   layout :false
   skip_before_filter :verify_authenticity_token
+  def create
+#@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
+    cookies[:searchValue]=params[:search]
+    #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers)
+    if params[:search].present? ? @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers) : Hotel.includes(:offers)
+      @hotel_name=params[:hotel_location]
+    end
+    if @hotels.blank?
+      flash[:hh]="Sorry, we do not have any hotels delivering to this location."
+      redirect_to(:controller=>'homepage')
+    end
+  end
+
   def index
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
-    @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers)
-    @hotel_name=params[:hotel_location]
-    if @hotels.empty?
+    cookies[:searchValue]=params[:search]
+    #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers)
+    if params[:search].present? ? @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers) : Hotel.includes(:offers)
+      @hotel_name=params[:hotel_location]
+    end
+    if @hotels.blank?
       flash[:hh]="Sorry, we do not have any hotels delivering to this location."
       redirect_to(:controller=>'homepage')
     end
@@ -100,9 +116,11 @@ class HotelsController < ApplicationController
       redirect_to(:controller=>'hotels',:action=>'index')
     end
   end
+
   def createnewhotel
     @hotels=Hotel.all
   end
+
   def createHotel
     @hotel=Hotel.new(params_createHotel)
     if @hotel.save
@@ -113,20 +131,23 @@ class HotelsController < ApplicationController
       redirect_to(:action=>'createnewhotel')
     end
   end
+
   def params_createHotel
     params.require(:hotel).permit(:hotel_Name,:hotel_location)
   end
+
   def createUserForHotel
-  @user=User.new(params_createUserForHotel)
-  if @user.save
-    flash[:notice]="New user is created for the hotel"
-    redirect_to(:controller=>'hotels',:action=>"createnewhotel")
-  else
-    flash[:notice]="New user not created "
-    redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+    @user=User.new(params_createUserForHotel)
+    if @user.save
+      flash[:notice]="New user is created for the hotel"
+      redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+    else
+      flash[:notice]="New user not created "
+      redirect_to(:controller=>'hotels',:action=>"createnewhotel")
+    end
   end
-end
-def params_createUserForHotel
-  params.require(:user).permit(:username,:password,:email,:hotel_id)
-end
+
+  def params_createUserForHotel
+    params.require(:user).permit(:username,:password,:email,:hotel_id)
+  end
 end
