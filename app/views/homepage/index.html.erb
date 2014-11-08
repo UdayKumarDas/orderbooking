@@ -299,7 +299,7 @@ a.btn-orange2 {
 				
 					<h2 style="font-size: 30px; color:#fff;">Best Places to eat in your city</h2>
 					<br>
-					<%= form_tag hotels_path do %>
+					<%= form_tag :controller => 'hotels', :action => 'index',:search=>params[:search] do %>
 					<div id="box" style="width: 400px;margin-left: 33%">
 						<%= text_field_tag :search, nil, :class => 'search-box', :required => true,:placeholder=>'Type Your City Name(Bhubaneswar,Cuttack)'%>
 					</div>
