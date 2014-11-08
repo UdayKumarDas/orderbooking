@@ -3,15 +3,7 @@ class HotelsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def create
 #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
-    cookies[:searchValue]=params[:search]
-    #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers)
-    if params[:search].present? ? @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers) : Hotel.includes(:offers)
-      @hotel_name=params[:hotel_location]
-    end
-    if @hotels.blank?
-      flash[:hh]="Sorry, we do not have any hotels delivering to this location."
-      redirect_to(:controller=>'homepage')
-    end
+   
   end
 
   def index
@@ -150,4 +142,6 @@ class HotelsController < ApplicationController
   def params_createUserForHotel
     params.require(:user).permit(:username,:password,:email,:hotel_id)
   end
+ 
+
 end
