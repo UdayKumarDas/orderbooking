@@ -85,7 +85,7 @@
 								<%  @offers1.each do |offer|%>
 								<% if (cart.total_price >=  offer.amountforDiscount.to_i) %>
 								<% offer.amountforDiscount%>
-								<% @validOffer= offer.percentageOff%>
+								<% @validoffer= offer.percentageOff%>
 
 								<% break%>
 								<%end%>
@@ -99,11 +99,11 @@
 							<div style="background-color: #F2DEDE" >
 								<% if (offer.startDate_get).present? &&  (offer.endDate_get).present?%>
 								<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
-								<%if @validOffer.present?%>
+								<%if @validoffer.present?%>
 
 								Sub Total&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:total_price]=(cart.total_price) %>
 								<br />
-								Discount&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:discount_price]=(cart.total_price.to_i)*(@validOffer.to_i)/100 %> <b><% @totalAmount =(cart.total_price.to_i)*(@validOffer.to_i)/100 %></b>
+								Discount&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:discount_price]=(cart.total_price.to_i)*(@validoffer.to_i)/100 %> <b><% @totalAmount =(cart.total_price.to_i)*(@validoffer.to_i)/100 %></b>
 								<%end%><%end%>
 							</div>
 							<br />
@@ -153,7 +153,7 @@
 
 							<%end%>
 
-							<%if @validOffer==nil && (@validItem1.present?||@validItem.present?)%>
+							<%if @validoffer==nil && (@validItem1.present?||@validItem.present?)%>
 							<div style="background-color: #F2DEDE" >
 								Sub Total&nbsp;&nbsp;&nbsp;<%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%><%= cookies[:total_price]=(cart.total_price) %>
 								<br />
