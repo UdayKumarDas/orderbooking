@@ -83,7 +83,7 @@
 						<div style="background-color:   ">
 							<div>
 								<%  @offers1.each do |offer|%>
-								<% if (cart.total_price.to_i >=  offer.amountforDiscount.to_i) %>
+								<% if (cart.total_price >=  offer.amountforDiscount.to_i) %>
 								<% offer.amountforDiscount%>
 								<% @validOffer= offer.percentageOff%>
 
