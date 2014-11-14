@@ -1,4 +1,4 @@
 class HotelUser < ActiveRecord::Base
-  belongs_to :order
+  has_many :orders
   has_secure_password
 end

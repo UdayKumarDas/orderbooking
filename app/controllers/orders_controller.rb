@@ -105,6 +105,70 @@ class OrdersController < ApplicationController
     end
   end
 
+  def orderCreate1
+    @order = Order.new(order_params)
+    @hotelUser=HotelUser.find(cookies[:user_id2])
+
+    if @order.save
+
+      @order.update_attributes(:phone=>@hotelUser.phoneNo,:name=> @hotelUser.userName,:hotel_user_id=>cookies[:user_id2],:email=>@hotelUser.email)
+
+      addr=Array.new
+      addr=["#{(@hotelUser.address1)}","#{(@hotelUser.address2)}","#{(@hotelUser.address3)}","#{(@hotelUser.address4)}","#{(@hotelUser.address5)}","#{(@hotelUser.address6)}","#{(@hotelUser.address7)}","#{(@hotelUser.address8)}","#{(@hotelUser.address9)}"]
+      addr.each_with_index do |address,index|
+        @value=index+1
+        @newOrder=Order.find(@order.id)
+        cookies[:aaaa]=@newOrder.address
+
+       if address==''||nil
+        if(@value)==2
+          cookies[:aaaa1]='2'
+          @hotelUser.update_attributes(:address2=>@newOrder.address)
+         
+         elsif(@value)==1
+          cookies[:aaaa1]='1'
+          @hotelUser.update_attributes(:address1=>@newOrder.address)
+       
+        elsif(@value)==3
+          cookies[:aaaa1]='3'
+          @hotelUser.update_attributes(:address3=>@newOrder.address)
+       
+        elsif(@value)==4
+          cookies[:aaaa1]='4'
+          @hotelUser.update_attributes(:address4=>@newOrder.address)
+        
+        elsif(@value)==5
+          cookies[:aaaa1]='5'
+          @hotelUser.update_attributes(:address5=>@newOrder.address)
+       
+        elsif(@value)==6
+          cookies[:aaaa1]='6'
+          @hotelUser.update_attributes(:address6=>@newOrder.address)
+       
+        elsif(@value)==7
+          cookies[:aaaa1]='7'
+          @hotelUser.update_attributes(:address7=>@newOrder.address)
+      
+        elsif(@value)==8
+          cookies[:aaaa1]='8'
+          @hotelUser.update_attributes(:address8=>@newOrder.address)
+       
+        else
+          cookies[:aaaa1]='9'
+          @hotelUser.update_attributes(:address9=>@newOrder.address)
+     
+        end
+        break
+        end
+      end
+      redirect_to(:action=>'show',:address1=>params[:address1])
+
+    else
+      render :placeOrderStep2
+
+    end
+  end
+
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
@@ -124,7 +188,7 @@ class OrdersController < ApplicationController
   def destroy
     @order=Order.find(params[:id])
     @order.destroy
-   flash[:error]=""
+    flash[:error]=""
     redirect_to(:controller=>'orders',:action=>'index')
   end
 
@@ -145,7 +209,7 @@ class OrdersController < ApplicationController
   def placeOrderStep2
 
     @hotelUser1=HotelUser.find(cookies[:user_id2])
-    cookies[:userNamee]= @hotelUser1.userName
+    cookies[:phone]=@hotelUser1.phone
   end
 
 end

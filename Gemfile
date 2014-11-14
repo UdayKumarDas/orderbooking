@@ -51,4 +51,4 @@ gem 'bootstrap-sass'
 gem 'carrierwave'
 #gem 'twitter-bootstrap-rails'
 gem 'thin'
-
+gem 'rails_12factor ', group: [:production]

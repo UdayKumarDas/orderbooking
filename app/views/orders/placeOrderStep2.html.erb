@@ -1,17 +1,22 @@
 <html>
 	<head>
-	 
+		<%= stylesheet_link_tag 'orders'%>
+		<%= stylesheet_link_tag 'component'%>
+		<%= stylesheet_link_tag 'content'%>
 
+		<%= javascript_include_tag 'classie'%>
 
-   <script src="public/javascripts/script.js"></script></head>
+		<script src="public/javascripts/script.js"></script>
+	</head>
 	<style>
-
 		.list-wrap {
 			margin-left: 30%;
 			background-color: #e9e9e9;
 			float: left;
-			padding: 5px 1%;  
-			width: 41%;
+			padding: 5px 1%;
+			width: 48%;
+			min-height: 400px;
+			max-height: 100%;
 		}
 
 		.AddButton {
@@ -135,9 +140,7 @@
 			width: 170px;
 			background-color: #FAF2CC;
 		}
-		div.styleDiv:hover {
-			background-color: #90805A;
-		}
+
 		div.styleDiv1:hover {
 			background-color: #90805A;
 		}
@@ -145,385 +148,154 @@
 			width: 100%;
 			height: 100px;
 		}
-			#cssmenu {
-  background: ;
-  margin: 0;
-  width: auto;
-  padding: 0;
-  line-height: 1;
-  display: block;
-  position: relative;
-  font-family: 'PT Sans', sans-serif;
-}
-#cssmenu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-#cssmenu ul:after,
-#cssmenu:after {
-  content: " ";
-  display: block;
-  font-size: 0;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-#cssmenu ul li {
-  margin: 0;
-  padding: 0;
-  display: block;
-  position: relative;
-}
-#cssmenu ul li a {
-  text-decoration: none;
-  display: block;
-  margin: 0;
-  -webkit-transition: color .2s ease;
-  -moz-transition: color .2s ease;
-  -ms-transition: color .2s ease;
-  -o-transition: color .2s ease;
-  transition: color .2s ease;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-#cssmenu ul li ul {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-}
-#cssmenu ul li ul li {
-  max-height: 0;
-  position: absolute;
-  -webkit-transition: max-height 0.4s ease-out;
-  -moz-transition: max-height 0.4s ease-out;
-  -ms-transition: max-height 0.4s ease-out;
-  -o-transition: max-height 0.4s ease-out;
-  transition: max-height 0.4s ease-out;
-  background: #ffffff;
-}
-#cssmenu ul li ul li.has-sub:after {
-  display: block;
-  position: absolute;
-  content: "";
-  height: 10px;
-  width: 10px;
-  border-radius: 5px;
-  background: #000000;
-  z-index: 1;
-  top: 13px;
-  right: 15px;
-}
-#cssmenu.align-right ul li ul li.has-sub:after {
-  right: auto;
-  left: 15px;
-}
-#cssmenu ul li ul li.has-sub:before {
-  display: block;
-  position: absolute;
-  content: "";
-  height: 0;
-  width: 0;
-  border: 3px solid transparent;
-  border-left-color: #ffffff;
-  z-index: 2;
-  top: 15px;
-  right: 15px;
-}
-#cssmenu.align-right ul li ul li.has-sub:before {
-  right: auto;
-  left: 15px;
-  border-left-color: transparent;
-  border-right-color: #ffffff;
-}
-#cssmenu ul li ul li a {
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: none;
-  color: #000000;
-  letter-spacing: 0;
-  display: block;
- 
-  padding: 11px 2px 11px 7px;
-}
-#cssmenu ul li ul li:hover > a,
-#cssmenu ul li ul li.active > a {
-  color: #4cb6ea;
-}
-#cssmenu ul li ul li:hover:after,
-#cssmenu ul li ul li.active:after {
-  background: #4cb6ea;
-}
-#cssmenu ul li ul li:hover > ul {
-  left: 100%;
-  top: 0;
-}
-#cssmenu ul li ul li:hover > ul > li {
-  max-height: 72px;
-  position: relative;
-}
-#cssmenu > ul > li {
-  float: left;
-}
-#cssmenu.align-center > ul > li {
-  float: none;
-  display: inline-block;
-}
-#cssmenu.align-center > ul {
-  text-align: center;
-}
-#cssmenu.align-center ul ul {
-  text-align: left;
-}
-#cssmenu.align-right > ul {
-  float: right;
-}
-#cssmenu.align-right > ul > li:hover > ul {
-  left: auto;
-  right: 0;
-}
-#cssmenu.align-right ul ul li:hover > ul {
-  right: 100%;
-  left: auto;
-}
-#cssmenu.align-right ul ul li a {
-  text-align: right;
-}
-#cssmenu > ul > li:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 0;
-  top: 0;
-  z-index: 0;
-  background: #ffffff;
-  -webkit-transition: height .2s;
-  -moz-transition: height .2s;
-  -ms-transition: height .2s;
-  -o-transition: height .2s;
-  transition: height .2s;
-}
-#cssmenu > ul > li.has-sub > a {
-  padding-right: 40px;
-}
-#cssmenu > ul > li.has-sub > a:after {
-  display: block;
-  content: "";
-  background: black;
-  height: 12px;
-  width: 12px;
-  position: absolute;
-  border-radius: 13px;
-  right: 85px;
-  top: 16px;
-}
-#cssmenu > ul > li.has-sub > a:before {
-  display: block;
-  content: "";
-  border: 4px solid transparent;
-  border-top-color: #F1F1F1;
-  z-index: 2;
-  height: 0;
-  width: 0;
-  position: absolute;
-  right: 87px;
-  top: 21px;
-}
-#cssmenu > ul > li > a {
-  color: black;
-  padding: 15px 20px;
-  
-  
-  text-transform: uppercase;
- 
-  z-index: 2;
-  position: relative;
-}
-#cssmenu > ul > li:hover:after,
-#cssmenu > ul > li.active:after {
-  height: 100%;
-}
-#cssmenu > ul > li:hover > a,
-#cssmenu > ul > li.active > a {
-  color: #000000;
-}
-#cssmenu > ul > li:hover > a:after,
-#cssmenu > ul > li.active > a:after {
-  background: #000000;
-}
-#cssmenu > ul > li:hover > a:before,
-#cssmenu > ul > li.active > a:before {
-  border-top-color: #ffffff;
-}
-#cssmenu > ul > li:hover > ul {
-  left: 0;
-}
-#cssmenu > ul > li:hover > ul > li {
-  max-height: 72px;
-  position: relative;
-}
-#cssmenu #menu-button {
-  display: none;
-}
-#cssmenu > ul > li > a {
-  display: block;
-}
-#cssmenu > ul > li {
-  width: auto;
-}
-#cssmenu > ul > li > ul {
- 
-  display: block;
-}
-#cssmenu > ul > li > ul > li {
-  width: 105px;
-  display: block;
-}
-@media all and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
-  #cssmenu > ul {
-    max-height: 0;
-    overflow: hidden;
-    -webkit-transition: max-height 0.35s ease-out;
-    -moz-transition: max-height 0.35s ease-out;
-    -ms-transition: max-height 0.35s ease-out;
-    -o-transition: max-height 0.35s ease-out;
-    transition: max-height 0.35s ease-out;
-  }
-  #cssmenu > ul > li > ul {
-    width: 100%;
-    display: block;
-  }
-  #cssmenu.align-right ul li a {
-    text-align: left;
-  }
-  #cssmenu > ul > li > ul > li {
-    width: 100%;
-    display: block;
-  }
-  #cssmenu.align-right ul ul li a {
-    text-align: left;
-  }
-  #cssmenu > ul > li > ul > li > a {
-    width: 100%;
-    display: block;
-  }
-  #cssmenu ul li ul li a {
-    width: 100%;
-  }
-  #cssmenu.align-center > ul {
-    text-align: left;
-  }
-  #cssmenu.align-center > ul > li {
-    display: block;
-  }
-  #cssmenu > ul.open {
-    max-height: 1000px;
-    border-top: 1px solid rgba(110, 110, 110, 0.25);
-  }
-  #cssmenu ul {
-    width: 100%;
-  }
-  #cssmenu ul > li {
-    float: none;
-    width: 100%;
-  }
-  #cssmenu ul li a {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 12px 20px;
-  }
-  #cssmenu ul > li:after {
-    display: none;
-  }
-  #cssmenu ul li.has-sub > a:after,
-  #cssmenu ul li.has-sub > a:before,
-  #cssmenu ul li ul li.has-sub:after,
-  #cssmenu ul li ul li.has-sub:before {
-    display: none;
-  }
-  #cssmenu ul li ul,
-  #cssmenu ul li ul li ul,
-  #cssmenu ul li ul li:hover > ul,
-  #cssmenu.align-right ul li ul,
-  #cssmenu.align-right ul li ul li ul,
-  #cssmenu.align-right ul li ul li:hover > ul {
-    left: 0;
-    position: relative;
-    right: auto;
-  }
-  #cssmenu ul li ul li,
-  #cssmenu ul li:hover > ul > li {
-    max-height: 999px;
-    position: relative;
-    background: none;
-  }
-  #cssmenu ul li ul li a {
-    padding: 8px 20px 8px 35px;
-    color: #ffffff;
-  }
-  #cssmenu ul li ul ul li a {
-    padding: 8px 20px 8px 50px;
-  }
-  #cssmenu ul li ul li:hover > a {
-    color: #000000;
-  }
-  #cssmenu #menu-button {
-    display: block;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 15px 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    color: #ffffff;
-    cursor: pointer;
-  }
-  #cssmenu #menu-button:after {
-    display: block;
-    content: '';
-    position: absolute;
-    height: 3px;
-    width: 22px;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-    right: 20px;
-    top: 16px;
-  }
-  #cssmenu #menu-button:before {
-    display: block;
-    content: '';
-    position: absolute;
-    height: 3px;
-    width: 22px;
-    border-top: 2px solid #ffffff;
-    right: 20px;
-    top: 26px;
-  }
+		.grid-view1 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 1%;
+			width: 168px;
+			background-color: #F1F1F1;
+			word-wrap: break-word;
+		}
+		div.grid-view1:hover {
+			background-color: #90805A;
+		}
+		.grid-view2 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.65%;
+			width: 168px;
+			background-color: #F1F1F1;
+			margin-left: 230px;
+			top: 374px;
+			position: absolute;
+			word-wrap: break-word;
+		}
+		.grid-view3 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.65%;
+			width: 168px;
+			background-color: #F1F1F1;
+			margin-left: 460px;
+			top: 374px;
+			position: absolute;
+			word-wrap: break-word;
+		}
+
+		.grid-view4 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 1%;
+			width: 168px;
+			background-color: #F1F1F1;
+			top: 10px;
+			position: relative;
+			word-wrap: break-word;
+		}
+		div.grid-view4:hover {
+			background-color: #90805A;
+		}
+		.grid-view5 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.65%;
+			width: 168px;
+			background-color: #F1F1F1;
+			margin-left: 230px;
+			top: 620px;
+			position: absolute;
+			word-wrap: break-word;
+		}
+		.grid-view6 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.65%;
+			width: 168px;
+			background-color: #F1F1F1;
+			margin-left: 460px;
+			top: 620px;
+			position: absolute;
+			word-wrap: break-word;
+		}
+
+		.grid-view7 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 1%;
+			width: 168px;
+			background-color: #F1F1F1;
+			top: 23px;
+			position: relative;
+			word-wrap: break-word;
+		}
+		div.grid-view4:hover {
+			background-color: #90805A;
+		}
+		.grid-view8 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.65%;
+			width: 168px;
+			background-color: #F1F1F1;
+			margin-left: 230px;
+			top: 870px;
+			position: absolute;
+			word-wrap: break-word;
+		}
+		.grid-view9 {
+
+			border: 1px solid #ddd;
+			float: left;
+			margin: 0.4em 2% 0.4em 0;
+			min-height: 50px;
+			padding: 0.65%;
+			width: 168px;
+			background-color: #F1F1F1;
+			margin-left: 460px;
+			top: 870px;
+			position: absolute;
+			word-wrap: break-word;
+		}
 	</style>
 
 	<script language='javascript'>
-	( function( $ ) {
-$( document ).ready(function() {
-$('#cssmenu').prepend('<div id="menu-button">Menu</div>');
-	$('#cssmenu #menu-button').on('click', function(){
-		var menu = $(this).next('ul');
-		if (menu.hasClass('open')) {
-			menu.removeClass('open');
-		}
-		else {
-			menu.addClass('open');
-		}
-	});
-});
-} )( jQuery );
+		(function($) {
+			$(document).ready(function() {
+				$('#cssmenu').prepend('<div id="menu-button">Menu</div>');
+				$('#cssmenu #menu-button').on('click', function() {
+					var menu = $(this).next('ul');
+					if (menu.hasClass('open')) {
+						menu.removeClass('open');
+					} else {
+						menu.addClass('open');
+					}
+				});
+			});
+		} )(jQuery);
 
 		function display() {
 			if (document.frmRadio.selType[0].checked) {
@@ -550,13 +322,13 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 				if (document.getElementById(shID + '-show').style.display != 'none') {
 					document.getElementById(shID + '-show').style.display = 'none';
 					document.getElementById(shID).style.display = 'block';
-					document.getElementById('div_name2').style.display = 'none';
-					document.getElementById('div_name3').style.display = 'none';
+					document.getElementById('hideDiv1').style.display = 'none';
+
 				} else {
 					document.getElementById(shID + '-show').style.display = 'inline';
 					document.getElementById(shID).style.display = 'none';
-					document.getElementById('div_name2').style.display = 'block';
-					document.getElementById('div_name3').style.display = 'block';
+					document.getElementById('hideDiv1').style.display = 'block';
+
 				}
 			}
 		}
@@ -566,31 +338,35 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
 			<%= link_to "CONTACT US |",{},class: "menu_link"%>
 			<%= link_to "ABOUT US",{},class: "menu_link"%>
-			
-&nbsp;
+
+			&nbsp;
 
 		</div>
-<div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
-<ul>
-  
-   <li class=' has-sub'><a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<% @hotelUsercc= HotelUser.find(cookies[:user_id2])%><%=  @hotelUsercc.userName%></a>
-      <ul>
-         <li class=''><a href='#' style="font-size: 11px;"><%= image_tag('settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD
-         </a>
-           
-         </li>
-         <li class=''><a href='#' style="font-size: 11px;"><%= image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
-            
-         </li>
-         <li class=''><a href='http://localhost:3000/menus/logout' style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
-            
-         </li>
-      </ul>
-   </li>
-  
-</ul>
-</div>
-			
+
+		<div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
+			<ul>
+
+				<li class=' has-sub'>
+					<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<% @hotelUsercc= HotelUser.find(cookies[:user_id2])%><%= @hotelUsercc.userName%></a>
+					<ul>
+						<li class=''>
+							<a href='#' style="font-size: 11px;"><%= image_tag('Settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
+
+						</li>
+						<li class=''>
+							<a href='#' style="font-size: 11px;"><%= image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
+
+						</li>
+						<li class=''>
+							<a href='http://localhost:3000/menus/logout' style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
+
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+
 		<div class="container_head" >
 			<div style="">
 				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
@@ -610,47 +386,138 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 				Email:&nbsp;<%= @hotelUser.email%>
 				<br />
 				Phone:&nbsp;<%= @hotelUser.phoneNo%>
-<b style="color: #FA5833;"><%= cookies[:userNamee]%></b>
+				<b style="color: #FA5833;"><%= cookies[:userNamee]%></b>
 			</legend>
 			<br />
+			<b style="color: #F4A506;font-size:20px;;">Please select your address:</b>
 			<%= link_to '+ Add Address',{:action=>'placeOrderStep2'},class:"btn-orange2",:id=>'example-show',:onclick=>" showHide('example');return false;"%>
-			
-			<div>
-				<div id="div_name2"  class="styleDiv">
+			<div style="clear: both;"></div>
+			<br />
+			<div id="hideDiv1">
+				<%= form_for(:hotelUser,:url=>{:controller=>'orders',:action=>'show' ,:address1=>params[:address1]}) do |hotelUser|%>
+				<%if (@hotelUser.address1).present?%>
+				<div id="#" class="search_result_row grid-view1 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
 
-					<%= form_for(:hotelUser,:url=>{:controller=>'orders',:action=>'show'}) do |hotelUser|%>
 					<%= @hotelUser.address1%>
 					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
-						<%= hotelUser.radio_button :address1,:value=>@hotelUser.address1 ,:checked=>true%>&nbsp;SELECT ADDRESS
+						<%= radio_button_tag :address1,@hotelUser.address1 %>&nbsp;SELECT ADDRESS
 					</div>
 
 				</div>
-				<div id="div_name3"  class="styleDiv1">
+				<%end%> <div style="clear: both;"></div>
+				<%if (@hotelUser.address2).present?%>
+				<div id="#" class="search_result_row grid-view2 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
 
 					<%= @hotelUser.address2%>
 					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
-						<%= hotelUser.radio_button :address1,:value=>@hotelUser.address2 %>&nbsp;SELECT ADDRESS
+						<%= radio_button_tag :address1,@hotelUser.address2 %>&nbsp;SELECT ADDRESS
 					</div>
-					
-					<br />
-<div>
-					<%= submit_tag("PROCEED TO PAYMENT",{:action=>'show',:address1=>params[:address1]})%>
+
 				</div>
-				</div><%end%>
-				
+				<%end%> <div style="clear: both;"></div>
+				<%if (@hotelUser.address3).present?%>
+				<div id="#" class="search_result_row grid-view3 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address3%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address3 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%> <div style="clear: both;"></div>
+				<%if (@hotelUser.address4).present?%>
+				<div id="#" class="search_result_row grid-view4 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address4%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address4 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%>
+				<div style="clear: both;"></div>
+				<%if (@hotelUser.address5).present?%>
+				<div id="#" class="search_result_row grid-view5 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address5%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address5 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%> <div style="clear: both;"></div>
+				<%if (@hotelUser.address6).present?%>
+				<div id="#" class="search_result_row grid-view6 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address6%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address6 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%>
+				<div style="clear: both;"></div>
+				<%if (@hotelUser.address7).present?%>
+				<div id="#" class="search_result_row grid-view7 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address7%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address7 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%>
+				<div style="clear: both;"></div>
+				<%if (@hotelUser.address8).present?%>
+				<div id="#" class="search_result_row grid-view8 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address8%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address8 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%>
+				<div style="clear: both;"></div>
+				<%if (@hotelUser.address9).present?%>
+				<div id="#" class="search_result_row grid-view9 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
+
+					<%= @hotelUser.address9%>
+					<div style="background-color: #F4A506;margin-top: 150px;height:  30px;color: #F1F1F1;padding-top: 6PX;" >
+						<%= radio_button_tag :address1,@hotelUser.address9 %>&nbsp;SELECT ADDRESS
+					</div>
+
+				</div>
+				<%end%>
+				<br />
+
+				<%= hotelUser.submit("PROCEED TO PAYMENT",{:action=>'show',:address1=>@hotelUser.address1})%><%end%>
 			</div>
 			<div id="example" class="more" style="display: none;">
-				<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'createAddress'}) do |hotelUser|%>
-				<%= hotelUser.text_area(:address2,:cols=>67,:rows=>3)%>
+				<% @present=='false'%>
 
+				<% addr=Array.new%>
+				<% addr=["#{(@hotelUser.address1)}","#{(@hotelUser.address2)}","#{(@hotelUser.address3)}","#{(@hotelUser.address4)}","#{(@hotelUser.address5)}","#{(@hotelUser.address6)}","#{(@hotelUser.address7)}",
+            "#{(@hotelUser.address8)}","#{(@hotelUser.address9)}"]%>
+				<% @count=0%>
+
+				<%addr.each_with_index do |addr,index|%>
+				<% @count+=1%>
+
+				<% index+1%>
+				<%if addr==''||nil%>
+				<%= form_for(:order,:url=>{:controller=>'orders',:action=>'orderCreate1'}) do |hotelUser|%>
+				<%= hotelUser.text_area(:address,:cols=>67,:rows=>3)%>
 				<br />
 				<br />
-				<p style="text-align: center;">
-					<a href="#" id="example-hide" class="btn-orange" onclick="showHide('example');return false;">BACK</a><%= submit_tag("PROCEED TO PAYMENT",{:action=>'show'})%>
-					<%end%>
+				<p style="text-align: center;width: 50%;">
+					<a href="#" id="example-hide" class="btn-orange3" onclick="showHide('example');return false;">BACK</a>
+					<%= hotelUser.submit("PROCEED TO PAYMENT",{:action=>'orderCreate1'})%>
+
 				</p>
-			</div>
+				<%end%><%end%><%end%>
 
+			</div>
 
 	</body>
 

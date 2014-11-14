@@ -13,20 +13,22 @@ class HotelUsersController < ApplicationController
 
     if @hotelUser.save
       redirect_to(:controller=>'homepage')
-    else
+      flash[:notice]="New user successfully created"
+    else      
       redirect_to(:action=>'signup')
+      flash[:notice]="New user not created"
     end
   end
-def createAddress
+def createaddress
   @hotelUser=HotelUser.find(cookies[:user_id2])
   if @hotelUser.update_attributes(customer_params)
-    redirect_to(:controller=>'orders',:action=>'show')
+    redirect_to(:controller=>'orders',:action=>'show',:addr=>params[:addr])
   else
     render :placeOrderStep2
   end
 end
   def customer_params
-    params.require(:hotelUser).permit(:userName, :password, :phoneNo, :city, :email,:address1,:address2)
+    params.require(:hotelUser).permit(:userName, :password, :phoneNo, :city, :email,:address1,:address2,:address3,:address4,:address5,:address6,:address7,:address8,:address9)
   end
   def index
     

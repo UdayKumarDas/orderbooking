@@ -201,6 +201,11 @@ document.getElementById(hide).style.display="none";
 			<legend style="background-color: orange;color: green;text-align: center;font: bold;font-size: 24px;">
 				Step 1 of 3 : Sign-in or continue as guest
 			</legend>
+			
+			<%if flash[:notice]%>
+			<br />
+			<div style="color: #FA5833;"><%= flash[:notice]%></div>
+			<%end%>
 			<br />
 
 			<input id="id_radio2" type="radio" name="name_radio1" value="standard" onClick="show_hide('standard', 'advanced')" />

@@ -194,7 +194,7 @@
 
 							</div>
 							<br />
-							<% if  cookies[:uName]==nil%>
+							<% if  cookies[:uName].blank?%>
 							<%= link_to_if( cart.total_price >= @hotel.min_order, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrder'}, class: "btn-orange1" )%>
 							<%else%>
 							<%= link_to_if( cart.total_price >= @hotel.min_order, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrderStep2'}, class: "btn-orange1" )%>

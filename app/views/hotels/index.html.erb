@@ -182,10 +182,9 @@
 			background-color: black;
 			color: #FFFFFF;
 		}
-		
+
 	</style>
 	<style>
-		
 	</style>
 	<body style="background-image: url('/assets/menu-free-background4.jpg')">
 		<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
@@ -201,11 +200,11 @@
 						<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
 						<ul>
 							<li class=''>
-								<a href='#' style="font-size: 11px;"><%= image_tag('settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
+								<a href='#' style="font-size: 11px;"><%= image_tag('Settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
 
 							</li>
 							<li class=''>
-								<a href='#' style="font-size: 11px;"><% image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
+								<a href='#' style="font-size: 11px;"><% image_tag('users1.jpg',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
 
 							</li>
 							<li class=''>
@@ -228,11 +227,10 @@
 		<br />
 
 		<div  class="list-wrap">
-		
+
 			<br />
 			<div style="background-color:  #ffffff;margin-left: 13px;width: 97%; ">
-				<b style="font-size: 20px;color: orange;"><%= @hotels.count%></b><b style="font-size: 16px;color: orange;"> Hotels<% cookies[:hotelIdCheck]= cookies[:hotelId]%></b><b style="font-size: 14px;color: #808080;"> 
-					available in <%= cookies[:hotelLocation]%></b>
+				<b style="font-size: 20px;color: orange;"><%= @hotels.count%></b><b style="font-size: 16px;color: orange;"> Hotels<% cookies[:hotelIdCheck]= cookies[:hotelId]%></b><b style="font-size: 14px;color: #808080;"> available in <%= @hotelsLocation.hotel_location%></b>
 			</div>
 			<% if   flash[:message]%>
 			<div style="color:#FF7200;background-color: #FFFFFF;font-size: 20px;">
@@ -251,6 +249,8 @@
 				<%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<b style="color: #380B61;font-size: 15px"><%= cookies[:hotelLocation]= h.hotel_location%></b>
 				<br />
 				<% h.offers.each do |offer| %>
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
 				<% if offer.amountforDiscount != nil &&  offer.percentageOff != nil%>
 				<p style="color: #FA603D">
 					<b><%= offer.percentageOff%>% OFF on order of Rs.<%= offer.amountforDiscount%> and Above</b>
@@ -258,16 +258,76 @@
 				<p>
 					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
 				</p>
-				<% end %>
+				<% end %><% end %>
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
 
-				<% if offer.qty_buy2==nil && offer.qty_get.present?%>
+				<% if offer.offer_type=='buy1get1'%>
 
 				<p style="color: #008080">
 					<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%> <b>And Get</b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
 				</p>
+				<p>
+					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
+				</p>
 				<br />
 				<%end%>
+				<% end %>
+				
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
 
+				<% if offer.offer_type=='buy2get1'%>
+
+				<p style="color: #008080">
+					<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%><b>, Buy </b><%= offer.qty_buy2%>&nbsp;<%= offer.menuName_buy2%> <b>And Get</b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+				</p>
+				<p>
+					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
+				</p>
+				<br />
+				<%end%>
+				<% end %>
+				
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+				<% if offer.offer_type=='buy3get1'%>
+
+				<p style="color: #008080">
+					<b>Buy </b><%= offer.qty_buy1%>&nbsp;<%= offer.menuName_buy1%><b>, Buy </b><%= offer.qty_buy2%>&nbsp;<%= offer.menuName_buy2%><b> , Buy </b><%= offer.qty_buy3%>&nbsp;<%= offer.menuName_buy3%> <b>And Get</b> <%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>Free </b>
+				</p>
+				<p>
+					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
+				</p>
+				<br />
+				<%end%>
+				<% end %>
+				
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+				<% if offer.offer_type=='discountOnAmount' && offer.disType_get=='Rs.'%>
+
+				<p style="color: #008080">
+					<b>Buy </b><%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>And Get</b> <%= offer.disType_get%><%= offer.disAmountOrPercentage%>&nbsp; <b>Off </b>
+				</p>
+				<p>
+					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
+				</p>
+				<br />
+				<%end%>
+				<% end %>
+				
+				<% if Date.today.between?((offer.startDate_get),(offer.endDate_get)) || Date.today==offer.endDate_get || Date.today==offer.startDate_get%>
+
+				<% if offer.offer_type=='discountOnAmount' && offer.disType_get=='%'%>
+
+				<p style="color: #008080">
+					<b>Buy </b><%= offer.qty_get%>&nbsp;<%= offer.menuName_get%> <b>And Get</b> <%= offer.disAmountOrPercentage%><%= offer.disType_get%>&nbsp; <b>Off </b>
+				</p>
+				<p>
+					Valid:<%= offer.startDate_get%> to <%= offer.endDate_get%>
+				</p>
+				<br />
+				<%end%>
+				<% end %>
 				<% end %>
 				<div style=" margin-left:46px;margin-top: 40px; ">
 					<%= link_to("ViewMenu",{:controller=>'menus',:hotel_id=>h.id,:hotel_Name=>h.hotel_Name}, class:'btn-orange')%>
@@ -275,36 +335,38 @@
 			</div>
 			<% end%>
 		</div>
-		<%= @offers%>
+		<% @offers%>
 		<% if cookies[:uName].blank?%>
 		<%= form_tag(:controller=>'hotels',:action=>'loginUser') do%>
 		<div class="">
-            <div class="">
-                <a href="#login_form" id="login_pop" style="top: 23px;position: absolute;text-decoration: none;color: black;font: bold;width:80px;margin-left:  -152px; ">LOGIN</a>
-               
-            </div>
+			<div class="">
+				<a href="#login_form" id="login_pop" style="top: 23px;position: absolute;text-decoration: none;color: black;font: bold;width:80px;margin-left:  -152px; ">LOGIN</a>
 
-        </div>
+			</div>
 
-        <!-- popup form #1 -->
-        <a href="#x" class="overlay" id="login_form"></a>
-        <div class="popup">
-            <h2>Welcome Guest!</h2>
-            <p>Please enter your login and password here</p>
-            <p>
-								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox",:required=>true)%>
+		</div>
 
-							</p>
-							<p>
-								<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox",:required=>true)%>
-							</p>
-							<p>
-								<%= submit_tag "Login",class: "LoginButton"%>
-							</p>
-            <a class="close" href="#close"></a>
-        </div>
+		<!-- popup form #1 -->
+		<a href="#x" class="overlay" id="login_form"></a>
+		<div class="popup">
+			<h2>Welcome Guest!</h2>
+			<p>
+				Please enter your login and password here
+			</p>
+			<p>
+				<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox",:required=>true)%>
 
-			<%end%> <%end%>
-			
+			</p>
+			<p>
+				<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox",:required=>true)%>
+			</p>
+			<p>
+				<%= submit_tag "Login",class: "LoginButton"%>
+			</p>
+			<a class="close" href="#close"></a>
+		</div>
+
+		<%end%> <%end%>
+
 	</body>
 </html>

@@ -1,86 +1,13 @@
 
 <html>
+	<%= stylesheet_link_tag 'orders'%>
+		<%= stylesheet_link_tag 'component'%>
+		<%= stylesheet_link_tag 'content'%>
+
+		<%= javascript_include_tag 'classie'%>
 <style>
-	table, td, th {
-		border: 1px solid black;
-		height: 20px;
-		width: 750px;
-		text-align: center;
-	}
 
-	th {
-		background-color: blue;
-		color: red;
-	}
-	td {
-		background-color: #848484;
-		color: #F7FE2E;
-	}
-
-	.search_result_row, .head-resto {
-		padding: 0;
-	}
-
-	.sorted-resto {
-		background-color: #fff;
-	}
-	.search_result_row {
-		border-bottom: 1px solid #e6e4b1;
-		color: #333;
-		padding: 0.5em;
-	}
-	.grid-view {
-		border: 1px solid #ddd;
-		float: left;
-		margin: 0.4em 2% 0.4em 0;
-		min-height: 50px;
-		padding: 0.3em 1%;
-		width: 99%;
-	}
-	a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
-		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-		border: 0 none;
-		font-size: 100%;
-		margin: 0;
-		outline: 0 none;
-		padding: 0;
-		vertical-align: baseline;
-	}
-	.grid-view .grid_13 {
-		min-height: 118px;
-		padding: 0 4px 0 8px;
-	}
-	.grid-view .grid_13 {
-		min-height: 140px;
-		padding: 0 4px 0 8px;
-	}
-	.grid-view .grid_13 {
-		min-height: 230px;
-	}
-	.grid-view .grid_13, .grid-view .grid_14, .grid-view .grid_16d, .grid-view .grid_5c {
-		text-align: left;
-		width: 100%;
-	}
-	.container_16 .grid_13 {
-		width: 79.25%;
-	}
-	.tal {
-		text-align: left;
-	}
-	.grid_1, .grid_10, .grid_11, .grid_11a, .grid_11ab, .grid_11b, .grid_11c, .grid_12, .grid_13, .grid_13a, .grid_13l, .grid_14a, .grid_14b, .grid_15a, .grid_2, .grid_2a, .grid_3, .grid_3a, .grid_3b, .grid_3f, .grid_3fu, .grid_3l, .grid_4, .grid_4d, .grid_4f, .grid_5, .grid_5a, .grid_5b, .grid_5c, .grid_5d, .grid_5e, .grid_5f, .grid_5h, .grid_6, .grid_6a, .grid_7, .grid_8, .grid_8a, .grid_8ab, .grid_8b, .grid_8d, .grid_9, grid_5db {
-		float: left;
-	}
-	a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
-		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-		border: 0 none;
-		font-size: 100%;
-		margin: 0;
-		outline: 0 none;
-		padding: 0;
-		vertical-align: baseline;
-	}
-	
-	.list-wrap {
+.list-wrap {
 
 		margin-left: 460px;
 		background-color: #e9e9e9;
@@ -90,118 +17,51 @@
 		height: 70%;
 	}
 
-	.AddButton {
-		background-color: red;
-	}
-	.menu_list {
-			width: 200px;
-			float: left;
-			border: 1px solid #ff7200;
-			margin-left: 150px;
-		    height: 300px;
-			text-align: center;
-			background-color: #F5D0A9;
-		}
-		.seach-but {
-    background-color: #81c02f;
-    border: 0 solid #000000;
-    color: #ffffff;
-    font-size: 1.1em;
-    font-weight: bold;
-    height: auto;
-    margin-left: 5px;
-    padding: 0.5em;   
-    right: 5px;
-    transition: background-color 0.5s ease 0s, color 0.3s ease 0s;
-}
-a.btn-orange {
-		width:70px;
-		background-color: #81c02f;
-		color: #fff;
-		display: inline-block;
-		font-size: 0.9em;
-		font-weight: 700;
-		line-height: normal;
-		margin: 1% 0;
-		padding: 0.5em 1em;
-		text-transform: uppercase;
-		
-	}
-.linkstyle {
-	width: 70px;
-	height: 40px;
-  font:  16px Arial;
-  text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
-  margin: 1% 0;
-  
-}
-	.container_head {
-    background-color: #f9b004;
-    background-image: linear-gradient(to right, #f9b004 0px, #f9b004 50%, #f9b004 100%);
-    border-bottom: 3px solid #fff;
-    height: 100px;
-  
-}
-.top-resultbar {
-    background-color: #efefef;
-    border: 1px solid #ddd;
-    height: 42px;
-    margin: 4px 0 46px;
-    padding: 0 10px;
-    position: relative;
-    width: 100%;
-}
-.menu_link
-{
-	text-decoration:none;
-	color: #FFFFFF;
-	border-right-color: #FFFFFF;
-}
-	a.btn-orange2 {
-			text-decoration: none;
-			background-color: black;
-			color: #fff;
-			display: inline-block;
-			font-size: 0.9em;
-			font-weight: 700;
-			line-height: normal;
-			margin-left: 950px;
-			padding: 0.5em 1em;
-			text-transform: uppercase;
-			
-		}
-
-		a.btn-orange2:hover {
-			background-color: #81c02f;
-			color: #000;
-		}
 </style>
 <body style="background-image: url('../images/menu-free-background4.jpg')">
-		<div style="position: absolute;float: right;padding-left: 140px;padding-top: 20px;">
-		<%= link_to "HOME |",{},class: "menu_link"%>
-		<%= link_to "CONTACT US |",{},class: "menu_link"%>
-		<%= link_to "ABOUT US",{},class: "menu_link"%>	
-				
-			
-				</div>
-				<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 82%;">
-		
-			<%= link_to "SIGN UP",{:controller=>'customers',:action=>'signup'},class: "btn-orange2"%>
-				<%= link_to "LOGIN",{:controller=>'homepage',:action=>'login'},class: ""%>
-				</div>
-		<div class="container_head" >	
+		<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "CONTACT US |",{},class: "menu_link"%>
+			<%= link_to "ABOUT US",{},class: "menu_link"%>
+			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
+			<% if cookies[:uName].present?%>
+			<div id='cssmenu' style="width: 100px;float:right;margin-right: -188px;top: -6px;">
+				<ul>
+
+					<li class=' has-sub'>
+						<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
+						<ul>
+							<li class=''>
+								<a href='#' style="font-size: 11px;"><%= image_tag('settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
+
+							</li>
+							<li class=''>
+								<a href='#' style="font-size: 11px;"><% image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
+
+							</li>
+							<li class=''>
+								<a href='http://localhost:3000/menus/logout' id="logout" style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
+
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<%end%>
+		</div>
+
+		<div class="container_head" >
 			<div style="">
-	<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>	
-	</div>	</div>
+				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+			</div>
+		</div>
 		<br />
-		
+		<br />
+		<%if flash[:notice]%>
+		<div style="color: red;">
+		<%= flash[:notice]%></div>
+		<%end%>
 
 <div id="menu-container" class="list-wrap">
 	<legend style="background-color: orange;color: green;text-align: center;font: bold;height: 50px;font-size: 20px;padding-top: 10px;">SIGN UP</legend>
@@ -209,39 +69,70 @@ a.btn-orange {
   
 <br />
   <div class="field">
-    <%= f.label :userName %>:<br>
-    <%= f.text_field :userName %>
+    <%= f.label :userName %>:<div class="textboxRgt">
+    <%= f.text_field :userName ,:required=>true,:size=>'38x50'%></div>
   </div>
   <br />
   <div class="field">
-    <%= f.label :password %>:<br>
-   <%= f.password_field(:password)%>
-  </div>
+    <%= f.label :password %>:<div class="textboxRgt">
+   <%= f.password_field(:password,:required=>true,:size=>'38x50')%>
+  </div></div>
   <br />
   <div class="field">
-    <%= f.label :email %>:<br>
-   <%= f.email_field(:email) %>
-  </div>
+    <%= f.label :email %>:<div class="textboxRgt">
+   <%= f.email_field(:email,:required=>true,:size=>'38x50') %>
+  </div></div>
   <br />
   <div class="field">
-    <%= f.label :phoneNo %>:<br>
-   <%= f.text_field(:phoneNo) %>
-  </div>
+    <%= f.label :phoneNo %>:<div class="textboxRgt">
+   <%= f.phone_field(:phoneNo,:required=>true,:size=>'38x50') %>
+  </div></div>
   <br />
   <div class="field">
-    <%= f.label :city %>:<br>
-  <%= f.select :city, options_from_collection_for_select(@city, "cityName", "cityName"), prompt: "Select City"%>
-  </div>
+    <%= f.label :city %>:<div class="textboxRgt">
+  <%= f.select :city, options_from_collection_for_select(@city, "cityName", "cityName"),:required=>true,:size=>'38x50',:class=>'my_dropdown'%>
+  </div></div>
   <br />
   <div class="field">
-    <%= f.label :pinCode %>:<br>
-   <%= f.text_field(:pinCode) %>
-  </div>
+    <%= f.label :pinCode %>:<div class="textboxRgt">
+   <%= f.text_field(:pinCode,:required=>true,:size=>'38x50') %>
+  </div></div>
   <br />
   <div class="actions" style="text-align: center">
     <%= f.submit %>
   </div>
 <% end %>
+
+<% if cookies[:uName].blank?%>
+		<%= form_tag(:controller=>'hotels',:action=>'loginUser') do%>
+		<div class="">
+            <div class="">
+                <a href="#login_form" id="login_pop" style="top: 23px;position: absolute;text-decoration: none;color: black;font: bold;width:80px;margin-left:  652px; ">LOGIN</a>
+               
+            </div>
+
+        </div>
+
+        <!-- popup form #1 -->
+        <a href="#x" class="overlay" id="login_form"></a>
+        <div class="popup">
+            <h2>Welcome Guest!</h2>
+            <p>Please enter your login and password here</p>
+            <p>
+								<label>Email</label><%= email_field_tag(:email,'',class:"loginTextbox",:required=>true)%>
+
+							</p>
+							<p>
+								<label>Password</label><%= password_field_tag(:password,nil, placeholder:'password',class:"loginTextbox",:required=>true)%>
+							</p>
+							<p>
+								<%= submit_tag "Login",class: "LoginButton"%>
+							</p>
+            <a class="close" href="#close"></a>
+        </div>
+
+			<%end%> <%end%>
+			
 </body>
 </div>
 </html>

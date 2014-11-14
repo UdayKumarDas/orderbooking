@@ -22,3 +22,17 @@
 	padding-left:5px;
 	
 }
+
+.textboxRgt
+{
+	width:150px;
+	float: right;
+	padding-right: 100px;
+}
+
+#hotelUser_city {
+    width:249px;
+}
+select.my_dropdown {
+    width:auto;
+}

@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.integer  "hotel_id"
   end
 
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.string   "catId_get"
+    t.string   "menuName_get"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hotel_users", force: true do |t|
     t.string   "userName",        limit: 20
     t.string   "email",           limit: 100
@@ -56,11 +64,18 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.string   "address2",        limit: 40
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "phoneNo"
+    t.string   "phoneNo"
     t.string   "city"
     t.string   "pinCode"
     t.string   "UserType"
     t.string   "hotel_id"
+    t.string   "address3"
+    t.string   "address4"
+    t.string   "address5"
+    t.string   "address6"
+    t.string   "address7"
+    t.string   "address8"
+    t.string   "address9"
   end
 
   create_table "hotels", force: true do |t|
@@ -107,8 +122,8 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.integer  "hotel_id"
     t.integer  "percentageOff"
     t.integer  "amountforDiscount"
-    t.datetime "startDate"
-    t.datetime "endDate"
+    t.date     "startDate"
+    t.date     "endDate"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "catId_get"
@@ -151,11 +166,14 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.string   "name"
     t.text     "address"
     t.string   "email"
-    t.integer  "phone"
     t.string   "pay_type"
+    t.string   "phone",         limit: 25
+    t.integer  "hotel_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "orders", ["hotel_user_id"], name: "index_orders_on_hotel_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",      limit: 25

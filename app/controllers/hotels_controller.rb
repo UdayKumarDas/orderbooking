@@ -2,21 +2,25 @@ class HotelsController < ApplicationController
   layout :false
   skip_before_filter :verify_authenticity_token
   def create
-#@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
-   
+    #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
+
   end
 
   def index
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
     cookies[:searchValue]=params[:search]
+     @hotelsLocation= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").first
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers)
     if params[:search].present? ? @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers) : Hotel.includes(:offers)
       @hotel_name=params[:hotel_location]
     end
-    if @hotels.blank?
+    if params[:search].blank?
       flash[:hh]="Sorry, we do not have any hotels delivering to this location."
       redirect_to(:controller=>'homepage')
     end
+    
+    
+    
   end
 
   def edit
@@ -101,13 +105,17 @@ class HotelsController < ApplicationController
       cookies[:uName]=@hotelUser.userName
       #session[:hotel_id_for_login_user]=authorized_user.hotel_id
       flash[:notice]="You are now logged in."
-      redirect_to(:controller=>'hotels',:action=>'index')
+      cookies[:searchValue]=params[:search]
+     redirect_to(:back)
     else
     # session[:last_seen] = Time.now
       flash[:notice]="Invalid username/password combination."
-      redirect_to(:controller=>'hotels',:action=>'index')
+      redirect_to(:back)
     end
   end
+  
+  
+  
 
   def createnewhotel
     @hotels=Hotel.all
@@ -142,6 +150,5 @@ class HotelsController < ApplicationController
   def params_createUserForHotel
     params.require(:user).permit(:username,:password,:email,:hotel_id)
   end
- 
 
 end
