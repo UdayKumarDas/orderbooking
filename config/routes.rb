@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :customers
-  resources :hotels, :except=>'show' 
+    resources :hotels, :except=>'show' 
   #get 'hotels/index'
   get 'hotel_users/signup'
   get 'hotels/createUserForHotel'
