@@ -3,7 +3,7 @@ class HotelUsersController < ApplicationController
   layout false
   skip_before_filter :verify_authenticity_token
   def signup
-    @hotelUser=Customer.new
+    #@hotelUser=Customer.new
     @city=City.all
   end
 
