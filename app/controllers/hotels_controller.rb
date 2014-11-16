@@ -69,7 +69,7 @@ class HotelsController < ApplicationController
   end
 
   def hotel_params
-    params.require(:hotel).permit(:hotel_Name,:hotel_address,:hotel_location,:hotel_contactNo,:min_order,:hotelImage)
+    params.require(:hotel).permit(:hotel_Name,:hotel_address,:hotel_location,:hotel_contactNo,:hotelImage,:min_order)
   end
 
   def delete
