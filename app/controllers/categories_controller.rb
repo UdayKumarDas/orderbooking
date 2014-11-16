@@ -39,6 +39,9 @@ end
   def index
     @categories=Category.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
     @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
+    if params[:id].present?
+    @category=Category.find(params[:id])
+    end
   end
 
   # GET /categories/1
@@ -106,7 +109,7 @@ def update
    if @category.update_attributes(category_params)   
      #If update succeeds,redirect to the show action
      flash[:notice]="Category Updated Successfully"
-     redirect_to(:action=>'index',:id=>@category.id)
+     redirect_to(:action=>'index')
    else
      #If update fails,redisplay the form so user can fix problems
    endrender('edit')

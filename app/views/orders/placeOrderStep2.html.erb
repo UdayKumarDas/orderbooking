@@ -347,14 +347,14 @@
 			<ul>
 
 				<li class=' has-sub'>
-					<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<% @hotelUsercc= HotelUser.find(cookies[:user_id2])%><%= @hotelUsercc.userName%></a>
+					<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<% @hotelUsercc= HotelUser.find(cookies[:user_id2])%><%=cookies[:uName]= @hotelUsercc.userName%></a>
 					<ul>
 						<li class=''>
 							<a href='#' style="font-size: 11px;"><%= image_tag('Settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
 
 						</li>
 						<li class=''>
-							<a href='#' style="font-size: 11px;"><%= image_tag('user.ico',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
+							<a href='#' style="font-size: 11px;"><%= image_tag('users1.jpg',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
 
 						</li>
 						<li class=''>
@@ -504,10 +504,13 @@
 				<%addr.each_with_index do |addr,index|%>
 				<% @count+=1%>
 
-				<% index+1%>
-				<%if addr==''||nil%>
+				<% index+1%><%end%><%if addr==''||nil%>
+				<% @addressBlank='blank'%>
+				<%end%>
+				
 				<%= form_for(:order,:url=>{:controller=>'orders',:action=>'orderCreate1'}) do |hotelUser|%>
-				<%= hotelUser.text_area(:address,:cols=>67,:rows=>3)%>
+				<%= hotelUser.text_area(:address,:cols=>67,:rows=>3,:required=>true)%>
+				
 				<br />
 				<br />
 				<p style="text-align: center;width: 50%;">
@@ -515,7 +518,7 @@
 					<%= hotelUser.submit("PROCEED TO PAYMENT",{:action=>'orderCreate1'})%>
 
 				</p>
-				<%end%><%end%><%end%>
+			<%end%>
 
 			</div>
 

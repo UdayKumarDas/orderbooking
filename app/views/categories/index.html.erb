@@ -133,15 +133,23 @@
 				</div>
 				
 				<% end %>
-		
+		<% if params[:id].blank?%>
 <%= form_for(:category,:url=>{:controller=>'categories',:action=>'create'}) do |f|%>			
 		
 		<div >	<b style="color: #808080;">Name:&nbsp;</b><%= f.text_field :name, :size => "30x10",:required=>true%>&nbsp;<%= submit_tag("Create New Category")%></div>
 		
 	
-		<%end%>
+		<%end%>	<%end%>
+<% if params[:id].present?%>
+		<%= form_for(:category,:url=>{:action=>'update',:id=>@category.id}) do |f|%>
+  <div class="field">
+    <%= f.label :name %>&nbsp;
+    <%= f.text_field :name %> &nbsp; <%= f.submit 'Save Category' ,class: "btn-orange"%>
+  </div>
+  
+  <%end%>
 
-		
+<%end%>
 
 			<h3 style="color: #F4A506">Available Categories </h3>
 			
@@ -160,7 +168,7 @@
 					<tr>
 						<td style="text-align: center;;color: #808080;"> <%= category.name %></td>
 						
-						<td style="text-align: center;"><%= link_to 'Edit',{:action=>'edit',:id=>category.id },class: "btn-orange1"%>
+						<td style="text-align: center;"><%= link_to 'Edit',{:action=>'index',:id=>category.id },class: "btn-orange1"%>
 							<%= link_to 'Delete',{:action=>'destroy',:id=>category.id},class: "btn-orange1" %></td>
 						
 					</tr>

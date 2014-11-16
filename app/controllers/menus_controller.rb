@@ -87,9 +87,16 @@ class MenusController < ApplicationController
   end
 
   def new
+    if params[:id].present?
+    @menu1=Menu.find(params[:id])
+     @categoryId=Menu.find(params[:id])
+     @menuName=@categoryId.menu_item_name
+    end
     @menu=Menu.new
     @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
     @categories=Category.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
+   
+    
     #@menus1=Menu.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
     if params[:category].present?
       @catId=params[:category]
@@ -132,19 +139,7 @@ class MenusController < ApplicationController
   #filename = params[:jpg].original_filename
   end
 
-  def update1
-    @menu=Menu.find(params[:id])
-    # Update the object
-    if @menu.update_attributes(menu_params)
-      #If update succeeds,redirect to the show action
-      flash[:notice]="Menu Updated Successfully"
-    #redirect_to(:controller=>'categories',:action=>'index',:id=>@menu.id)
-    #redirect_to(:back)
-    else
-    #If update fails,redisplay the form so user can fix problems
-      endrender('edit')
-    end
-  end
+ 
 
   def edit1
     @menu=Menu.find(params[:id])
@@ -172,7 +167,7 @@ class MenusController < ApplicationController
   #filename = params[:jpg].original_filename
   end
 
-  def update
+  def updateMenu
 
     @menu=Menu.find(params[:id])
     # Update the object
@@ -180,9 +175,10 @@ class MenusController < ApplicationController
       #If update succeeds,redirect to the show action
       flash[:notice]="Menu Updated Successfully"
       #redirect_to(:controller=>'categories',:action=>'index',:id=>@menu.id)
-      redirect_to :controller=>'categories',:action => "show", :id => cookies[:categoryId]
+      redirect_to(:controller=>'menus',:action=>'new')
     else
     #If update fails,redisplay the form so user can fix problems
+    redirect_to(:back)
       endrender('edit')
     end
 

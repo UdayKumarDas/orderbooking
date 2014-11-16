@@ -6262,7 +6262,12 @@ a.btn-orange:hover {
 							</br>
 							</br>
 							<div class="clear:both"></div>
-
+							<% if flash[:notice] %>
+				<div style="color:green">
+					<%= flash[:notice] %>
+				</div>
+				<% end %>
+ <%if params[:id].blank?%>
 							<%= form_for(:menu,:url=>{:action=>'create'},:html=>{:multipart=>true}) do |f|%>
 							</br>
 							</br></br>
@@ -6281,14 +6286,39 @@ a.btn-orange:hover {
 						<div style="width: 15%;position: absolute;margin-left: 55%;margin-top: -2%;">
 							<%= submit_tag("Create New Menu",:id=> "some_id",:name=>params[:name])%>
 						</div>
-						<%end%>
+						<%end%>	<%end%>
 
+
+
+  <%if params[:id].present?%>
+   <%= form_for(@menu1,:url=>{:controller=>'menus',:action=>'updateMenu',:id=>params[:id]}) do |f|%>
+     </br>
+							</br></br>
+							<h4>Update Menu Item</h4></br>
+							<b style="color: #808080;">Category:</b>	<%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name"), prompt: "Select Category"%>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #808080;">Name:</b>&nbsp;	<%= f.text_field(:menu_item_name,:required=>true)%>&nbsp;&nbsp;
+
+							&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #808080;">Price:</b>&nbsp;&nbsp;<%= f.number_field :price ,:required=>true,:in=>1...5001%>
+							<br /><br />
+							<b style="color: #808080;">Item Type:</b>&nbsp;	<%= f.text_field(:item_type,:required=>true)%>&nbsp;
+							<b style="color: #808080;">Image:</b>
+							<div style="width: 30%;position: absolute;margin-left: 39%;margin-top: -2%;"><%= f.file_field :image %>
+						</div>
+
+						<br />
+    <%= f.submit %>
+   <% end %>
+    <% end %>
 						<div style="width: 70%;margin-left: 242px;">
-							<%= form_tag :controller=>'menus',:action=>'new' ,:method => 'get' do %>
+							<%= form_tag :controller=>'menus',:action=>'new' ,:catId => params[:category] do %>
 							<%= select_tag 'category', options_from_collection_for_select(@categories, "id", "name",:selected=>@catId.to_i), prompt: "Select Category"%>
 							<%= submit_tag "Filter", :name => nil,class: "btn-orange" %>	<%end%>
 						</div>
-						
+					
+  
+
+  
+
 <table style="margin-left: 240px;">
 				<thead>
 					<tr>
@@ -6300,11 +6330,7 @@ a.btn-orange:hover {
 						<th style="text-align: center;color: #808080;">Action </th>
 					</tr>
 				</thead>
-				<% if flash[:notice] %>
-				<div style="color:red">
-					<%= flash[:notice] %>
-				</div>
-				<% end %>
+				
 
 				<tbody>
 					<% @menus2.each do |g| %>
@@ -6313,7 +6339,7 @@ a.btn-orange:hover {
 						<td style="color: #808080;"><%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'12x12',:alt=>'Logo')%>&nbsp;<%= g.price %></td>
 						<td style="color: #808080;"><%= g.item_type %></td>
 						<td style="color: #808080;"><%= image_tag g.image_url,:size=>'65x65'%></td>
-						<td style="color: #808080;"><%= link_to("Edit",{:controller=>'menus',:action=>'edit',:id=>g.id},class: "btn-orange1")%>
+						<td style="color: #808080;"><%= link_to("Edit",{:controller=>'menus',:action=>'new',:id=>g.id},class: "btn-orange1")%>
 		<%= link_to("Delete",{:controller=>'hotels',:action=>'destroy',:id=>g.id},class: "btn-orange1")%></td>
 					</tr>
 					<% end %>

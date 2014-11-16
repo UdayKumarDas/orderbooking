@@ -6263,14 +6263,14 @@ a.btn-orange:hover {
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th style="text-align: center;">Email</th>
-      <th>Pay type</th>
+      <th style="color: #808080;font-size: 14px; ">Name</th>
+      <th style="color: #808080;font-size: 14px; ">Address</th>
+      <th style="color: #808080;font-size: 14px;text-align: center;">Email</th>
+      <th style="color: #808080;font-size: 14px; ">Pay type</th>
       
-      <th style="width: 150px;">Order Date/Time</th>
-      <th style="width: 150px;">Updated Order Date/Time</th>
-      <th>Action</th>
+      <th style="color: #808080;font-size: 14px;width: 150px;">Order Date/Time</th>
+      <th style="color: #808080;font-size: 14px;width: 150px;">Updated Order Date/Time</th>
+      <th style="color: #808080;font-size: 14px; ">Action</th>
     
     </tr>
   </thead>
@@ -6284,7 +6284,7 @@ a.btn-orange:hover {
         <td><%= order.pay_type %></td>
         <td style="width: 50px;"><%= order.created_at %>&nbsp;&nbsp;</td>
         <td style="width: 50px;"><%= order.updated_at %></td>
-        <td><%= link_to 'Edit' %>&nbsp;<%= link_to 'Destroy',{:action=>'destroy',:id=>order.id} %></td>
+        <td>&nbsp;<%= link_to 'Destroy',{:action=>'destroy',:id=>order.id} %></td>
         
       </tr>
     <% end %>
@@ -6293,6 +6293,6 @@ a.btn-orange:hover {
 
 <br>
 
-<%= link_to 'New Order' %>
+
 </body>
 </html>

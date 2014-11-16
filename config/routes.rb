@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   get 'menus/index'
   get 'menus/edit'
+  get 'menus/new'
+   patch 'menus/updateMenu'
   #get 'hotels/show'
   get 'categories/index'
   get 'categories/show'
