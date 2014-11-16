@@ -7,7 +7,7 @@
 		<%= hotel.text_field :hotel_Name%>
 		<%= hotel.label :hotel_location%>
 		<%= hotel.text_field :hotel_location%>
-		<%= submit_tag "Create new hotel"%>
+		<%= hotel.submit "Create new hotel"%>
 		<%end%>
 		<br /><br />
 		<%= form_for(:user,:url=>{:controller=>'hotels',:action=>"createUserForHotel"}) do |hotel|%>
@@ -23,7 +23,7 @@
 		<%= hotel.label :email%>
 		<%= hotel.text_field :email%>
 		<br /><br />
-		<%= submit_tag "Create new hotel user"%>
+		<%= hotel.submit "Create new hotel user"%>
 		<%end%>
 	</body>
 </html>

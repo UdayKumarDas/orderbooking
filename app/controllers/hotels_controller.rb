@@ -147,8 +147,13 @@ class HotelsController < ApplicationController
     end
   end
 
+def createUser
+  
+end
   def params_createUserForHotel
-    params.require(:user).permit(:username,:password_digest,:email,:hotel_id)
+    
+    params.require(:user).permit(:username,:password,:email,:hotel_id)
+
   end
 
 end
