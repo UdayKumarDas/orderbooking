@@ -138,6 +138,10 @@
 			padding-left: 14px;
 			color: #F4A506;
 		}
+		.logoutStyle
+		{
+			font-size: 11px;
+		}
 
 	</style>
 	<script language='javascript'>
@@ -165,6 +169,8 @@
 			<%= link_to "ABOUT US",{},class: "menu_link"%>
 
 		</div>
+		
+		<%if(cookies[:user_id2].present?)%>
 	<div id='cssmenu' style="width: 100px;float:right;margin-right: 100px;top: 10px;">
 			<ul>
 
@@ -180,14 +186,14 @@
 
 						</li>
 						<li class=''>
-							<a href='http://localhost:3000/menus/logout' style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
-
+							<%=link_to image_tag('logout.png',:size=>'15x15',:alt=>'Logo')+'LOGOUT',:controller=>'menus',:action=>'logout',class: "logoutStyle"%>&nbsp;
 						</li>
 					</ul>
 				</li>
 
 			</ul>
 		</div>
+		<%end%>
 		<div class="container_head" >
 			<div style="">
 				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>

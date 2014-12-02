@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924070022) do
+ActiveRecord::Schema.define(version: 20141127070813) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20140924070022) do
   create_table "categories", force: true do |t|
     t.string   "name"
     t.integer  "hotel_id"
+    t.integer  "cuisine_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "categories", ["cuisine_id"], name: "index_categories_on_cuisine_id", using: :btree
   add_index "categories", ["hotel_id"], name: "index_categories_on_hotel_id", using: :btree
 
   create_table "cities", force: true do |t|
@@ -33,28 +35,14 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.datetime "updated_at"
   end
 
-  create_table "customers", force: true do |t|
-    t.string   "userName",        limit: 20
-    t.string   "email",           limit: 100
-    t.string   "password_digest"
-    t.string   "address1",        limit: 40
-    t.string   "address2",        limit: 40
+  create_table "cuisines", force: true do |t|
+    t.string   "cuisine_name"
+    t.integer  "hotel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "phoneNo"
-    t.string   "city"
-    t.string   "pinCode"
-    t.string   "UserType"
-    t.integer  "hotel_id"
   end
 
-  create_table "events", force: true do |t|
-    t.string   "name"
-    t.string   "catId_get"
-    t.string   "menuName_get"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "cuisines", ["hotel_id"], name: "index_cuisines_on_hotel_id", using: :btree
 
   create_table "hotel_users", force: true do |t|
     t.string   "userName",        limit: 20
@@ -84,7 +72,22 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.string   "hotel_location"
     t.integer  "hotel_contactNo"
     t.string   "hotelImage"
+    t.string   "from_time"
+    t.string   "to_time"
+    t.string   "amOrPm"
+    t.string   "amOrPm1"
+    t.boolean  "Coupons_accepted"
+    t.boolean  "mon"
+    t.boolean  "tue"
+    t.boolean  "wed"
+    t.boolean  "thu"
+    t.boolean  "fri"
+    t.boolean  "sat"
+    t.boolean  "sun"
     t.integer  "min_order"
+    t.string   "veg"
+    t.string   "non_veg"
+    t.string   "payment_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,6 +113,8 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.integer  "price"
     t.string   "item_type"
     t.integer  "category_id"
+    t.integer  "veg"
+    t.integer  "non_veg"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
@@ -122,8 +127,8 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.integer  "hotel_id"
     t.integer  "percentageOff"
     t.integer  "amountforDiscount"
-    t.date     "startDate"
-    t.date     "endDate"
+    t.datetime "startDate"
+    t.datetime "endDate"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "catId_get"
@@ -150,16 +155,6 @@ ActiveRecord::Schema.define(version: 20140924070022) do
     t.string   "menuName_buy5"
     t.integer  "qty_buy5"
     t.string   "offer_type"
-  end
-
-  create_table "orderbooking_users", force: true do |t|
-    t.string   "userName",        limit: 20
-    t.string   "email"
-    t.string   "address1",        limit: 40
-    t.string   "address2",        limit: 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "password_digest"
   end
 
   create_table "orders", force: true do |t|

@@ -5,6 +5,9 @@ class CreateHotels < ActiveRecord::Migration
       t.string :hotel_address
       t.string :hotel_location
       t.integer :hotel_contactNo
+      t.string :veg
+      t.string :non_veg
+      t.string :payment_type
       t.timestamps      
     end
   end

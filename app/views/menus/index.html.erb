@@ -35,7 +35,7 @@
 
 							</li>
 							<li class=''>
-								<a href='http://localhost:3000/menus/logout' id="logout" style="font-size: 11px;"><%= image_tag('logout.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;LOGOUT</a>
+								<%=link_to image_tag('logout.png',:size=>'15x15',:alt=>'Logo')+'LOGOUT',:controller=>'menus',:action=>'logout',class:'logoutStyle'%>
 
 							</li>
 						</ul>
@@ -57,7 +57,19 @@
 			<div class="grid_16 header-box desktop">
 			<%= image_tag @hotel.hotelImage_url,:size=>'160x90'%>&nbsp;&nbsp;
 			<b style="color: #f9b004;text-align: center;font-size: 20px;position: absolute;"><%= @hotel.hotel_Name%></b>
-			<b style="color: #380B61;font-size: 15px;position: absolute;padding-top: 30px;"><%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.hotel_location%></b>
+			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 30px;"><%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.hotel_location%></b>
+			
+			
+			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 54px;"><%= image_tag('clock.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.from_time%><%= @hotel.amOrPm%>&nbsp;to&nbsp;<%= @hotel.to_time%><%= @hotel.amOrPm1%></b>
+		
+			
+			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 80px;"><%= image_tag('fork_and_knife.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;
+				<%if @hotel.veg=="1"%><%= image_tag('veg.png',:size=>'17x17',:alt=>'Logo')%><%end%>
+				<%if @hotel.non_veg=="1"%><%= image_tag('nonVeg.jpg',:size=>'17x17',:alt=>'Logo')%><%end%>&nbsp;
+				<% @cuisine.each do |cuisine|%>
+				<%= cuisine.cuisine_name%>,
+				<%end%></b>
+		
 			</div>
 
 			<div style="clear: both;"></div>
@@ -232,7 +244,7 @@
 			<%= image_tag d.image_url,:size=>'70x70'%>
 			&nbsp;&nbsp;&nbsp;<b style="color: white;text-align: center;font-size: 20px;position: absolute;margin-top: 20px;"><%= d.menu_item_name%></b>
 
-			<div style="width: 15%;height: 34px;background-color: #BDBDBD;float:right;margin: 0.5em 0;
+			<div style="width: 32%;height: 34px;background-color: #BDBDBD;float:right;margin: 0.5em 0;
 			min-width: 9em;margin-top: 21px;">
 			<div style=" float:left;padding-top:7px;padding-left: 8px;">
 			<b style="color: #380B61;font-size: 20px;margin-top: 10px;"> <%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'15x15',:alt=>'Logo')%><%= d.price%> </b>
@@ -297,7 +309,7 @@
         </div>
 
 			<%end%> <%end%>
-			<%= cookies[:uName]%>
+			
 	</body>
 
 	

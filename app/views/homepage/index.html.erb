@@ -293,7 +293,7 @@ a.btn-orange2 {
 				<div style="margin-bottom: 300px;text-align: center; padding-top: 50px;">
 <% if flash[:hh] %>
 				<div style="color:#FF7200;background-color: #FFFFFF;font-size: 20px;">
-					<%= flash[:hh] %><%=   cookies[:searchValue]%>
+					<%= flash[:hh] %>
 				</div>
 				<% end %>
 				
@@ -301,7 +301,7 @@ a.btn-orange2 {
 					<br>
 					<%= form_tag hotels_path, method: :get do %>
   <div id="box" style="width: 400px;margin-left: 33%">
-    <%= text_field_tag :search , nil, class: 'search-box', required: true, placeholder: 'Type Your City Name' %>
+    <%= text_field_tag :search , nil, class: 'search-box', required: true, placeholder: 'Type your city name' %>
   </div>
   <br />
   <%= submit_tag "Search", name: 'btnsearch', class: "btnSearch" %>

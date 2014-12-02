@@ -3,7 +3,12 @@ class Hotel < ActiveRecord::Base
   has_many :users
   has_many :categories
   has_many :offers
+  has_many :cuisine
   
+
    mount_uploader :hotelImage, ImageUploader
   scope :sorted, lambda{order("hotels.hotel_location ASC")}
+ scope :with_cuisine, lambda { |cuisines|   where(cuisine_name: [*cuisines]) }
+ 
+ 
 end

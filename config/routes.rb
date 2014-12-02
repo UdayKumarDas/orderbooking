@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
 
-    resources :hotels, :except=>'show' 
+  #resources :cuisines
+
+  resources :hotels, :except=>'show' do
+  collection do
+    get 'search'
+  end
+end
   #get 'hotels/index'
+  get 'cuisines/new'
+  patch 'cuisines/create'
+  patch 'cuisines/update'
   get 'hotel_users/signup'
   get 'hotels/createUserForHotel'
   get 'hotels/createnewhotel'
@@ -45,7 +54,7 @@ Rails.application.routes.draw do
   #get 'hotels/show'
   get 'categories/index'
   get 'categories/show'
-  get 'categories/new'
+ 
   get 'homepage/login'
 
   #get 'access/login', :to=> "categories#login"

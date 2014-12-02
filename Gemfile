@@ -50,3 +50,6 @@ gem 'carrierwave'
 #gem 'twitter-bootstrap-rails'
 gem 'thin'
 gem 'rails_12factor', group: :production
+gem 'best_in_place'
+gem 'filterrific',  '~>1.4.0'
+gem 'rake' ,'~>10.3.2'

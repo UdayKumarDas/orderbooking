@@ -24,6 +24,7 @@ class MenusController < ApplicationController
     @hotel = Hotel.find(params[:hotel_id])
     cookies[:hotelId]=params[:hotel_id]
     @category = Category.where(:hotel_id => params[:hotel_id]).first
+    @cuisine=Cuisine.where(:hotel_id=>params[:hotel_id])
     if @category.present?
       @menus2=Menu.where(:category_id=> @category.id).sorted
 
@@ -100,6 +101,8 @@ class MenusController < ApplicationController
     #@menus1=Menu.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
     if params[:category].present?
       @catId=params[:category]
+      @cat_name=Category.find(params[:category])
+      @catName=@cat_name.name
     end
     @menus2  = params[:category].blank? ? Menu.where(:hotel_id=>cookies[:hotel_id_for_login_user]) : Menu.where(category_id: @catId)
 
@@ -170,6 +173,7 @@ class MenusController < ApplicationController
   def updateMenu
 
     @menu=Menu.find(params[:id])
+    
     # Update the object
     if @menu.update_attributes(menu_params)
       #If update succeeds,redirect to the show action

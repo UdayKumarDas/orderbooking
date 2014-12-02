@@ -3,7 +3,7 @@ class HomepageController < ApplicationController
   layout :false
 before_action :confirm_logged_in, :except=> [:login,:attempt_login,:logout,:index]
   #before_action :set_category, only: [:show, :edit, :update, :destroy]
- 
+
 
   def index
   end

@@ -1,26 +1,34 @@
 class HotelsController < ApplicationController
   layout :false
   skip_before_filter :verify_authenticity_token
+   $search=@search
   def create
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
-
+  # redirect_to(:action=>'create',:search=>params[:search])
   end
-
+def show
+  
+end
   def index
+    @cuisins=Cuisine.all
+    if params[:search].present?
+      @search=params[:search]
+    end
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
     cookies[:searchValue]=params[:search]
-     @hotelsLocation= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").first
+    @hotelsLocation= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").first
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers)
-    if params[:search].present? ? @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers) : Hotel.includes(:offers)
+    if params[:search].present? ? @hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%").includes(:offers) : Hotel.includes(:offers,:cuisines)
       @hotel_name=params[:hotel_location]
+      @search=params[:search]
     end
-    if params[:search].blank?
-      flash[:hh]="Sorry, we do not have any hotels delivering to this location."
-      redirect_to(:controller=>'homepage')
+     if params[:cuisine_name].present?
+      @hotelsAvailable=Cuisine.where(:cuisine_name=>params[:cuisine_name])
     end
-    
-    
-    
+  end
+
+  def search
+redirect_to(:action=>'index',:search=>params[:search],:cuisines=>@searchCuisine)
   end
 
   def edit
@@ -35,10 +43,11 @@ class HotelsController < ApplicationController
     @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
     # Update the object
     if @hotel.update_attributes(hotel_params)
+      cookies[:trueValue]=params[:veg]
       #If update succeeds,redirect to the show action
       flash[:notice]="Hotel Updated Successfully"
       #redirect_to(:controller=>'categories',:action=>'index',:id=>@menu.id)
-      redirect_to :controller=>'categories',:action => "index"
+      redirect_to :controller=>'hotels',:action => "edit"
     else
     #If update fails,redisplay the form so user can fix problems
       endrender('edit')
@@ -69,7 +78,7 @@ class HotelsController < ApplicationController
   end
 
   def hotel_params
-    params.require(:hotel).permit(:hotel_Name,:hotel_address,:hotel_location,:hotel_contactNo,:hotelImage,:min_order)
+    params.require(:hotel).permit(:hotel_Name,:hotel_address,:hotel_location,:hotel_contactNo,:hotelImage,:min_order,:from_time,:to_time,:amOrPm1,:amOrPm,:veg,:non_veg)
   end
 
   def delete
@@ -80,11 +89,11 @@ class HotelsController < ApplicationController
 
   def destroy
 
-    @menu=Menu.find(params[:id])
+    @menu=Menu.find(params[:id1])
     #@menu=Menu.find(:category_id=>@category)
     @menu.destroy
     flash[:notice]="Menu Destroyed Successfully"
-    redirect_to :controller=>'menus',:action => "new", :id => cookies[:categoryId]
+    redirect_to :controller=>'menus',:action => "new"
   end
 
   def loginUser
@@ -106,16 +115,13 @@ class HotelsController < ApplicationController
       #session[:hotel_id_for_login_user]=authorized_user.hotel_id
       flash[:notice]="You are now logged in."
       cookies[:searchValue]=params[:search]
-     redirect_to(:back)
+      redirect_to(:back)
     else
     # session[:last_seen] = Time.now
       flash[:notice]="Invalid username/password combination."
       redirect_to(:back)
     end
   end
-  
-  
-  
 
   def createnewhotel
     @hotels=Hotel.all
@@ -147,11 +153,12 @@ class HotelsController < ApplicationController
     end
   end
 
-def createUser
-  
-end
+  def createUser
+
+  end
+
   def params_createUserForHotel
-    
+
     params.require(:user).permit(:username,:password,:email,:hotel_id)
 
   end

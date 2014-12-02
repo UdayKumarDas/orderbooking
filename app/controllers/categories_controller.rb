@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
      # reset_session if session[:last_seen] < 1.minutes.ago
     #session[:last_seen] = Time.now
       cookies[:user_id]=authorized_user.id
-    cookies[:user_id]={:expires=>1.minute.from_now}
+    #cookies[:user_id]={:expires=>1.minute.from_now}
       cookies[:user_name]=authorized_user.username
       cookies[:hotel_id_for_login_user]=authorized_user.hotel_id
       flash[:notice]="You are now logged in."
@@ -37,8 +37,9 @@ end
   # GET /categories
   # GET /categories.json
   def index
-    @categories=Category.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
+    @categories=Category.where(:hotel_id=>cookies[:hotel_id_for_login_user])
     @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
+    @cuisines=Cuisine.where(:hotel_id=>cookies[:hotel_id_for_login_user])
     if params[:id].present?
     @category=Category.find(params[:id])
     end
@@ -104,7 +105,7 @@ end
   end
 
 def update
-   @category=Category.find(params[:id])
+   @category=Category.find(params[:id])   
    # Update the object
    if @category.update_attributes(category_params)   
      #If update succeeds,redirect to the show action
@@ -140,7 +141,7 @@ def delete
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name,:cuisine_id)
     end
     
      def showMenu
@@ -148,7 +149,7 @@ def delete
   end
   
   def category_params1
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name,:cuisine_id)
     end
     
    

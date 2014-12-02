@@ -8,4 +8,6 @@
 Rails.application.config.assets.precompile += %w( orders.css )
 Rails.application.config.assets.precompile += %w( content.css )
 Rails.application.config.assets.precompile += %w( component.css )
+Rails.application.config.assets.precompile += %w(style.css)
 Rails.application.config.assets.precompile += %w( classie.js )
+Rails.application.config.assets.precompile += %w( cuisines.js )

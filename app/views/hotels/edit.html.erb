@@ -6114,7 +6114,8 @@
 		}
 		
 		</style>
-		
+		                                                             
+	
 		
 	<body style="background-color: #F7F7F7;">
 		<div class="container_head" >
@@ -6138,6 +6139,10 @@
 
 								<li class="nav-header">
 									Main
+								</li>
+								<li>
+									
+									<%= link_to 'Category Cuisines',{:controller=>'cuisines',:action=>'index'}%>
 								</li>
 								<li>
 									
@@ -6180,7 +6185,10 @@
 </br>
 </br>
 
-	<h3 style="color: ;">Editing Hotel</h3>
+	<h3 style="color: ;">Edit Hotel</h3>
+	<%if flash[:notice]%>
+	<%= flash[:notice]%>
+	<%end%>
 
 <table style="padding-left: 40%;">
   
@@ -6202,6 +6210,41 @@
         <td>   <%= hotel.file_field :hotelImage %>
    </td>        
       </tr>
+      
+        <tr>
+        <td style="color: #808080;font-size: 14px; "> <%= hotel.label :from_time %><br>
+			
+   
+   </td>
+        <td>  
+        	 <input id="hotel_from_time" name="hotel[from_time]" type="text" Placeholder="HH:MM" Width="70px"  onkeypress="return isNumberKey(event);" onBlur="validTimeFormat(hotel_from_time);"/>
+  <%= hotel.select :amOrPm,options_for_select([['AM','AM'],['PM','PM']]), :required => true%> </td>        
+      </tr>
+      
+        <tr>
+        <td style="color: #808080;font-size: 14px; "> <%= hotel.label :to_time %><br>
+			
+   
+   </td>
+        <td >  <input id="hotel_to_time" name="hotel[to_time]" type="text" Placeholder="HH:MM" Width="70px"  onkeypress="return isNumberKey(event);" onBlur="validTimeFormat(hotel_to_time);"/>
+		<%= hotel.select :amOrPm1,options_for_select([['AM','AM'],['PM','PM']]), :required => true%>	
+  <br> </td>        
+      </tr>
+      
+        <tr>
+        <td style="color: #808080;font-size: 14px;"><b>Category</b> <br>
+			
+   
+   </td>
+        <td style="color: #808080;font-size: 14px; ">   <%= hotel.label :veg %>&nbsp;
+        	
+ <%= hotel.check_box :veg%>
+
+        	&nbsp;<%= hotel.label :non_veg %>&nbsp;<%= hotel.check_box :non_veg %>
+   </td>        
+      </tr>
+      
+   
 
         <tr>
         <td>
@@ -6211,10 +6254,105 @@
    </td>        
       </tr>
     <% end %>
+    <%=  cookies[:trueValue]%>
   </tbody>
 </table>
 </div>
+
 </body>
+ <script type="text/javascript">
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+        function validTimeFormat(ctrlobj) {
+            debugger;
+            var txtobj = ctrlobj;
+            var val = txtobj.value;
+            formatTimeSheet(txtobj, val);
+        }
+
+        function formatTimeSheet(ctrlobj, ctrlval) {
+            debugger;
+            var subHrValue = 0;
+            var subMinValue = 0;
+            masktext = ctrlobj;
+            var input = ctrlval;
+            if (input == null)
+                masktext.value = "00:00";
+            else {
+
+                if (input.length == 1) {
+                    masktext.value = "0" + input + ":00";
+                    subHrValue = input;
+                }
+                else if (input.length == 2) {
+                    if (Number(input) <= 12) {
+                        masktext.value = input + ":00";
+                        subHrValue = input;
+                    }
+                    else if (Number(input) > 12 && Number(input) <= 59) {
+                        masktext.value = "00:" + input;
+                        subMinValue = input;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else if (input.length == 3) {
+                    subHrValue = input.match(/\d/);
+                    subMinValue = input.match(/\d(\d+)/)[1];
+
+                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
+                        masktext.value = "0" + subHrValue + ":" + subMinValue;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else if (input.length == 4) {
+
+                    subHrValue = input.match(/\d\d/);
+                    subMinValue = input.match(/\d\d(\d+)/)[1];
+
+                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
+                        masktext.value = subHrValue + ":" + subMinValue;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else {
+                    strIndex = ctrlobj.indexOf(':');
+
+                    if (input.length == 5 && strIndex != -1) {
+                        subHr = cntValue.split(':')[0];
+                        subMin = cntValue.split(':')[1];
+
+                        masktext.value = subHr + ":" + subMin;
+
+                        subHrValue = subHr;
+                        subMinValue = subMin;
+                    }
+                    else if (input.length == 5 && strIndex == -1) {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                    else if (input.length > 5) {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+            }
+        }       
+    </script>
 </html>	
 
 
