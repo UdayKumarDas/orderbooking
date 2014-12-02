@@ -6217,7 +6217,9 @@
    
    </td>
         <td>  
-        	 <input id="hotel_from_time" name="hotel[from_time]" type="text" Placeholder="HH:MM" Width="70px"  onkeypress="return isNumberKey(event);" onBlur="validTimeFormat(hotel_from_time);"/>
+        	 
+        	
+  <%= hotel.text_field :from_time,onkeypress:"return isNumberKey(event);", onBlur:"validTimeFormat(hotel_from_time);"%>
   <%= hotel.select :amOrPm,options_for_select([['AM','AM'],['PM','PM']]), :required => true%> </td>        
       </tr>
       
@@ -6226,7 +6228,8 @@
 			
    
    </td>
-        <td >  <input id="hotel_to_time" name="hotel[to_time]" type="text" Placeholder="HH:MM" Width="70px"  onkeypress="return isNumberKey(event);" onBlur="validTimeFormat(hotel_to_time);"/>
+        <td >  <%= hotel.text_field :to_time,onkeypress:"return isNumberKey(event);", onBlur:"validTimeFormat(hotel_to_time);"%>
+		
 		<%= hotel.select :amOrPm1,options_for_select([['AM','AM'],['PM','PM']]), :required => true%>	
   <br> </td>        
       </tr>
