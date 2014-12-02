@@ -6114,7 +6114,99 @@
 		}
 		
 		</style>
-		                                                             
+		        <script type="text/javascript">
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+        function validTimeFormat(ctrlobj) {
+            debugger;
+            var txtobj = ctrlobj;
+            var val = txtobj.value;
+            formatTimeSheet(txtobj, val);
+        }
+
+        function formatTimeSheet(ctrlobj, ctrlval) {
+            debugger;
+            var subHrValue = 0;
+            var subMinValue = 0;
+            masktext = ctrlobj;
+            var input = ctrlval;
+            if (input == null)
+                masktext.value = "00:00";
+            else {
+
+                if (input.length == 1) {
+                    masktext.value = "0" + input + ":00";
+                    subHrValue = input;
+                }
+                else if (input.length == 2) {
+                    if (Number(input) <= 12) {
+                        masktext.value = input + ":00";
+                        subHrValue = input;
+                    }
+                    else if (Number(input) > 12 && Number(input) <= 59) {
+                        masktext.value = "00:" + input;
+                        subMinValue = input;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else if (input.length == 3) {
+                    subHrValue = input.match(/\d/);
+                    subMinValue = input.match(/\d(\d+)/)[1];
+
+                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
+                        masktext.value = "0" + subHrValue + ":" + subMinValue;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else if (input.length == 4) {
+
+                    subHrValue = input.match(/\d\d/);
+                    subMinValue = input.match(/\d\d(\d+)/)[1];
+
+                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
+                        masktext.value = subHrValue + ":" + subMinValue;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else {
+                    strIndex = ctrlobj.indexOf(':');
+
+                    if (input.length == 5 && strIndex != -1) {
+                        subHr = cntValue.split(':')[0];
+                        subMin = cntValue.split(':')[1];
+
+                        masktext.value = subHr + ":" + subMin;
+
+                        subHrValue = subHr;
+                        subMinValue = subMin;
+                    }
+                    else if (input.length == 5 && strIndex == -1) {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                    else if (input.length > 5) {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+            }
+        }       
+    </script>                                                      
 	
 		
 	<body style="background-color: #F7F7F7;">
@@ -6263,99 +6355,7 @@
 </div>
 
 </body>
- <script type="text/javascript">
 
-        function isNumberKey(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-
-            return true;
-        }
-        function validTimeFormat(ctrlobj) {
-            debugger;
-            var txtobj = ctrlobj;
-            var val = txtobj.value;
-            formatTimeSheet(txtobj, val);
-        }
-
-        function formatTimeSheet(ctrlobj, ctrlval) {
-            debugger;
-            var subHrValue = 0;
-            var subMinValue = 0;
-            masktext = ctrlobj;
-            var input = ctrlval;
-            if (input == null)
-                masktext.value = "00:00";
-            else {
-
-                if (input.length == 1) {
-                    masktext.value = "0" + input + ":00";
-                    subHrValue = input;
-                }
-                else if (input.length == 2) {
-                    if (Number(input) <= 12) {
-                        masktext.value = input + ":00";
-                        subHrValue = input;
-                    }
-                    else if (Number(input) > 12 && Number(input) <= 59) {
-                        masktext.value = "00:" + input;
-                        subMinValue = input;
-                    }
-                    else {
-                        masktext.value = "";
-                        alert("Please enter valid time. ");
-                    }
-                }
-                else if (input.length == 3) {
-                    subHrValue = input.match(/\d/);
-                    subMinValue = input.match(/\d(\d+)/)[1];
-
-                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
-                        masktext.value = "0" + subHrValue + ":" + subMinValue;
-                    }
-                    else {
-                        masktext.value = "";
-                        alert("Please enter valid time. ");
-                    }
-                }
-                else if (input.length == 4) {
-
-                    subHrValue = input.match(/\d\d/);
-                    subMinValue = input.match(/\d\d(\d+)/)[1];
-
-                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
-                        masktext.value = subHrValue + ":" + subMinValue;
-                    }
-                    else {
-                        masktext.value = "";
-                        alert("Please enter valid time. ");
-                    }
-                }
-                else {
-                    strIndex = ctrlobj.indexOf(':');
-
-                    if (input.length == 5 && strIndex != -1) {
-                        subHr = cntValue.split(':')[0];
-                        subMin = cntValue.split(':')[1];
-
-                        masktext.value = subHr + ":" + subMin;
-
-                        subHrValue = subHr;
-                        subMinValue = subMin;
-                    }
-                    else if (input.length == 5 && strIndex == -1) {
-                        masktext.value = "";
-                        alert("Please enter valid time. ");
-                    }
-                    else if (input.length > 5) {
-                        masktext.value = "";
-                        alert("Please enter valid time. ");
-                    }
-                }
-            }
-        }       
-    </script>
 </html>	
 
 
