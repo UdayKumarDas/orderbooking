@@ -1,0 +1,9 @@
+<%= params[:cuisine_name0]%>
+<%= params[:cuisine_name1]%>
+<%= params[:search]%>
+<%= @search%>
+<% @searchCuisine=Array.new%>
+<% (0..100).each do |i|%>
+<% @searchCuisine << params['cuisine_name'+i.to_s]%>
+<%end%>
+<%= debug @searchCuisine%>
