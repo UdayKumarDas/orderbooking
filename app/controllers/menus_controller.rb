@@ -4,6 +4,7 @@ class MenusController < ApplicationController
   before_action :find_hotel
   #before_action :confirm_logged_in
   #A_CONST=@category.id
+  before_action :confirm_logged_in, :only=> [:new]
   def index
     if cookies[:hotelIdCheck]!=params[:hotel_id]
       cookies[:xxx]=nil

@@ -387,13 +387,13 @@
 				Phone:&nbsp;<%= @hotelUser.phoneNo%>
 				<b style="color: #FA5833;"><%= cookies[:userNamee]%></b>
 			</legend>
-			<br />
-			<b style="color: #F4A506;font-size:20px;;">Please select your address:</b>
+			<br /><%if (@hotelUser.address1).present?%>
+			<b style="color: #F4A506;font-size:20px;;">Please select your address:</b><%end%>
 			<%= link_to '+ Add Address',{:action=>'placeOrderStep2'},class:"btn-orange2",:id=>'example-show',:onclick=>" showHide('example');return false;"%>
 			<div style="clear: both;"></div>
 			<br />
 			<div id="hideDiv1">
-				<%= form_for(:hotelUser,:url=>{:controller=>'orders',:action=>'show' ,:address1=>params[:address1]}) do |hotelUser|%>
+				<%= form_for(:hotelUser,:url=>{:controller=>'orders',:action=>'show' ,:address1=>params[:address1],:UserId=>params[:UserId]}) do |hotelUser|%>
 				<%if (@hotelUser.address1).present?%>
 				<div id="#" class="search_result_row grid-view1 sorted-resto" style="opacity: 1;background-color: #FFFFFF">
 
@@ -489,8 +489,8 @@
 				</div>
 				<%end%>
 				<br />
-
-				<%= hotelUser.submit("PROCEED TO PAYMENT",{:action=>'show',:address1=>@hotelUser.address1})%><%end%>
+<%if (@hotelUser.address1).present?%>
+				<%= hotelUser.submit("PROCEED TO PAYMENT",{:action=>'show',:address1=>@hotelUser.address1})%><%end%><%end%>
 			</div>
 			<div id="example" class="more" style="display: none;">
 				<% @present=='false'%>
@@ -507,14 +507,15 @@
 				<% @addressBlank='blank'%>
 				<%end%>
 				
-				<%= form_for(:order,:url=>{:controller=>'orders',:action=>'orderCreate1'}) do |hotelUser|%>
-				<%= hotelUser.text_area(:address,:cols=>67,:rows=>3,:required=>true)%>
+				<%= form_tag :controller=>'orders',:action=>'orderCreate1' do |hotelUser|%>
+				
+				<%= text_area_tag(:address1,nil,:cols=>67,:rows=>3,:required=>true)%>
 				
 				<br />
 				<br />
 				<p style="text-align: center;width: 50%;">
 					<a href="#" id="example-hide" class="btn-orange3" onclick="showHide('example');return false;">BACK</a>
-					<%= hotelUser.submit("PROCEED TO PAYMENT",{:action=>'orderCreate1'})%>
+					<%= submit_tag("PROCEED TO PAYMENT",{:action=>'orderCreate1'})%>
 
 				</p>
 			<%end%>

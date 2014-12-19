@@ -7,6 +7,7 @@ class CreateOrders < ActiveRecord::Migration
     t.string :pay_type
     t.string :phone,:limit=>25
     t.integer :hotel_user_id
+    t.string  :orderId
     t.timestamps
   end
 

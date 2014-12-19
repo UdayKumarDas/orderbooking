@@ -14,7 +14,11 @@ class AlterHotels < ActiveRecord::Migration
     add_column("hotels","fri",:boolean,:after=>"thu")
     add_column("hotels","sat",:boolean,:after=>"fri")
     add_column("hotels","sun",:boolean,:after=>"sat")
-
+    add_column("hotels","deliverytime",:datetime,:after=>"sun")
+    add_column("hotels","cc",:boolean,:after=>"deliverytime")
+    add_column("hotels","dc",:boolean,:after=>"cc")
+    add_column("hotels","nb",:boolean,:after=>"dc")
+    add_column("hotels","cod",:boolean,:after=>"nb")
   end
 
   def down
@@ -32,5 +36,10 @@ class AlterHotels < ActiveRecord::Migration
     remove_column("hotels","fri",:boolean,:after=>"thu")
     remove_column("hotels","sat",:boolean,:after=>"fri")
     remove_column("hotels","sun",:boolean,:after=>"sat")
+    remove_column("hotels","deliverytime",:datetime,:after=>"sun")
+    remove_column("hotels","cc",:boolean,:after=>"deliverytime")
+    remove_column("hotels","dc",:boolean,:after=>"cc")
+    remove_column("hotels","nb",:boolean,:after=>"dc")
+    remove_column("hotels","cod",:boolean,:after=>"nb")
   end
 end

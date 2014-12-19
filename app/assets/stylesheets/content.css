@@ -22,6 +22,19 @@
 	padding-left:5px;
 	
 }
+.rgt_label1 {
+	width: 150px;
+	color: #808080;
+	text-align: right;
+	font-size: small;
+	float: left;
+}
+.lft_label1 {
+	width: 230px;
+	float: left;
+	padding-left:5px;
+	
+}
 
 .textboxRgt
 {
@@ -84,7 +97,7 @@ select.my_dropdown {
 		@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
-@charset "UTF-8";
+
 /* Base Styles */
 #cssmenu1,
 #cssmenu1 ul,
@@ -224,3 +237,40 @@ select.my_dropdown {
 #cssmenu1 ul ul a:hover {
   color: #e94f31;
 }
+.scrollbar{
+width:150px;
+height:300px;
+background-color:;
+margin-top:40px;
+margin-left:40px;
+overflow-y:scroll;
+float:left;
+}
+.content{
+height:450px;
+} 
+.field {
+    border-bottom: 1px solid #dddddd;
+    color: #666666;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 7px 10px;
+}
+.btnSearch1
+		{
+			text-decoration: none;
+			background-color: #F9B004;
+			color: #fff;
+			display: inline-block;
+			font-size: 0.9em;
+			font-weight: 200;
+			line-height: normal;
+			
+			padding: 0.2em 0em;
+			text-transform: uppercase;		
+			
+		}
+		button.btnSearch1:hover {
+			background-color: black;
+			color: #FFFFFF;
+		}

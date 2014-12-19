@@ -6,4 +6,4 @@
 <% (0..100).each do |i|%>
 <% @searchCuisine << params['cuisine_name'+i.to_s]%>
 <%end%>
-<%= debug @searchCuisine%>
+<%= cookies[:qqq1]= @searchCuisine%>

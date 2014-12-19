@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def confirm_logged_in
-    unless cookies[:user_id]
+    unless cookies[:user_id].present?
       flash[:notice]="Please log in"
       redirect_to(:controller=>'homepage',:action=>'login')
     return false # halts the before_action
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
    private
 
   def confirm_logged_in_user
-    unless cookies[:user_id2]
+    unless cookies[:user_id2].present?
       flash[:notice]="Please log in"
       redirect_to(:controller=>'Orders',:action=>'placeOrder')
     return false # halts the before_action
@@ -28,17 +28,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-     private
-
-  def confirm_logged_in_user1
-    unless cookies[:user_id2]
-      flash[:notice]="Please log in"
-      redirect_to(:controller=>'menus',:action=>'index')
-    return false # halts the before_action
-    else
-    return true
-    end
-  end
   
   
   private

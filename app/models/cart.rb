@@ -1,6 +1,8 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
   belongs_to :offer
+  belongs_to :order
+  has_many :orderMailers
   def add_menu(menu_id)
     current_item = line_items.where(:menu_id => menu_id).first
     if current_item

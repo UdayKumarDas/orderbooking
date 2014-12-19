@@ -52,4 +52,6 @@ gem 'thin'
 gem 'rails_12factor', group: :production
 gem 'best_in_place'
 gem 'filterrific',  '~>1.4.0'
-gem 'rake' ,'~>10.3.2'
+gem 'will_paginate', '~> 3.0.7'
+#gem 'sms_fu'
+gem 'mechanize'

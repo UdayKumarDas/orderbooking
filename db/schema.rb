@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127070813) do
+ActiveRecord::Schema.define(version: 20141204133102) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20141127070813) do
     t.string   "hotel_location"
     t.integer  "hotel_contactNo"
     t.string   "hotelImage"
-    t.string   "from_time"
-    t.string   "to_time"
+    t.time     "from_time"
+    t.time     "to_time"
     t.string   "amOrPm"
     t.string   "amOrPm1"
     t.boolean  "Coupons_accepted"
@@ -84,6 +84,11 @@ ActiveRecord::Schema.define(version: 20141127070813) do
     t.boolean  "fri"
     t.boolean  "sat"
     t.boolean  "sun"
+    t.datetime "deliverytime"
+    t.boolean  "cc"
+    t.boolean  "dc"
+    t.boolean  "nb"
+    t.boolean  "cod"
     t.integer  "min_order"
     t.string   "veg"
     t.string   "non_veg"
@@ -162,8 +167,15 @@ ActiveRecord::Schema.define(version: 20141127070813) do
     t.text     "address"
     t.string   "email"
     t.string   "pay_type"
-    t.string   "phone",         limit: 25
+    t.string   "phone",               limit: 25
     t.integer  "hotel_user_id"
+    t.string   "orderId"
+    t.datetime "order_time"
+    t.datetime "order_delivery_time"
+    t.float    "total_amount",        limit: 24
+    t.float    "tax",                 limit: 24
+    t.float    "discount",            limit: 24
+    t.float    "final_total",         limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end

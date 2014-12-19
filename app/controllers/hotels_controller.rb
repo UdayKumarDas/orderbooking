@@ -1,16 +1,18 @@
 class HotelsController < ApplicationController
   layout :false
   skip_before_filter :verify_authenticity_token
+  before_action :confirm_logged_in, :only=> [:edit]
    $search=@search
   def create
     #@hotels= Hotel.where('hotel_location LIKE ?',"%#{params[:search]}%")
   # redirect_to(:action=>'create',:search=>params[:search])
   end
 def show
-  
+   @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
 end
   def index
     @cuisins=Cuisine.all
+    @maxValue=Hotel.maximum("min_order")
     if params[:search].present?
       @search=params[:search]
     end
@@ -25,6 +27,10 @@ end
      if params[:cuisine_name].present?
       @hotelsAvailable=Cuisine.where(:cuisine_name=>params[:cuisine_name])
     end
+    if @hotels.blank?
+       flash[:hh]="Sorry, we do not have any hotels delivering to this location."
+      redirect_to(:controller=>'homepage',:action=>'index')
+    end
   end
 
   def search
@@ -32,6 +38,12 @@ redirect_to(:action=>'index',:search=>params[:search],:cuisines=>@searchCuisine)
   end
 
   def edit
+
+    @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
+
+  #filename = params[:jpg].original_filename
+  end
+   def hotelEdit
 
     @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
 
@@ -78,7 +90,8 @@ redirect_to(:action=>'index',:search=>params[:search],:cuisines=>@searchCuisine)
   end
 
   def hotel_params
-    params.require(:hotel).permit(:hotel_Name,:hotel_address,:hotel_location,:hotel_contactNo,:hotelImage,:min_order,:from_time,:to_time,:amOrPm1,:amOrPm,:veg,:non_veg)
+    params.require(:hotel).permit(:hotel_Name,:hotel_address,:hotel_location,:hotel_contactNo,:hotelImage,:min_order,
+    :from_time,:to_time,:amOrPm1,:amOrPm,:veg,:non_veg,:sun,:mon,:tue,:wed,:thu,:fri,:sat,:cc,:dc,:nb,:cod,:deliverytime)
   end
 
   def delete

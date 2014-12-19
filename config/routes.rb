@@ -2,12 +2,11 @@ Rails.application.routes.draw do
 
   #resources :cuisines
 
-  resources :hotels, :except=>'show' do
-  collection do
-    get 'search'
-  end
+  resources :hotels, :except=>['show','create' ]
+get 'hotels/edit' do
+  get 'hotels/edit'
 end
-  #get 'hotels/index'
+  get 'hotels/hotelEdit'
   get 'cuisines/new'
   patch 'cuisines/create'
   patch 'cuisines/update'
@@ -15,7 +14,9 @@ end
   get 'hotels/createUserForHotel'
   get 'hotels/createnewhotel'
   get 'hotels/createHotel'
-
+ get 'hotels/createUserForHotel'
+  get 'hotels/createnewhotel'
+  get 'hotels/createHotel'
   get 'offers/index'
 
   get 'offers/show'
@@ -44,7 +45,7 @@ end
   #get 'orders/placeOrder2'
   get 'orders/new'
   get 'orders/show'
-
+get 'orders/delivery'
   #root 'users#login'
 
   get 'menus/index'

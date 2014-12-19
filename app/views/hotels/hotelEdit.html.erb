@@ -1,16 +1,16 @@
 <html>
 	<head></head>
-<style>
+	<style>
 	.header-box {
 			float: right;
-			margin-right: 40px;
+			margin-right:40px;
 			background: none repeat scroll 0 0 #fff;
 			border: 1px solid #ddd;
 			padding: 1em;
 			width: 79%;
 			height: 90px;
 		}
-
+			
 		.container_head {
 			background-color: #f9b004;
 			background-image: linear-gradient(to right, #f9b004 0px, #f9b004 50%, #f9b004 100%);
@@ -1788,6 +1788,7 @@
 			}
 			.col-lg-2 {
 				width: 16.66666667%
+				
 			}
 			.col-lg-1 {
 				width: 8.33333333%
@@ -6111,106 +6112,103 @@
 				padding: 0 20px;
 			}
 		}
+		
+		</style>
+		        <script type="text/javascript">
 
-table {
-			width: 640px;
-		}/* Make table wider */
-		td, th {
-			border: 1px solid #CCC;
-		}/* Add borders to cells */
-		table {
-			color: #333;
-			font-family: Helvetica, Arial, sans-serif;
-			width: 80%;
-			border-collapse: collapse;
-			border-spacing: 0;
-		}
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
 
-		td, th {
-			border: 1px solid transparent; /* No more visible border */
-			height: 30px;
-			transition: all 0.3s; /* Simple transition for hover effect */
-		}
+            return true;
+        }
+        function validTimeFormat(ctrlobj) {
+            debugger;
+            var txtobj = ctrlobj;
+            var val = txtobj.value;
+            formatTimeSheet(txtobj, val);
+        }
 
-		th {
-			background: #DFDFDF; /* Darken header a bit */
-			font-weight: bold;
-		}
+        function formatTimeSheet(ctrlobj, ctrlval) {
+            debugger;
+            var subHrValue = 0;
+            var subMinValue = 0;
+            masktext = ctrlobj;
+            var input = ctrlval;
+            if (input == null)
+                masktext.value = "00:00";
+            else {
 
-		td {
-			background: #FAFAFA;
-			text-align: center;
-		}
+                if (input.length == 1) {
+                    masktext.value = "0" + input + ":00";
+                    subHrValue = input;
+                }
+                else if (input.length == 2) {
+                    if (Number(input) <= 12) {
+                        masktext.value = input + ":00";
+                        subHrValue = input;
+                    }
+                    else if (Number(input) > 12 && Number(input) <= 59) {
+                        masktext.value = "00:" + input;
+                        subMinValue = input;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else if (input.length == 3) {
+                    subHrValue = input.match(/\d/);
+                    subMinValue = input.match(/\d(\d+)/)[1];
 
-		/* Cells in even rows (2,4,6...) are one color */
-		tr:nth-child(even) td {
-			background: #F1F1F1;
-		}
+                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
+                        masktext.value = "0" + subHrValue + ":" + subMinValue;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else if (input.length == 4) {
 
-		/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
-		tr:nth-child(odd) td {
-			background: #FEFEFE;
-		}
+                    subHrValue = input.match(/\d\d/);
+                    subMinValue = input.match(/\d\d(\d+)/)[1];
 
-		tr td:hover {
-			background: #666;
-			color: #FFF;
-		}
-		a.btn-orange1 {
-			text-decoration: none;
-    background-color: gray;
-    color: #fff;
-    display: inline-block;
-    font-size: 0.9em;
-    font-weight: 700;
-    line-height: normal;
-   
-    padding: 0.5em 1em;
-    text-transform: uppercase;
-     
-   
-}
+                    if (Number(subHrValue) <= 12 && Number(subMinValue) <= 59) {
+                        masktext.value = subHrValue + ":" + subMinValue;
+                    }
+                    else {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+                else {
+                    strIndex = ctrlobj.indexOf(':');
 
-a.btn-orange1:hover {
-    background-color: #81c02f;
-    color: #000;
-}
-a.btn-orange {
-			text-decoration: none;
-    background-color: #81c02f;
-    color: #fff;
-    display: inline-block;
-    font-size: 0.9em;
-    font-weight: 700;
-    line-height: normal;
-    margin: 1% 0;
-    padding: 0.5em 1em;
-    text-transform: uppercase;
-     
-   margin-right: 60px;
-}
+                    if (input.length == 5 && strIndex != -1) {
+                        subHr = cntValue.split(':')[0];
+                        subMin = cntValue.split(':')[1];
 
-a.btn-orange:hover {
-    background-color: #81c02f;
-    color: #000;
-}
-  .preety th .current{
-padding-right: 14px;
-background-repeat: no-repeat;
-background-position: right center;
-}
+                        masktext.value = subHr + ":" + subMin;
 
-.preety th .asc{	
-background-image: url(/assets/upArrow.png);
-}
-
-.preety th .desc{
-background-image: url(/assets/downArrow.png);
-
-}
-
-
-	</style>
+                        subHrValue = subHr;
+                        subMinValue = subMin;
+                    }
+                    else if (input.length == 5 && strIndex == -1) {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                    else if (input.length > 5) {
+                        masktext.value = "";
+                        alert("Please enter valid time. ");
+                    }
+                }
+            }
+        }       
+    </script>                                                      
+	
+		
 	<body style="background-color: #F7F7F7;">
 		<div class="container_head" >
 			<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
@@ -6263,103 +6261,101 @@ background-image: url(/assets/downArrow.png);
 								</li>
 
 							</ul>
-							</div>
-							</div>
-							</div>
-							</div>
-							</div>
-							<div class="grid_16 header-box desktop">
-							<%= image_tag @hotel.hotelImage_url,:size=>'140x60'%>&nbsp;&nbsp;
-							<b style="color: #f9b004;text-align: center;font-size: 20px;position: absolute;"><%= @hotel.hotel_Name%></b>
-							<b style="color: #380B61;font-size: 15px;position: absolute;padding-top: 30px;"><%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.hotel_location%></b>
-							<b style="width: 20%;float: right; "><%= link_to 'Edit Hotel' ,{:controller=>'hotels',:action=>'edit'},class: "btn-orange1"%></b>
-							</div>
-							</br>
-							</br>
-							</br>
-							<div class="clear:both"></div>
 
-<h4> Order Details of Customers</h4>
-<%= form_tag :action=>'search', method: :get do |order| %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<div class="grid_16 header-box desktop">
+				<%= image_tag @hotel.hotelImage_url,:size=>'140x60'%>&nbsp;&nbsp;
+				<b style="color: #f9b004;text-align: center;font-size: 20px;position: absolute;"><%= @hotel.hotel_Name%></b>
+				<b style="color: #380B61;font-size: 15px;position: absolute;padding-top: 30px;"><%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.hotel_location%></b>
+				<b style="width: 20%;float: right; "><%= link_to 'Edit Hotel' ,{:controller=>'hotels',:action=>'edit'},class: "btn-orange1"%></b>
+			</div>
+</br>		
+</br>
+</br>
 
-<%= date_select :created_at ,nil,:start_year=>2014,:end_year=>2020,:order=>[:day,:month,:year],:use_short_month=>true%>
+	<h3 style="color: ;">Edit Hotel</h3>
+	<%if flash[:notice]%>
+	<%= flash[:notice]%>
+	<%end%>
 
-
-<%= submit_tag 'Filter by Date'%>
-<%end%>
-<div style="position: absolute;margin-left: 560px;top:241px;">
-<%= form_tag :action=>'index', method: :get do |order| %>
-<%= hidden_field_tag :direction, params[:direction]%>
-<%= hidden_field_tag :sort,params[:sort]%>
-<%= hidden_field_tag :created_at,params[:created_at]%>
-<%= text_field_tag :search ,params[:search],placeholder:'Search for Order Id'%>
-
-
-<%= submit_tag 'Search'%>
-<%end%>
-
-</div>
-<table class="preety">
-  <thead>
-    <tr>
-      <th style="color: #808080;font-size: 13px; "><%= sortable "name","Name"%></th>
-      <th style="color: #808080;font-size: 13px; "><%= sortable "address","Address"%></th>
-      <th style="color: #808080;font-size: 13px;text-align: center;"><%= sortable "email","Email"%></th>
-      <th style="color: #808080;font-size: 13px; "><%= sortable "phone","Phone"%></th>
-      <th style="color: #808080;font-size: 13px; "><%= sortable "pay_type","Pay type"%></th>
-       <th style="color: #808080;font-size: 13px; "><%= sortable "orderId","Order Id"%></th>
-      <th style="color: #808080;font-size: 13px;width: 150px;"><%= sortable "order_time","Order Time"%></th>
-      <th style="color: #808080;font-size: 13px;width: 150px;"><%= sortable "order_delivery_time","Delivery Time"%></th>
-      <th style="color: #808080;font-size: 13px; "><%= sortable "created_at","Created On"%></th>
-    
-    </tr>
-  </thead>
+<table style="padding-left: 40%;">
+  
 
   <tbody>
-  	<%if params[:created_at].blank?%>
-    <% @orders.each do |order| %>
+   
+   <%= form_for(:hotel,:url=>{:controller=>'hotels',:action=>'update'}) do |hotel|%>
       <tr>
-        <td style="color: #808080;font-size: 13px; "><%= order.name %></td>
-        <td style="color: #808080;font-size: 13px; "><%= order.address %></td>
-        <td style="color: #808080;font-size: 13px; "><%= order.email %></td>
-          <td style="color: #808080;font-size: 13px; "><%= order.phone %></td>
-        <td style="color: #808080;font-size: 13px; "><%= order.pay_type %></td>
-          <td style="color: #808080;font-size: 13px; "><%= order.orderId %></td>
-        <td style="color: #808080;font-size: 13px;"><%= order.order_time.strftime("%I:%M %p") %>&nbsp;&nbsp;</td>
-        <td style="color: #808080;font-size: 13px;"><%= order.order_delivery_time.strftime("%I:%M %p") %></td>
-        <td style="color: #808080;font-size: 13px;">&nbsp;<% link_to 'Destroy',{:action=>'destroy',:id=>order.id} %><%= order.created_at%></td>
-        
+        <td style="color: #808080;font-size: 14px; "><%= hotel.label :min_order%>
+   </td>
+        <td>  <%= hotel.text_field :min_order %>
+   </td>        
+      </tr>
+      <tr>
+        <td style="color: #808080;font-size: 14px; "> <%= hotel.label :hotelImage %><br>
+			
+   
+   </td>
+        <td>   <%= hotel.file_field :hotelImage %>
+   </td>        
       </tr>
       
-    <% end %>
-   <div style="position: absolute; top: 480px;margin-left: 250px;"><%if @orders.count > 5%><%= will_paginate(@orders)%><%end%></div>
-     <% end %>
-     
-	<%if params[:created_at].present?%>
-     <% @createdOrders.each do |order| %>
-     <%@allId.each do |id|%>
-     <%if id==order.id%>
-      <tr>
-        <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.name %></td>
-        <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.address %></td>
-        <td style="color: #808080;font-size: 13px;"><%= order.email %></td>
-       <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.phone %></td>
-        <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.pay_type %></td>
-          <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.orderId %></td>
-        <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.order_time.strftime("%I:%M %p") %>&nbsp;&nbsp;</td>
-        <td style="color: #808080;font-size: 13px;text-align: center;"><%= order.order_delivery_time.strftime("%I:%M %p") %></td>
-        <td style="color: #808080;font-size: 13px;text-align: center;">&nbsp;<% link_to 'Destroy',{:action=>'destroy',:id=>order.id} %><%= order.created_at%></td>
-        
+        <tr>
+        <td style="color: #808080;font-size: 14px; "> <%= hotel.label :from_time %><br>
+			
+   
+   </td>
+        <td>  
+        	 
+        	
+  <%= hotel.text_field :from_time,:value=>@hotel.from_time.present? ? @hotel.from_time.strftime("%I:%M") : '' ,onkeypress:"return isNumberKey(event);", onBlur:"validTimeFormat(hotel_from_time);"%>
+  <%= hotel.select :amOrPm,options_for_select([['AM','AM'],['PM','PM']],:selected=>@hotel.amOrPm.present? ? @hotel.amOrPm : 'AM'), :required => true%> </td>        
       </tr>
-    <% end %><% end %><% end %>  
-    <div style="position: absolute; top: 460px;margin-left: 250px;"><%= will_paginate(@createdOrders)%></div> <% end %>
-    
- 
+      
+        <tr>
+        <td style="color: #808080;font-size: 14px; "> <%= hotel.label :to_time %><br>
+			
+   
+   </td>
+        <td >  <%= hotel.text_field :to_time,:value=>@hotel.to_time ? @hotel.to_time.strftime("%I:%M") : '',onkeypress:"return isNumberKey(event);", onBlur:"validTimeFormat(hotel_to_time);"%>
+		
+		<%= hotel.select :amOrPm1,options_for_select([['AM','AM'],['PM','PM']],:selected=>@hotel.amOrPm1), :required => true%>	
+  <br> </td>        
+      </tr>
+      
+        <tr>
+        <td style="color: #808080;font-size: 14px;"><b>Category</b> <br>
+			
+   
+   </td>
+        <td style="color: #808080;font-size: 14px; ">   <%= hotel.label :veg %>&nbsp;
+        	
+ <%= hotel.check_box :veg%>
+
+        	&nbsp;<%= hotel.label :non_veg %>&nbsp;<%= hotel.check_box :non_veg %>
+   </td>        
+      </tr>
+      
+   
+
+        <tr>
+        <td>
+			
+   </td>
+        <td> <%= hotel.submit %>
+   </td>        
+      </tr>
+    <% end %>
+    <%=  cookies[:trueValue]%>
   </tbody>
 </table>
-
-<br>
-<% debug @orderrs%>
+</div>
 
 </body>
-</html>
+
+</html>	
+
+

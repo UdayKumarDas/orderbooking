@@ -2,6 +2,7 @@ class CuisinesController < ApplicationController
   
   # GET /cuisines
   # GET /cuisines.json
+  before_action :confirm_logged_in, :only=> [:index]
   def index
      @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
     @cuisines=Cuisine.where(:hotel_id=>cookies[:hotel_id_for_login_user])

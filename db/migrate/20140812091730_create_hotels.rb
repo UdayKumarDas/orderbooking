@@ -10,5 +10,8 @@ class CreateHotels < ActiveRecord::Migration
       t.string :payment_type
       t.timestamps      
     end
+    def down
+      drop_table(:hotels)
+    end
   end
 end

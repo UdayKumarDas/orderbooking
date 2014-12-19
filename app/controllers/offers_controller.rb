@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   respond_to :html
+  before_action :confirm_logged_in, :only=> [:index]
   def index
     @offers=Offer.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
     @discountOnAmount=Offer.where(:offer_type=>'discountOnAmount' )

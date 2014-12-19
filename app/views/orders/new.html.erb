@@ -191,7 +191,7 @@
 			$('#' + id).addClass('none').siblings().removeClass('none');
 		});
 	</script>
-	<body style="background-image: url('../images/menu-free-background4.jpg')">
+	<body style="background-image: url('../assets/menu-free-background4.jpg')">
 		<div style="position: absolute;float: right;padding-left: 140px;padding-top: 20px;">
 			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
 			<%= link_to "CONTACT US |",{},class: "menu_link"%>
@@ -211,7 +211,7 @@
 				Step 2 of 3 :  Delivery Details
 			</legend>
 <br />
-			<%= form_for(:order,:url=>{:action=>'update'}) do |f|%>
+			<%= form_for(:order,:url=>{:action=>'update',:orderId=>params[:orderId]}) do |f|%>
   
       
    
@@ -227,16 +227,13 @@
   <div class="field">
     <b>Your Address: &nbsp;&nbsp;<%= f.text_area :address ,:required=>true%></b><br>
     
-  </div>   <br />
-  
+  </div> <br />  
  
   <div class="actions" style="margin-left: 160px;">
     <%= f.submit 'SAVE'%>
   </div>
-<% end %>
-				
-				
-				
+<% end %>				
+
 		</div>
 
 	</body>

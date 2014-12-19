@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
    #layout false
     skip_before_filter :verify_authenticity_token  
- before_action :confirm_logged_in, :except=> [:login,:attempt_login,:logout]
+ before_action :confirm_logged_in, :except=> [:login,:attempt_login]
 
   #before_action :set_category, only: [:show, :edit, :update, :destroy]
  def attempt_login

@@ -14,7 +14,7 @@
 	<body style="background-image: url('/assets/menu-free-background4.jpg');">
 
 		<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
-			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index',:orderId=>params[:orderId]},class: "menu_link"%>
 			<%= link_to "CONTACT US |",{},class: "menu_link"%>
 			<%= link_to "ABOUT US",{},class: "menu_link"%>
 			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
@@ -60,7 +60,8 @@
 			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 30px;"><%= image_tag('1407945135_gpsmapicons07.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.hotel_location%></b>
 			
 			
-			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 54px;"><%= image_tag('clock.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.from_time%><%= @hotel.amOrPm%>&nbsp;to&nbsp;<%= @hotel.to_time%><%= @hotel.amOrPm1%></b>
+			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 54px;"><%= image_tag('clock.png',:size=>'20x20',:alt=>'Logo')%>&nbsp;<%= @hotel.from_time.strftime("%I:%M")%><%= @hotel.amOrPm%>&nbsp;to&nbsp;
+				<%= @hotel.to_time.strftime("%I:%M")%><%= @hotel.amOrPm1%></b>
 		
 			
 			<b style="color: #808080;font-size: 15px;position: absolute;padding-top: 80px;"><%= image_tag('fork_and_knife.png',:size=>'15x15',:alt=>'Logo')%>&nbsp;

@@ -162,7 +162,7 @@ body {
 <%= form_tag(:controller=>'categories',:action=>'attempt_login') do%>
 <div class="wrap">
 	<div style="text-align: center;color: #F4A506;">
-		<%if  flash[:notice].present?%>
+		<%if  flash[:notice].present?%><%= cookies[:user_id]%>
 <%=  flash[:notice]%>
 <%end%>
 	</div>

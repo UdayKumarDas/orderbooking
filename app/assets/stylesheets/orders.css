@@ -219,6 +219,11 @@ table, td, th {
 			width: 40px;
 			float: right;
 		}
+		.numberStyle1 {
+			width: 50px;
+			color: #808080;
+			
+		}
 		#cssmenu {
   
   margin: 0;
@@ -586,4 +591,55 @@ table, td, th {
   	height:300px;
   	background-color:#90805A;
   }
+.bor-bot {
+    border-bottom: 3px solid #ff7200;
+}
+h2 {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+.thank-head {
+    border-bottom: 2px solid #ff7200;
+    color: #777777;
+    font-size: 1.5em;
+    font-weight: lighter;
+    margin-bottom: 0.5em;
+    padding: 0.5em 0 0.1em;
+    margin-left: 10px;
+     margin-right: 10px;
+}
+.cust-name {
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+p {
+    font-size: 1em;
+    padding: 0.5em 0;
+    word-wrap: break-word;
+    margin-left: 10px;
+     margin-right: 10px;
+}
+.row-order-detail {
+    border-bottom: 1px dotted #eeeeee;
+    text-align: left;
+    margin-left: 10px;
+     margin-right: 10px;
+}
+.first-child {
+    display: inline-block;
+    padding: 5px;
+    width: 40%;
+}
+.last-child {
+    display: inline-block;
+    font-weight: bold;
+    margin: 0 0 0 -4px;
+    padding: 5px;
+}
+.page-header {
+    color: #777777;
+    font-size:30px;
+    text-align: center;
+    position: absolute;
+    margin-left:45%;
 }

@@ -199,7 +199,10 @@
 							
 							<%= link_to_if( cart.total_price.to_i >= @hotel.min_order.to_i && @hotel.min_order.present?, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrder'}, class: "btn-orange1" )%>
 							<%else%>
-							<%= link_to_if( cart.total_price.to_i >= @hotel.min_order.to_i && @hotel.min_order.present?, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrderStep2'}, class: "btn-orange1" )%>
+							
+							<%= link_to_if( cart.total_price.to_i >= @hotel.min_order.to_i && @hotel.min_order.present? , "PROCEED TO CHECKOUT", {:controller=>'orders',
+								:action=>'placeOrderStep2',:orderId=> params[:orderId]}, class: "btn-orange1" )%>
+						
 							<%end%>
 <%end%>
 						</div>
