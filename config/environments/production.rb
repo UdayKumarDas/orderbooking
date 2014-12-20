@@ -82,13 +82,14 @@ Rails.application.configure do
   #validatesTimeliness.enable_datetime_select_extension!
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'foodheaven.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
           :address        => 'smtp.sendgrid.net',
-          :port           => '587',
+          :port           => 587,
           :authentication => :plain,
-          :user_name      => ENV['UdayKumarDas'],
-          :password       => ENV['sendgrid123*'],
+          :user_name      =>'UdayKumarDas',
+          :password       => 'sendgrid123*',
           :domain         => 'heroku.com'
   }
-  config.action_mailer.default_url_options = { :host => 'foodheaven.herokuapp.com' }
+  
 end
