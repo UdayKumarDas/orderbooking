@@ -83,13 +83,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'foodheaven.herokuapp.com' }
-  ActionMailer::Base.smtp_settings = {
-          address: 'smtp.sendgrid.net',
-          port:           587,
-          authentication: :plain,
-          user_name: 'UdayKumarDas',
-          password: 'sendgrid123*',
-          domain: 'heroku.com'
-  }
+   ActionMailer::Base.smtp_settings = { 
+  address:        'smtp.gmail.com',
+  port:         587,
+  :authentication => :plain,   
+  user_name:     "udaykumardas950@gmail.com",
+  password:       "password123*",
+  openssl_verify_mode: 'none'
+}
   
 end
