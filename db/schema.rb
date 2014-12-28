@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20141204133102) do
   create_table "hotels", force: true do |t|
     t.string   "hotel_Name"
     t.string   "hotel_address"
+    t.float    "latitude",         limit: 24
+    t.float    "longitude",        limit: 24
     t.string   "hotel_location"
     t.integer  "hotel_contactNo"
     t.string   "hotelImage"
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(version: 20141204133102) do
     t.float    "tax",                 limit: 24
     t.float    "discount",            limit: 24
     t.float    "final_total",         limit: 24
+    t.integer  "userId"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

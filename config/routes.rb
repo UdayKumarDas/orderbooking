@@ -57,7 +57,7 @@ get 'orders/delivery'
   get 'categories/show'
  
   get 'homepage/login'
-
+get 'orders/userDashboard'
   #get 'access/login', :to=> "categories#login"
   # post '/menus', :to=> 'menus#index', as: 'patient',:render=>'menus#index'
   match ':controller(/:action(/:id))(.:option)',:via=>[:get,:post]

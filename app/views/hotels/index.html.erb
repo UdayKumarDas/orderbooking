@@ -213,6 +213,10 @@
     overflow-y: scroll;
     width: 150px;
 }
+.logoutStyle
+		{
+			font-size: 10px;
+		}
 	</style>
 	<script></script>
 	<body style="background-image: url('/assets/menu-free-background4.jpg')">
@@ -229,15 +233,14 @@
 						<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
 						<ul>
 							<li class=''>
-								<a href='#' style="font-size: 11px;"><%= image_tag('Settings.png',:size=>'14x14',:alt=>'Logo')%>&nbsp;DASHBOARD </a>
+<%= link_to image_tag('Settings.png',:size=>'15x15',:alt=>'Logo')+'DASHBOARD',{:controller=>'orders',:action=>'userDashboard'},class:'logoutStyle'%>
 
 							</li>
 							<li class=''>
-								<a href='#' style="font-size: 11px;"><%= image_tag('users1.jpg',:size=>'15x15',:alt=>'Logo')%>&nbsp;PROFILE</a>
-
+								<%= link_to image_tag('users1.jpg',:size=>'15x15',:alt=>'Logo')+'PROFILE',{:controller=>'orders',:action=>'userDashboard'},class:'logoutStyle'%>
 							</li>
 							<li class=''>
-								<%= link_to image_tag('logout.png',:size=>'15x15',:alt=>'Logo')+'LOGOUT',:controller=>'menus',:action=>'logout',class:'logoutStyle'%>
+								<%= link_to image_tag('logout.png',:size=>'15x15',:alt=>'Logo')+'LOGOUT',{:controller=>'menus',:action=>'logout'},class:'logoutStyle'%>
 
 							</li>
 						</ul>

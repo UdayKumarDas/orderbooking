@@ -5,6 +5,8 @@ class Hotel < ActiveRecord::Base
   has_many :offers
   has_many :cuisine
   
+  geocoded_by :hotel_address
+  after_validation :geocode
 
    mount_uploader :hotelImage, ImageUploader
   scope :sorted, lambda{order("hotels.hotel_location ASC")}

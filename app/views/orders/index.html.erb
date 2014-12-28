@@ -6325,8 +6325,8 @@ background-image: url(/assets/downArrow.png);
           <td style="color: #808080;font-size: 13px; "><%= order.phone %></td>
         <td style="color: #808080;font-size: 13px; "><%= order.pay_type %></td>
           <td style="color: #808080;font-size: 13px; "><%= order.orderId %></td>
-        <td style="color: #808080;font-size: 13px;"><%= order.order_time.strftime("%I:%M %p") %>&nbsp;&nbsp;</td>
-        <td style="color: #808080;font-size: 13px;"><%= order.order_delivery_time.strftime("%I:%M %p") %></td>
+        <td style="color: #808080;font-size: 13px;"><%= order.order_time.present? ? order.order_time.strftime("%I:%M %p") : nil %>&nbsp;&nbsp;</td>
+        <td style="color: #808080;font-size: 13px;"><%= order.order_delivery_time.present? ? order.order_delivery_time.strftime("%I:%M %p") : nil %></td>
         <td style="color: #808080;font-size: 13px;">&nbsp;<% link_to 'Destroy',{:action=>'destroy',:id=>order.id} %><%= order.created_at%></td>
         
       </tr>

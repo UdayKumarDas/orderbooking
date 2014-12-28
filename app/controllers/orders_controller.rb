@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
   before_action :confirm_logged_in_user, :except=> [:loginUser,:logout,:placeOrder,:new,:show,:index,:search,
     :destroy,:create,:update,:deliveryPath,:delivery,:order_params,:searchData]
   before_action :confirm_logged_in, :only=> [:index]
-  helper_method :sort_column,:sort_direction
+  helper_method :sort_column,:sort_direction  
+  
   def loginUser
     if params[:email].present? && params[:password].present?
       found_user = HotelUser.where(:email => params[:email]).first #this will return the first record
@@ -86,6 +87,21 @@ def delivery
   @hotel=Hotel.find(cookies[:hotelId])
   @cart=current_cart
    OrderMailer.welcome_email(@order,@cart,@hotel,cookies[:discount_price],cookies[:total_price],cookies[:pricexx]).deliver
+   # put your own credentials here 
+account_sid = 'ACc30a8aed0136f83c38b0caf3b45800a2' 
+auth_token = '036040097e67f71d755a4771f3488834' 
+ 
+# set up a client to talk to the Twilio REST API 
+@client = Twilio::REST::Client.new account_sid, auth_token 
+ 
+@client.account.messages.create({
+  :from => '+15156195206', 
+  #:to =>'+91' + @order.phone.to_s, 
+  :to =>'+919439196255', 
+
+  :body => 'Your order'+ ' ' + @order.orderId +  ' ' + 'from'+ ' ' + @hotel.hotel_Name + ' ' + 'is successfull.' + ' '+ 'Your order will reach you by' +' '+ @order.order_delivery_time.to_s,  
+})
+
 end
 
 def deliveryPath 
@@ -195,7 +211,14 @@ end
 
   # GET /orders/new
   def new
-    
+    @hotel=Hotel.find(cookies[:hotelId])
+    @hash = Gmaps4rails.build_markers(@hotel) do |hotel, marker|      
+    marker.lat hotel.latitude
+    marker.lng hotel.longitude
+  
+   
+    marker.infowindow hotel.hotel_Name
+end
     
     if current_cart.line_items.empty?
       redirect_to menu_url, :notice => "Your cart is empty"
@@ -301,6 +324,9 @@ end
 
   end
 
+def userDashboard
+
+end
   def placeOrderStep2
  
 params[:orderId]=@orderNo
@@ -316,4 +342,9 @@ end
 def sort_direction
   %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 end
+
+def editDashboard
+
+end
+  
 end

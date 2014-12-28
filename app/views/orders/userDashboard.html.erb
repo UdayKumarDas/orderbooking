@@ -1,0 +1,198 @@
+<html>
+	<head></head>
+	<style>
+
+
+.container_16 .grid_11a {
+    min-width: 200px;
+    width: 63%;
+}
+.userinfo {
+    background-color: #eeeeee;
+    border-top: 5px solid #fddc00;
+    margin-right: 1%;
+    padding: 10px 10px 25px;
+    text-align: left;
+}
+p.lbl {
+    color: #303030;
+    font-size: 0.8em;
+    margin: 0.5em 0 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+p.lblinfo {
+    color: #303030;
+    margin: 0;
+    padding: 0.5em;
+    text-align: left;
+    word-wrap: break-word;
+}
+.halfblock {
+    float: left;
+    margin: 0 1%;
+    min-width: 150px;
+    width: 48%;
+}
+a.lbl-link {
+    color: #ff7200;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin: 1em;
+    text-transform: uppercase;
+}
+
+h2.blocka-head {
+    background-color: #ff7200;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 900;
+    margin: 0;
+    padding: 0.5em;
+    text-align: left;
+    text-transform: uppercase;
+}
+.box-cont {
+    color: #fff;
+    padding: 1em;
+    text-align: left;
+}
+a.btn-white {
+    background-color: #fff;
+    color: #ff7200;
+    font-size: 0.9em;
+    font-weight: normal;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+}
+a.box-link {
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    font-weight: 300;
+    margin-right: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+h2.blocka-head span.count-no, h2.blockb-head span.count-no {
+    background-color: #b40000;
+    color: #fff;
+    font-size: 1em;
+    margin: 0 0.5em;
+    padding: 0.5em 1em;
+}
+.user-info-block {
+    float: left;
+    margin: 2% 1.1%;
+    min-height: 250px;
+    min-width: 250px;
+    width: 31%;
+}
+h2.blocka-head {
+    background-color: #ff7200;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 900;
+    margin: 0;
+    padding: 0.5em;
+    text-align: left;
+    text-transform: uppercase;
+}
+.info-blockb {
+    background-color: #ff6600;
+}
+.info-blocka {
+    background-color: #ffa200;
+}
+.grid_16 {
+    margin: 0 auto;
+    width: 100%;
+}
+.container_16 {
+    margin: 0 auto;
+    max-width: 1160px;
+    text-align: center;
+    width: 95%;
+}
+	</style>
+<body>
+<% @hotelUser=HotelUser.find( cookies[:user_id2]) %>
+<div class="container_16 customAddress">
+<div class="grid_16 tal">
+<h1 class="page-header txt-cap"><%= @hotelUser.userName%>'s Dashboard</h1>
+<div class="grid_11a userinfo">
+<div class="halfblock">
+<p class="lbl">USERNAME (EMAIL ID)</p>
+<p class="lblinfo"> <%= @hotelUser.email%> </p>
+<p class="lbl">MOBILE</p>
+<p class="lblinfo"><%= @hotelUser.phoneNo%></p>
+<p class="lbl">date of birth</p>
+<p class="lblinfo">not set</p>
+</div>
+<div class="halfblock">
+<p class="lbl">address</p>
+<p class="lblinfo"><%= @hotelUser.address1%> </p>
+<p class="lbl">area</p>
+<p class="lblinfo"></p>
+<p class="lbl">city</p>
+<p class="lblinfo"><%= @hotelUser.city%></p>
+</div>
+<br />
+<div class="clear"></div>
+<div class="clear"></div>
+<br />
+<a class="lbl-link left-al" href="http://tastykhana.in/users/profile?section=profile&action=password">change password?</a>
+
+<%= link_to 'EDIT' ,{:controller=>'orders',:action=>'editDashboard'},:class=>'lbl-link right-al'%>
+<div class="clear"></div>
+</div>
+
+<div class="" style="text-align: left;background-color: ;width: 90%;position: absolute;">
+<div class="grid_16">
+
+<div class="user-info-block info-blockb">
+<h2 class="blockb-head">
+<span class="count-no"></span>
+FAVOURITES
+</h2>
+<div class="box-cont">
+<p>Add to favourites from your order history for quick reordering</p>
+</div>
+<a class="box-link" href="http://tastykhana.in/users/profile?section=orders">ADD ORDERS</a>
+</div>
+<div class="user-info-block info-blocka">
+<h2 class="blocka-head">LAST ORDER</h2>
+<% @orderLast=Order.where(:email=>@hotelUser.email).last%>
+<div class="box-cont">
+<h2><%= (@hotel=Hotel.find(@orderLast.hotel_user_id)).hotel_Name%></h2>
+<p> <%= @orderLast.updated_at.strftime('%e %B ,%Y' )%> - Rs.<%= @orderLast.final_total.to_i%>/-</p>
+<a class="btn-white" href="http://tastykhana.in/users/profile?section=orders&action=reorder&id=965958">REORDER</a>
+</div>
+<a class="box-link" href="http://tastykhana.in/users/profile?section=orders">VIEW ALL</a>
+</div>
+<div class="user-info-block info-blockb">
+<h2 class="blockb-head">
+<span class="count-no"></span>
+reviews
+</h2>
+<div class="box-cont">
+<h2>Aaoji Foods-Connaught Place (Palika Bazar)</h2>
+<p> 24 December, 2014 - Rs. 210/-</p>
+<a class="btn-white" href="http://tastykhana.in/users/profile?section=orders&action=review&id=965958">WRITE REVIEW</a>
+</div>
+</div>
+<div class="user-info-block info-blocka">
+<h2 class="blocka-head">
+<span class="count-no">0</span>
+INITIATE refund
+</h2>
+<div class="box-cont">
+<p>You can self-initiate refunds for orders made in the last 48 hours</p>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
+

@@ -188,24 +188,28 @@
 
 						<div style="clear:both;"></div>
 						<div id="divCart" style="width:100%;">
-<%if @hotel.min_order.present?%>
+							<%if @hotel.min_order.present?%>
 							<div class="btn-gray" title="Add more items to place order" rel="tooltip">
 								<b>Min Order</b>&nbsp;<b><%= image_tag('1407951522_Indian_Rupee_symbol.png',:size=>'10x10',:alt=>'Logo')%>	<%= @hotel.min_order%></b>
 
 							</div>
-							
+
 							<br />
 							<% if  cookies[:uName].blank?%>
-							
+
 							<%= link_to_if( cart.total_price.to_i >= @hotel.min_order.to_i && @hotel.min_order.present?, "PROCEED TO CHECKOUT", {:controller=>'orders',:action=>'placeOrder'}, class: "btn-orange1" )%>
 							<%else%>
-							
+
 							<%= link_to_if( cart.total_price.to_i >= @hotel.min_order.to_i && @hotel.min_order.present? , "PROCEED TO CHECKOUT", {:controller=>'orders',
-								:action=>'placeOrderStep2',:orderId=> params[:orderId]}, class: "btn-orange1" )%>
-						
+							:action=>'placeOrderStep2',:orderId=> params[:orderId]}, class: "btn-orange1" )%>
+
 							<%end%>
-<%end%>
+							<%end%>
+
 						</div>
+						<p style="font-size: 11px;padding-top: 4px;color: #808080;">
+							APPROXIMATE DELIVERY IN <%= (@hotel.deliverytime.hour * 60) + (@hotel.deliverytime.min)%> MINS
+						</p>
 					</div>
 				</li>
 

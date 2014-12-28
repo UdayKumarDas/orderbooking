@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="http://www.mysterytin.com/css/style.css" />
+		<%= stylesheet_link_tag 'orders'%>
+		<%= stylesheet_link_tag 'component'%>
+		<%= stylesheet_link_tag 'content'%>
+
+		<%= javascript_include_tag 'classie'%>
+		<style>
+			.listhead {
+				border-bottom: 1px solid #ddd;
+				margin-bottom: 1em;
+				position: relative;
+				text-align: left;
+				
+			}
+		</style>
+	</head>
+	<script src="https://code.jquery.com/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(function() {
+				$('#homenav').click(function() {
+					$('div[id^=div]').hide();
+					$('#div1').show();
+				});
+				$('#blognav').click(function() {
+					$('div[id^=div]').hide();
+					$('#div2').show();
+				});
+
+				$('#shopnav').click(function() {
+					$('div[id^=div]').hide();
+					$('#div3').show();
+				});
+
+				$('#downloadsnav').click(function() {
+					$('div[id^=div]').hide();
+					$('#div4').show();
+				});
+
+			});
+		});
+	</script>
+
+	<body style="background-image: url('/assets/menu-free-background4.jpg')">
+		<div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
+			<%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+			<%= link_to "CONTACT US |",{},class: "menu_link"%>
+			<%= link_to "ABOUT US",{},class: "menu_link"%>
+			<%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
+			<% if cookies[:uName].present?%>
+			<div id='cssmenu' style="width: 100px;float:right;margin-right: -188px;top: -6px;">
+				<ul>
+
+					<li class=' has-sub'>
+						<a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
+						<ul>
+							<li class=''>
+								<%= link_to image_tag('Settings.png',:size=>'15x15',:alt=>'Logo')+'DASHBOARD',{:controller=>'orders',:action=>'userDashboard'},class:'logoutStyle'%>
+
+							</li>
+							<li class=''>
+								<%= link_to image_tag('users1.jpg',:size=>'15x15',:alt=>'Logo')+'PROFILE',{:controller=>'orders',:action=>'userDashboard'},class:'logoutStyle'%>
+							</li>
+							<li class=''>
+								<%= link_to image_tag('logout.png',:size=>'15x15',:alt=>'Logo')+'LOGOUT',{:controller=>'menus',:action=>'logout'},class:'logoutStyle'%>
+
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			<%end%>
+		</div>
+
+		<div class="container_head" >
+			<div style="">
+				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+			</div>
+		</div>
+		<!-- skip navigation -->
+		<a href="#main-content" title="Go straight to the main content" id="skipLink">Skip to the content</a>
+<% @hotelUser=HotelUser.find(cookies[:user_id2])%>
+		<br /><br />
+<div style="background-color: #402D26;width: 70%;height: 15%;margin-left: 200px;text-align: center;">
+	<br /><br />
+	<p style="color: #FFFFFF;font-size: 30px;text-transform: uppercase;top:200px;"><%= @hotelUser.userName%>'s Profile</p></div>
+			<!-- Body image -->
+			<div id="container" >
+
+				<!-- Navigation -->
+				<div id="sidebar" style="margin-left: 5px;">
+
+					<div id="nav" style="position: absolute; top: -272px;">
+
+						<ul style="background-color: #F4A506;">
+							<li>
+								<a href="#" id="homenav" style="color: #FFFFFF;font: bold;">PERSONAL INFO</a>
+							</li>
+							<li>
+								<a href="#" id="blognav" style="color: #FFFFFF;font: bold;">ADDRESSES</a>
+							</li>
+							<li>
+								<a href="#" id="shopnav" style="color: #FFFFFF;font: bold;">ORDER HISTORY</a>
+							</li>
+							<li>
+								<a href="#" id="downloadsnav" style="color: #FFFFFF;font: bold;">REFUND</a>
+							</li>
+							<li>
+								<a href="#" id="helpnav" style="color: #FFFFFF;font: bold;">REVIEW</a>
+							</li>
+							<li>
+								<a href="#" id="contactnav" style="color: #FFFFFF;font: bold;">FAVORITE</a>
+							</li>
+						</ul>
+
+					</div>
+					
+					<div style="clear: both;"></div>
+
+					<div style=" margin-top:-282px;margin-left:214px;background-color: #FFFFFF;width: 311%;height: 100%;">
+						<div id="div1">
+							<h2 class="listhead"> Personal Info </h2>
+							<div style="width: 40%;height: 80%;">
+								
+								<%= form_for(@hotelUser,:url=>{:controller=>'orders',:action=>'editHotelUser'}) do |hotelUser|%>
+								<%= hotelUser.label :userName%>
+								<%end%>
+							</div>
+						</div>
+
+						<div id="div2" style="display:none;">
+							Hello, I'm Container two
+						</div>
+						<div id="div3" style="display:none;">
+							Hello, I'm Container three
+						</div>
+						<div id="div4" style="display:none;">
+							Hello, I'm Container four
+						</div>
+					</div>
+
+	</body>
+
+</html>

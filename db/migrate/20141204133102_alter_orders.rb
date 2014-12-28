@@ -6,6 +6,7 @@ class AlterOrders < ActiveRecord::Migration
       add_column("orders","tax",:float,:after=>'total_amount')
        add_column("orders","discount",:float,:after=>'tax')
         add_column("orders","final_total",:float,:after=>'discount')
+        add_column("orders","userId",:integer,:after=>'final_total')
   end
   def down
     
@@ -15,5 +16,6 @@ class AlterOrders < ActiveRecord::Migration
       remove_column("orders","tax",:float,:after=>'total_amount')
        remove_column("orders","discount",:float,:after=>'tax')
         remove_column("orders","final_total",:float,:after=>'discount')
+        remove_column("orders","userId",:integer,:after=>'final_total')
   end
 end

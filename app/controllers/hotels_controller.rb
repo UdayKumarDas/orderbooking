@@ -152,7 +152,7 @@ redirect_to(:action=>'index',:search=>params[:search],:cuisines=>@searchCuisine)
   end
 
   def params_createHotel
-    params.require(:hotel).permit(:hotel_Name,:hotel_location)
+    params.require(:hotel).permit(:hotel_Name,:hotel_location,:hotel_address,:longitude,:latitude)
   end
 
   def createUserForHotel

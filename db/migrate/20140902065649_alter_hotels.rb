@@ -1,5 +1,7 @@
 class AlterHotels < ActiveRecord::Migration
   def up
+    add_column("hotels","latitude",:float,:after=>"hotel_address")
+    add_column("hotels","longitude",:float,:after=>"latitude")
     add_column("hotels","min_order",:integer,:after=>"hotel_contactNo")
     add_column("hotels","hotelImage",:string,:after=>"hotel_contactNo")
     add_column("hotels","from_time",:time,:after=>"hotelImage")
@@ -22,6 +24,8 @@ class AlterHotels < ActiveRecord::Migration
   end
 
   def down
+    remove_column("hotels","latitude",:float,:after=>"hotel_address")
+    remove_column("hotels","longitude",:float,:after=>"latitude")
     remove_column("hotels","min_order",:integer,:after=>"hotel_contactNo")
     remove_column("hotels","hotelImage",:string,:after=>"hotel_contactNo")
     remove_column("hotels","from_time",:time,:after=>"hotelImage")
