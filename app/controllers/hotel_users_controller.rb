@@ -27,6 +27,13 @@ def createaddress
     render :placeOrderStep2
   end
 end
+
+ def editHotelUser
+      @hotel_User=HotelUser.find(cookies[:user_id2])
+    @hotel_User.update_attributes(customer_params)  
+   redirect_to(:controller=>'orders',:action=>'editDashboard')
+   
+  end
   def customer_params
     params.require(:hotelUser).permit(:userName, :password, :phoneNo, :city, :email,:address1,:address2,:address3,:address4,:address5,:address6,:address7,:address8,:address9)
   end

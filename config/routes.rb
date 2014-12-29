@@ -58,6 +58,8 @@ get 'orders/delivery'
  
   get 'homepage/login'
 get 'orders/userDashboard'
+get 'orders/editDashboard'
+get 'hotel_users/editHotelUser'
   #get 'access/login', :to=> "categories#login"
   # post '/menus', :to=> 'menus#index', as: 'patient',:render=>'menus#index'
   match ':controller(/:action(/:id))(.:option)',:via=>[:get,:post]

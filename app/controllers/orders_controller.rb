@@ -346,5 +346,10 @@ end
 def editDashboard
 
 end
+
+ 
   
+  def params_hotelUser
+    params.require(:hotelUser).permit(:userName, :password, :phoneNo, :city, :email,:address1)
+  end
 end

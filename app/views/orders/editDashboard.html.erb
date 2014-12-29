@@ -13,7 +13,55 @@
 				margin-bottom: 1em;
 				position: relative;
 				text-align: left;
-				
+			}
+			.input-group {
+				position: relative;
+				display: table;
+				border-collapse: separate;
+			}
+			.input-group-addon {
+				border-color: #E5E5E5;
+				background: #E5E5E5;
+				min-width: 18px;
+				padding: 6px 12px;
+				font-size: 14px;
+				font-weight: normal;
+				line-height: 1;
+				color: #555;
+				text-align: center;
+				background-color: #EEE;
+				border: 1px solid #CCC;
+				width: 1%;
+				white-space: nowrap;
+				vertical-align: middle;
+				display: table-cell;
+				border-right: 0;
+			}
+			.form-control {
+				display: block;
+				width: 100%;
+				height: 20px;
+				padding: 6px 12px;
+				font-size: 14px;
+				line-height: 1.428571429;
+				color: #555555;
+				vertical-align: middle;
+				background-color: #ffffff;
+				background-image: none;
+				border-radius: 0;
+				border: 1px solid #cccccc;
+				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+				transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			}
+			.form-group {
+				margin-bottom: 15px;
+				margin-left: 15px;
+			}
+			#hotel_user_email {
+				cursor: not-allowed;
+				background-color: #eeeeee;
 			}
 		</style>
 	</head>
@@ -81,67 +129,115 @@
 				<%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
 			</div>
 		</div>
-		<!-- skip navigation -->
-		<a href="#main-content" title="Go straight to the main content" id="skipLink">Skip to the content</a>
-<% @hotelUser=HotelUser.find(cookies[:user_id2])%>
-		<br /><br />
-<div style="background-color: #402D26;width: 70%;height: 15%;margin-left: 200px;text-align: center;">
-	<br /><br />
-	<p style="color: #FFFFFF;font-size: 30px;text-transform: uppercase;top:200px;"><%= @hotelUser.userName%>'s Profile</p></div>
-			<!-- Body image -->
-			<div id="container" >
 
-				<!-- Navigation -->
-				<div id="sidebar" style="margin-left: 5px;">
+		<% @hotelUser=HotelUser.find(cookies[:user_id2])%>
+		<br />
+		<br />
+		<div style="background-color: #402D26;width: 70%;height: 15%;margin-left: 200px;text-align: center;">
+			<br />
+			<br />
+			<p style="color: #FFFFFF;font-size: 30px;text-transform: uppercase;top:200px;">
+				<%= @hotelUser.userName%>'s Profile
+			</p>
+		</div>
+		<!-- Body image -->
+		<div id="container" >
 
-					<div id="nav" style="position: absolute; top: -272px;">
+			<!-- Navigation -->
+			<div id="sidebar" style="margin-left: 5px;">
 
-						<ul style="background-color: #F4A506;">
-							<li>
-								<a href="#" id="homenav" style="color: #FFFFFF;font: bold;">PERSONAL INFO</a>
-							</li>
-							<li>
-								<a href="#" id="blognav" style="color: #FFFFFF;font: bold;">ADDRESSES</a>
-							</li>
-							<li>
-								<a href="#" id="shopnav" style="color: #FFFFFF;font: bold;">ORDER HISTORY</a>
-							</li>
-							<li>
-								<a href="#" id="downloadsnav" style="color: #FFFFFF;font: bold;">REFUND</a>
-							</li>
-							<li>
-								<a href="#" id="helpnav" style="color: #FFFFFF;font: bold;">REVIEW</a>
-							</li>
-							<li>
-								<a href="#" id="contactnav" style="color: #FFFFFF;font: bold;">FAVORITE</a>
-							</li>
-						</ul>
+				<div id="nav" style="position: absolute; top: -272px;">
 
-					</div>
-					
-					<div style="clear: both;"></div>
+					<ul style="background-color: #F4A506;">
+						<li>
+							<a href="#" id="homenav" style="color: #FFFFFF;font: bold;">PERSONAL INFO</a>
+						</li>
+						<li>
+							<a href="#" id="blognav" style="color: #FFFFFF;font: bold;">ADDRESSES</a>
+						</li>
+						<li>
+							<a href="#" id="shopnav" style="color: #FFFFFF;font: bold;">ORDER HISTORY</a>
+						</li>
+						<li>
+							<a href="#" id="downloadsnav" style="color: #FFFFFF;font: bold;">REFUND</a>
+						</li>
+						<li>
+							<a href="#" id="helpnav" style="color: #FFFFFF;font: bold;">REVIEW</a>
+						</li>
+						<li>
+							<a href="#" id="contactnav" style="color: #FFFFFF;font: bold;">FAVORITE</a>
+						</li>
+					</ul>
 
-					<div style=" margin-top:-282px;margin-left:214px;background-color: #FFFFFF;width: 311%;height: 100%;">
-						<div id="div1">
-							<h2 class="listhead"> Personal Info </h2>
-							<div style="width: 40%;height: 80%;">
-								
-								<%= form_for(@hotelUser,:url=>{:controller=>'orders',:action=>'editHotelUser'}) do |hotelUser|%>
-								<%= hotelUser.label :userName%>
-								<%end%>
+				</div>
+
+				<div style="clear: both;"></div>
+
+				<div style=" margin-top:-282px;margin-left:214px;background-color: #FFFFFF;width: 311%;height: 100%;">
+					<div id="div1">
+						<h2 class="listhead"> Personal Info </h2>
+						<div style="width: 70%;height: 80%;">
+
+							<%= form_for(:hotelUser,:url=>{:controller=>'hotel_users',:action=>'editHotelUser'}) do |hotelUser|%>
+
+							<div class="form-group">
+								<label for="login_email">NAME:</label>
+								<div class="input-group">
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+									<%= hotelUser.text_field :userName,:class=>'form-control'%>
+								</div>
 							</div>
-						</div>
 
-						<div id="div2" style="display:none;">
-							Hello, I'm Container two
-						</div>
-						<div id="div3" style="display:none;">
-							Hello, I'm Container three
-						</div>
-						<div id="div4" style="display:none;">
-							Hello, I'm Container four
+							<div class="form-group">
+								<label for="login_email">USERNAME(EMAIL ID):</label>
+								<div class="input-group txtDisabled">
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+									<%= hotelUser.text_field :email,:class=>'form-control',:disabled=>'disabled'%>
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="login_email">MOBILE:</label>
+								<div class="input-group">
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+									<%= hotelUser.text_field :phoneNo,:class=>'form-control'%>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="login_email">CITY:</label>
+								<div class="input-group">
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+									<%= hotelUser.text_field :city,:class=>'form-control'%>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="login_email">ADDRESS:</label>
+								<div class="input-group">
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+									<%= hotelUser.text_field :address1,class:'form-control'%>
+								</div>
+							</div>
+							<br />
+							<%= hotelUser.submit 'SAVE'%>
+							<br />
+							<br />
+							<%end%>
 						</div>
 					</div>
+
+					<div id="div2" style="display:none;">
+						Hello, I'm Container two
+					</div>
+					<div id="div3" style="display:none;">
+						Hello, I'm Container three
+					</div>
+					<div id="div4" style="display:none;">
+						Hello, I'm Container four
+					</div>
+				</div>
 
 	</body>
 
