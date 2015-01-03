@@ -18,7 +18,7 @@ class MenusController < ApplicationController
       @newCart=Cart.create
       @lineItems=LineItem.where(:cart_id=>@orderLast.cartId)
       @lineItems.each do |lineItem|
-        @newLineItem=LineItem.create(:menu_id=>lineItem.menu_id,:cart_id=>@newCart.id)
+        @newLineItem=LineItem.create(:menu_id=>lineItem.menu_id,:cart_id=>@newCart.id,:quantity=>lineItem.quantity)
       end
       cookies[:xxx]=@newCart.id
     end
@@ -27,7 +27,7 @@ class MenusController < ApplicationController
       @lineItems=LineItem.where(:cart_id=>params[:cart_id])
        @newCart=Cart.create
        @lineItems.each do |lineItem|
-         @newLineItem=LineItem.create(:menu_id=>lineItem.menu_id,:cart_id=>@newCart.id)
+         @newLineItem=LineItem.create(:menu_id=>lineItem.menu_id,:cart_id=>@newCart.id,:quantity=>lineItem.quantity)
        end
         cookies[:xxx]=@newCart.id
     end
