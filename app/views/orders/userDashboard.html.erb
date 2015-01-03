@@ -159,7 +159,7 @@ FAVOURITES
 <div class="box-cont">
 <p>Add to favourites from your order history for quick reordering</p>
 </div>
-<a class="box-link" href="http://tastykhana.in/users/profile?section=orders">ADD ORDERS</a>
+<%= link_to 'ADD ORDERS' ,{:controller=>'orders',:action=>'editDashboard'},:class=>'box-link'%>
 </div>
 <div class="user-info-block info-blocka">
 <h2 class="blocka-head">LAST ORDER</h2>
@@ -168,9 +168,10 @@ FAVOURITES
 <h2><%= (@hotel=Hotel.find(@orderLast.hotel_user_id)).hotel_Name%></h2>
 <p> <%= @orderLast.updated_at.strftime('%e %B ,%Y' )%> - Rs.<%= @orderLast.final_total.to_i%>/-</p>
 
-<%= link_to 'REORDER' ,{:controller=>'orders',:action=>'editDashboard'},:class=>'btn-white'%>
+<%= link_to 'REORDER' ,{:controller=>'menus',:action=>'index',:hotel_id=>@hotel,:userAction=>'reorder'},:class=>'btn-white'%>
 </div>
-<a class="box-link" href="http://tastykhana.in/users/profile?section=orders">VIEW ALL</a>
+
+<%= link_to 'VIEW ALL',{:controller=>'orders',:action=>'editDashboard'},:class=>'box-link'%>
 </div>
 <div class="user-info-block info-blockb">
 <h2 class="blockb-head">

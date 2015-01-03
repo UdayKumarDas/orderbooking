@@ -6,10 +6,32 @@ class MenusController < ApplicationController
   #A_CONST=@category.id
   before_action :confirm_logged_in, :only=> [:new]
   def index
+
     if cookies[:hotelIdCheck]!=params[:hotel_id]
       cookies[:xxx]=nil
       cookies[:hotelIdCheck]=params[:hotel_id]
     end
+    #Reorder the last Order from a logged in user.
+    if params[:userAction]=='reorder'
+      @hotelUser=HotelUser.find( cookies[:user_id2])
+      @orderLast=Order.where(:email=>@hotelUser.email).last     
+      @newCart=Cart.create
+      @lineItems=LineItem.where(:cart_id=>@orderLast.cartId)
+      @lineItems.each do |lineItem|
+        @newLineItem=LineItem.create(:menu_id=>lineItem.menu_id,:cart_id=>@newCart.id)
+      end
+      cookies[:xxx]=@newCart.id
+    end
+    #Reorder from the list of order details of the logged in user.
+    if params[:userAction]=='orderAgain'
+      @lineItems=LineItem.where(:cart_id=>params[:cart_id])
+       @newCart=Cart.create
+       @lineItems.each do |lineItem|
+         @newLineItem=LineItem.create(:menu_id=>lineItem.menu_id,:cart_id=>@newCart.id)
+       end
+        cookies[:xxx]=@newCart.id
+    end
+    
     @offersFormenus=Offer.where(:hotel_id=>params[:hotel_id])
     @offers= Offer.where(:offer_type =>'discountOnAmount').order( 'amountforDiscount DESC' )
     @offers1= Offer.where(:offer_type =>'discountOnAmount').order( 'amountforDiscount DESC' )
@@ -90,15 +112,14 @@ class MenusController < ApplicationController
 
   def new
     if params[:id].present?
-    @menu1=Menu.find(params[:id])
-     @categoryId=Menu.find(params[:id])
-     @menuName=@categoryId.menu_item_name
+      @menu1=Menu.find(params[:id])
+      @categoryId=Menu.find(params[:id])
+      @menuName=@categoryId.menu_item_name
     end
     @menu=Menu.new
     @hotel=Hotel.find(cookies[:hotel_id_for_login_user])
     @categories=Category.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
-   
-    
+
     #@menus1=Menu.where(:hotel_id=>cookies[:hotel_id_for_login_user] )
     if params[:category].present?
       @catId=params[:category]
@@ -143,8 +164,6 @@ class MenusController < ApplicationController
   #filename = params[:jpg].original_filename
   end
 
- 
-
   def edit1
     @menu=Menu.find(params[:id])
   #filename = params[:jpg].original_filename
@@ -174,7 +193,7 @@ class MenusController < ApplicationController
   def updateMenu
 
     @menu=Menu.find(params[:id])
-    
+
     # Update the object
     if @menu.update_attributes(menu_params)
       #If update succeeds,redirect to the show action
@@ -183,7 +202,7 @@ class MenusController < ApplicationController
       redirect_to(:controller=>'menus',:action=>'new')
     else
     #If update fails,redisplay the form so user can fix problems
-    redirect_to(:back)
+      redirect_to(:back)
       endrender('edit')
     end
 
@@ -240,4 +259,6 @@ class MenusController < ApplicationController
       redirect_to(:action=>'index',:hotel_id => cookies[:hotelId])
     end
   end
+
+ 
 end

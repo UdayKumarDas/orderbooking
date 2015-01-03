@@ -82,7 +82,7 @@ def delivery
  if @order
    @order.update_attributes(:pay_type=>params[:pay_type],:order_time=>@time,:hotel_user_id=>cookies[:hotelId],
    :order_delivery_time=>@delivery_time,:total_amount=>cookies[:total_price].present? ? cookies[:total_price] : cookies[:pricexx] ,
-   :discount=>cookies[:discount_price],:final_total=>cookies[:pricexx])
+   :discount=>cookies[:discount_price],:final_total=>cookies[:pricexx],:cartId=>current_cart.id)
  end
   @hotel=Hotel.find(cookies[:hotelId])
   @cart=current_cart

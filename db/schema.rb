@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 20141204133102) do
     t.float    "discount",            limit: 24
     t.float    "final_total",         limit: 24
     t.integer  "userId"
+    t.integer  "cartId"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
