@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   skip_before_filter :verify_authenticity_token
  
   before_action :confirm_logged_in_user, :except=> [:loginUser,:logout,:placeOrder,:new,:show,:index,:search,
-    :destroy,:create,:update,:deliveryPath,:delivery,:order_params,:searchData]
+    :destroy,:create,:update,:deliveryPath,:delivery,:order_params,:searchData,:edit]
   before_action :confirm_logged_in, :only=> [:index]
   helper_method :sort_column,:sort_direction  
   

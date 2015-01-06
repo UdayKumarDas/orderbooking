@@ -166,9 +166,9 @@ FAVOURITES
 </div>
 <div class="user-info-block info-blocka">
 <h2 class="blocka-head">LAST ORDER</h2>
-<% @orderLast=Order.where(:email=>@hotelUser.email).last%>
+<% @orderLast=(Order.where(email: @hotelUser.email).where.not(hotel_user_id: nil)).last%>
 <div class="box-cont">
-<h2><%= (@hotel=Hotel.find(@orderLast.hotel_user_id)).hotel_Name%></h2>
+<h2><%=  (@hotel=Hotel.find(@orderLast.hotel_user_id)).hotel_Name%></h2>
 <p> <%= @orderLast.updated_at.strftime('%e %B ,%Y' )%> - Rs.<%= @orderLast.final_total.to_i%>/-</p>
 
 <%= link_to 'REORDER' ,{:controller=>'menus',:action=>'index',:hotel_id=>@hotel,:userAction=>'reorder'},:class=>'btn-white'%>

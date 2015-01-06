@@ -259,7 +259,7 @@ document.getElementById(d).style.display = "block";
 								<label for="login_email">NEW PASSWORD:</label>
 								<div class="input-group">
 									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
-									<%= hotelUser.text_field :password,class:'form-control'%>
+									<%= hotelUser.password_field :password,class:'form-control'%>
 								</div>
 							</div>
 							<br />
@@ -547,7 +547,7 @@ document.getElementById(d).style.display = "block";
 									</tr>
 
 									<% @hotelUser=HotelUser.find( cookies[:user_id2]) %>
-									<% @orderLast=Order.where(:email=>@hotelUser.email)%>
+									<% @orderLast=Order.where(:email=>@hotelUser.email).where.not(:hotel_user_id=>nil)%>
 									<% @orderLast.each do |order|%>
 									<tr class="titem">
 										<td><%= order.updated_at.strftime('%e %B ,%Y' )%></td>

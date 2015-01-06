@@ -14,7 +14,7 @@ class MenusController < ApplicationController
     #Reorder the last Order from a logged in user.
     if params[:userAction]=='reorder'
       @hotelUser=HotelUser.find( cookies[:user_id2])
-      @orderLast=Order.where(:email=>@hotelUser.email).last     
+      @orderLast=(Order.where(email: @hotelUser.email).where.not(hotel_user_id: nil)).last    
       @newCart=Cart.create
       @lineItems=LineItem.where(:cart_id=>@orderLast.cartId)
       @lineItems.each do |lineItem|
