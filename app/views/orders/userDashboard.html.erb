@@ -1,5 +1,7 @@
 <html>
-	<head></head>
+	<head>
+		
+	</head>
 	<style>
 
 
@@ -119,6 +121,7 @@ h2.blocka-head {
 <body>
 <% @hotelUser=HotelUser.find( cookies[:user_id2]) %>
 <div class="container_16 customAddress">
+		
 <div class="grid_16 tal">
 <h1 class="page-header txt-cap"><%= @hotelUser.userName%>'s Dashboard</h1>
 <div class="grid_11a userinfo">
@@ -142,8 +145,8 @@ h2.blocka-head {
 <div class="clear"></div>
 <div class="clear"></div>
 <br />
-<a class="lbl-link left-al" href="http://tastykhana.in/users/profile?section=profile&action=password">change password?</a>
 
+<%= link_to 'change password?' ,{:controller=>'orders',:action=>'editDashboard',:userAction=>'password'},:class=>'lbl-link right-al'%>
 <%= link_to 'EDIT' ,{:controller=>'orders',:action=>'editDashboard'},:class=>'lbl-link right-al'%>
 <div class="clear"></div>
 </div>
@@ -196,6 +199,11 @@ INITIATE refund
 </div>
 <div class="clear"></div>
 </div>
+
+
+
+
+
 </body>
 </html>
 

@@ -1,10 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="http://www.mysterytin.com/css/style.css" />
+			<link rel="stylesheet" type="text/css" href="http://www.mysterytin.com/css/style.css" />
 		<%= stylesheet_link_tag 'orders'%>
 
 		<%= javascript_include_tag 'classie'%>
+
+		
 		<style>
 			.listhead {
 				border-bottom: 1px solid #ddd;
@@ -40,7 +42,7 @@
 			.form-control {
 				display: block;
 				width: 100%;
-				height: 20px;
+				height: 29px;
 				padding: 6px 12px;
 				font-size: 14px;
 				line-height: 1.428571429;
@@ -114,6 +116,14 @@
 				color: #FF6216;
 				width: 50%;
 			}
+		.showAddress{
+    background: none repeat scroll 0 0 #fefefe;
+    border: 1px solid #e0dede;
+    box-shadow: 0 0 3px #e0dede;
+    padding: 10px 30px 30px;
+    width: 450px;
+}
+	
 		</style>
 	</head>
 	<script src="https://code.jquery.com/jquery-1.7.2.js"></script>
@@ -138,9 +148,17 @@
 					$('div[id^=div]').hide();
 					$('#div4').show();
 				});
+				$('#xxx').click(function() {
+					$('div[id^=div]').hide();
+					$('#div5').show();
+				});
 
 			});
 		});
+		
+		function ShowContent(d) {
+document.getElementById(d).style.display = "block";
+}
 	</script>
 
 	<body style="background-image: url('/assets/menu-free-background4.jpg')">
@@ -231,7 +249,27 @@
 						<h2 class="listhead"> Personal Info </h2>
 						<div style="width: 70%;height: 80%;">
 
-							<%= form_for(:hotelUser,:url=>{:controller=>'hotel_users',:action=>'editHotelUser'}) do |hotelUser|%>
+							
+							
+							
+							<%if params[:userAction]=='password'%>
+						
+						<%= form_for(:hotelUser,:url=>{:controller=>'hotel_users',:action=>'editHotelUser',:userAction=>params[:confirm_password]}) do |hotelUser|%>
+							<div class="form-group">
+								<label for="login_email">NEW PASSWORD:</label>
+								<div class="input-group">
+									<span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+									<%= hotelUser.text_field :password,class:'form-control'%>
+								</div>
+							</div>
+							<br />
+							
+							<%= hotelUser.submit 'SAVE',:userAction=>params[:confirm_password]%>
+						<%end%>
+						
+						<%else%>
+						
+						<%= form_for(:hotelUser,:url=>{:controller=>'hotel_users',:action=>'editHotelUser'}) do |hotelUser|%>
 
 							<div class="form-group">
 								<label for="login_email">NAME:</label>
@@ -277,28 +315,213 @@
 							<%= hotelUser.submit 'SAVE'%>
 							<br />
 							<br />
+							
+							
 							<%end%>
+						
+						<%end%>
+							
 						</div>
+						
+						
 					</div>
 
 					<div id="div2" style="display:none;">
 						<div class="grid_13" style="padding: 0;width: 100%;background-color: #FFFFFF;">
-
+<br />
+						<h2 class="listhead"> Personal Info </h2>
 							<div class="clear"></div>
 							<div id="search_results_list">
 								<div class="grid_4a" id="11242">
 									<div class="search_results_list">
 
-										<div id="#" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+<div id="edit1" style="display:none;" class="showAddress">
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address2,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+
+</div>
+<div id="edit2" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address3,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+
+<div id="edit3" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address4,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+<div id="edit4" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address5,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+<div id="edit5" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address6,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+
+<div id="edit6" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address7,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+<div id="edit7" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address8,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+<div id="edit8" style="display:none;" class="showAddress">
+
+<%= form_for(:hotelUser,:url=>{:controller=>'HotelUsers',:action=>'updateAddress',:hotelUserId=>cookies[:user_id2]},:userAction=>params[:userAction]) do |hotelUser|%>
+<p>Address</p>
+<%= hotelUser.text_area :address9,:size=>'50x5'%>
+<br/>
+<%= hotelUser.submit 'SAVE'%>
+<%end%>
+</div>
+<%if @hotelUser.address2.present?%>
+										<div id="address2" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
 											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
 
 												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 1 </b>
-												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> <%= link_to image_tag 'edit.ico',:title=>'Edit'%>
-												<%= link_to image_tag 'delete.ico',:size=>'16x16',:title=>'Delete'%> </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> 
+													<a href="javascript:ShowContent('edit1')" onclick="document.getElementById('address2').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+											
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address2',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
 											</div>
 											<%= @hotelUser.address2%>
 
 										</div>
+										<%end%>
+
+
+
+<%if @hotelUser.address3.present?%>
+		<div id="address3" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 2 </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> 
+												<a href="javascript:ShowContent('edit2')" onclick="document.getElementById('address3').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address3',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address3%>
+
+										</div>
+<%end%>
+
+
+
+
+<%if @hotelUser.address4.present?%>
+		<div id="address4" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 3 </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"><a href="javascript:ShowContent('edit3')" onclick="document.getElementById('address4').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address4',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address4%>
+
+										</div>
+<%end%>
+
+<%if @hotelUser.address5.present?%>
+		<div id="address5" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 4 </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> <a href="javascript:ShowContent('edit4')" onclick="document.getElementById('address5').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address5',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address5%>
+
+										</div>
+<%end%>
+
+
+<%if @hotelUser.address6.present?%>
+		<div id="address6" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 5 </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> <a href="javascript:ShowContent('edit5')" onclick="document.getElementById('address6').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address6',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address6%>
+
+										</div>
+<%end%>
+
+<%if @hotelUser.address7.present?%>
+		<div id="address7" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 6 </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"><a href="javascript:ShowContent('edit6')" onclick="document.getElementById('address7').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address7',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address7%>
+
+										</div>
+<%end%>
+
+<%if @hotelUser.address8.present?%>
+		<div id="address8" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 7 </b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> <a href="javascript:ShowContent('edit7')" onclick="document.getElementById('address8').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address8',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address8%>
+
+										</div>
+<%end%>
+
+<%if @hotelUser.address9.present?%>
+		<div id="address9" class="search_result_row grid-view sorted-resto" style="opacity: 1;">
+											<div class="grid_16 " style="background-color: #F9B004;height: 30px;padding-top: 10px;">
+
+												<b style="color: #FFFFFF;padding-left: 12px;width: 60px;margin-top: 5px;">Address 8</b>
+												<b style="color: #FFFFFF;padding-left: 45px;width: 60px;"> <a href="javascript:ShowContent('edit8')" onclick="document.getElementById('address9').style.display = 'none'"><img alt="Edit" src="/assets/edit.ico" title="Edit" /></a>
+												<%= link_to image_tag('delete.ico',:size=>'16x16',:title=>'Delete'),{:controller=>'HotelUsers',:action=>'deleteAddress',:address=>'address9',:user=>@hotelUser.id,:userAction=>params[:userAction]}%> </b>
+											</div>
+											<%= @hotelUser.address9%>
+
+										</div>
+<%end%>
+
 
 									</div>
 								</div>
@@ -316,11 +539,11 @@
 							<table width="100%" cellpadding="2" id="user_orders" >
 								<tbody>
 									<tr class="theading" >
-										<th style="color: #F4A506;font-size: 16px;">Delivery Date</th>
-										<th style="color: #F4A506;font-size: 16px;">Order No.</th>
-										<th style="color: #F4A506;font-size: 16px;">Hotel</th>
-										<th style="color: #F4A506;font-size: 16px;">Status</th>
-										<th style="color: #F4A506;font-size: 16px;width: 15px;">Total</th>
+										<th style="color: #F4A506;font-size: 16px;text-align: center;">Delivery Date</th>
+										<th style="color: #F4A506;font-size: 16px;text-align: center;">Order No.</th>
+										<th style="color: #F4A506;font-size: 16px;text-align: center;">Hotel</th>
+										<th style="color: #F4A506;font-size: 16px;text-align: center;">Status</th>
+										<th style="color: #F4A506;font-size: 16px;width: 15px;text-align: center;">Total</th>
 									</tr>
 
 									<% @hotelUser=HotelUser.find( cookies[:user_id2]) %>
@@ -335,7 +558,9 @@
 									</tr>
 									<tr class="ticon">
 
-										<td colspan="5" style="text-align: left;color: #FF6216;font-size:14px;padding-top: 10px;"><%= link_to 'ORDER AGAIN',{:controller=>'menus',:action=>'index',:hotel_id=>order.hotel_user_id,:userAction=>'orderAgain',:cart_id=>order.cartId}%> </td>
+										<td colspan="5" style="text-align: left;color: #F4A506;font-size:14px;padding-top: 10px;">
+											
+											<%= link_to image_tag('edit_redo.ico',:size=>'20x20') +'ORDER AGAIN',{:controller=>'menus',:action=>'index',:hotel_id=>order.hotel_user_id,:userAction=>'orderAgain',:cart_id=>order.cartId}%> </td>
 
 									</tr>
 
@@ -351,6 +576,7 @@
 			</div>
 
 		</div>
+
 
 	</body>
 

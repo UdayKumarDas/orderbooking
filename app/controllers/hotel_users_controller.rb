@@ -40,4 +40,39 @@ end
   def index
     
   end
+  
+  def deleteAddress
+   @hotelUser= HotelUser.find(params[:user])
+   if params[:address]=='address2'
+    @hotelUser.update_attributes(:address2=>'')
+  end
+    if params[:address]=='address3'
+    @hotelUser.update_attributes(:address3=>'')
+  end
+   if params[:address]=='address4'
+    @hotelUser.update_attributes(:address4=>'')
+  end
+   if params[:address]=='address5'
+    @hotelUser.update_attributes(:address5=>'')
+  end
+   if params[:address]=='address6'
+    @hotelUser.update_attributes(:address6=>'')
+  end
+   if params[:address]=='address7'
+    @hotelUser.update_attributes(:address7=>'')
+  end
+   if params[:address]=='address8'
+    @hotelUser.update_attributes(:address8=>'')
+  end
+   if params[:address]=='address9'
+    @hotelUser.update_attributes(:address9=>'')
+  end
+  redirect_to(:controller=>'orders',:action=>'editDashboard',:userAction=>params[:userAction])
+  end
+
+  def updateAddress
+    @hotel_User=HotelUser.find(params[:hotelUserId])
+       @hotel_User.update_attributes(customer_params)
+       redirect_to(:controller=>'orders',:action=>'editDashboard',:userAction=>params[:userAction])
+  end
 end
