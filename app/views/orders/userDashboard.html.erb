@@ -1,6 +1,6 @@
 <html>
 	<head>
-		
+		<%= stylesheet_link_tag 'orders'%>
 	</head>
 	<style>
 
@@ -117,13 +117,61 @@ h2.blocka-head {
     text-align: center;
     width: 95%;
 }
+h2.blockb-head {
+    background-color: #ff3000;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 900;
+    margin: 0;
+    padding: 0.5em;
+    text-align: left;
+    text-transform: uppercase;
+}
 	</style>
-<body>
-<% @hotelUser=HotelUser.find( cookies[:user_id2]) %>
+<body style="background-image: url('/assets/menu-free-background4.jpg')">
+        <div style="position: absolute;float: right;padding-left: 40px;padding-top: 20px;width: 72%;margin-left: 90px;">
+            <%= link_to "HOME |",{:controller=>'homepage',:action=>'index'},class: "menu_link"%>
+            <%= link_to "CONTACT US |",{},class: "menu_link"%>
+            <%= link_to "ABOUT US",{},class: "menu_link"%>
+            <%= link_to "SIGN UP",{:controller=>'hotel_users',:action=>'signup'},class: "btn-orange2"%>
+            <% if cookies[:uName].present?%>
+            <div id='cssmenu' style="width: 100px;float:right;margin-right: -188px;top: -6px;">
+                <ul>
+
+                    <li class=' has-sub'>
+                        <a href='#' style="font-size: 13px; color:#black;font: bolder;">&nbsp;<%= cookies[:uName]%></a>
+                        <ul>
+                            <li class=''>
+                                <%= link_to image_tag('Settings.png',:size=>'15x15',:alt=>'Logo')+'DASHBOARD',{:controller=>'orders',:action=>'userDashboard'},class:'logoutStyle'%>
+
+                            </li>
+                            <li class=''>
+                                <%= link_to image_tag('users1.jpg',:size=>'15x15',:alt=>'Logo')+'PROFILE',{:controller=>'orders',:action=>'userDashboard'},class:'logoutStyle'%>
+                            </li>
+                            <li class=''>
+                                <%= link_to image_tag('logout.png',:size=>'15x15',:alt=>'Logo')+'LOGOUT',{:controller=>'menus',:action=>'logout'},class:'logoutStyle'%>
+
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <%end%>
+        </div>
+
+        <div class="container_head" >
+            <div style="">
+                <%= image_tag('logo3.png',:size=>'120x100',:alt=>'Logo')%>
+            </div>
+        
+<div style="clear:both;"></div>
+
+        </div><% @hotelUser=HotelUser.find( cookies[:user_id2]) %>
 <div class="container_16 customAddress">
-		
+		<br><br>
 <div class="grid_16 tal">
-<h1 class="page-header txt-cap"><%= @hotelUser.userName%>'s Dashboard</h1>
+<h1 class="page-header txt-cap" style="font-size: 28px;color:#FFA200;"><%= (@hotelUser.userName).upcase%>'s DASHBOARD</h1>
 <div class="grid_11a userinfo">
 <div class="halfblock">
 <p class="lbl">USERNAME (EMAIL ID)</p>
@@ -150,7 +198,7 @@ h2.blocka-head {
 <%= link_to 'EDIT' ,{:controller=>'orders',:action=>'editDashboard'},:class=>'lbl-link right-al'%>
 <div class="clear"></div>
 </div>
-
+<div style="clear:both;">
 <div class="" style="text-align: left;background-color: ;width: 90%;position: absolute;">
 <div class="grid_16">
 
@@ -161,19 +209,19 @@ FAVOURITES
 </h2>
 <div class="box-cont">
 <p>Add to favourites from your order history for quick reordering</p>
-</div>
+</div><br><br><br><br><br>
 <%= link_to 'ADD ORDERS' ,{:controller=>'orders',:action=>'editDashboard'},:class=>'box-link'%>
 </div>
 <div class="user-info-block info-blocka">
 <h2 class="blocka-head">LAST ORDER</h2>
 <% @orderLast=(Order.where(email: @hotelUser.email).where.not(hotel_user_id: nil)).last%>
 <div class="box-cont">
-<h2><%=  (@hotel=Hotel.find(@orderLast.hotel_user_id)).hotel_Name%></h2>
+<b style="font-size:25px;"><%=  (@hotel=Hotel.find(@orderLast.hotel_user_id)).hotel_Name%></b>
 <p> <%= @orderLast.updated_at.strftime('%e %B ,%Y' )%> - Rs.<%= @orderLast.final_total.to_i%>/-</p>
-
+<br>
 <%= link_to 'REORDER' ,{:controller=>'menus',:action=>'index',:hotel_id=>@hotel,:userAction=>'reorder'},:class=>'btn-white'%>
 </div>
-
+<br><br><br>
 <%= link_to 'VIEW ALL',{:controller=>'orders',:action=>'editDashboard'},:class=>'box-link'%>
 </div>
 <div class="user-info-block info-blockb">
@@ -184,6 +232,7 @@ reviews
 <div class="box-cont">
 <h2>Aaoji Foods-Connaught Place (Palika Bazar)</h2>
 <p> 24 December, 2014 - Rs. 210/-</p>
+<br>
 <a class="btn-white" href="http://tastykhana.in/users/profile?section=orders&action=review&id=965958">WRITE REVIEW</a>
 </div>
 </div>
