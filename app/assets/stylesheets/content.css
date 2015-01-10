@@ -307,9 +307,8 @@ a {
     display: inline-block;
    
    
-    font-size: inherit;
-    font-size-adjust: none;
-    font-stretch: normal;
+    font-size: inherit; 
+    
     font-style: normal;
     
     font-variant: normal;
