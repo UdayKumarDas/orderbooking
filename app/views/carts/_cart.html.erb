@@ -8,6 +8,8 @@
 			max-width: 400px;
 			text-align: center;
 			background-color: #F0F0F0;
+			
+		
 		}
 
 		.buttonTo {
@@ -208,7 +210,7 @@
 
 						</div>
 						<p style="font-size: 11px;padding-top: 4px;color: #808080;">
-							APPROXIMATE DELIVERY IN <%= (@hotel.deliverytime.hour * 60) + (@hotel.deliverytime.min)%> MINS
+							<%= image_tag 'truck.png',:size=>'15x12'%> APPROXIMATE DELIVERY IN <%= (@hotel.deliverytime.hour * 60) + (@hotel.deliverytime.min)%> MINS
 						</p>
 					</div>
 				</li>
@@ -217,7 +219,7 @@
 			<br />
 
 		</div>
-
+<div style="clear: both;"></div>
 	</body>
 </html>
 

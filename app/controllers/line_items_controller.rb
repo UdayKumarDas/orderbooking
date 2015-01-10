@@ -77,10 +77,11 @@ class LineItemsController < ApplicationController
   end
 
   def minus
-    @cart = current_cart
+    @cart = current_cart    
     menu = Menu.find(params[:menu_id])
     @line_item = @cart.sub_menu(menu.id)
-
+ @lineItemPresent= LineItem.where(:cart_id=>current_cart.id)
+     @lineItemPresent.present? ? '' : cookies[:pricexx]=nil
     if @line_item
       respond_to do |format|
 
@@ -118,6 +119,8 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1.json
   def destroy
     @line_item.destroy
+     @lineItemPresent= LineItem.where(:cart_id=>current_cart.id)
+     @lineItemPresent.present? ? '' : cookies[:pricexx]=nil
     respond_to do |format|
       format.html {  redirect_to(:back) }
       format.json { head :no_content }

@@ -71,6 +71,7 @@ class CartsController < ApplicationController
 
     @cart = Cart.find(params[:id])
     @cart.destroy
+    cookies[:pricexx]=nil
     session[:cart_id] = nil
     respond_to do |format|
       format.html {  redirect_to(:back) }

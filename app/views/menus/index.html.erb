@@ -282,11 +282,13 @@
 
 		</div>
 		<% if cookies[:uName].blank?%>
+	
 		<%= form_tag(:controller=>'menus',:action=>'loginUser') do%>
+		
 		<div class="">
             <div class="">
-                 <a href="#login_form" id="login_pop" style="top: 23px;position: absolute;text-decoration: none;color: black;font: bold;width:80px;margin-left:  -152px; ">LOGIN</a>
-               
+                 
+               <a href="#login_form" id="login_pop" class="" style="position:absolute;top:25px;right:190px;color:#000000;">LOGIN</a>
             </div>
 
         </div>
@@ -310,7 +312,26 @@
         </div>
 
 			<%end%> <%end%>
+			<div style="clear: both;"></div>
 			
+			<div class="bottom-mob-bar">
+<a href="#sunil">
+<span class="inb"><img width="18" height="18" src="/assets/whiteCart.ico" alt="Whitecart" style="margin-bottom: -4px;"> 
+
+<span id="cart_cnt"><%= @totalQuantity.present? ?  @totalQuantity : 0%></span>
+<span id="cart_amount">
+<i class="icon-inr "></i>
+<%= cookies[:pricexx].present? ? cookies[:pricexx] : 0%> 
+</span>
+</span>
+</a>
+<a href="#">
+<span class="inb">
+<i class="fa fa-arrow-up " style="font-size:1.2em"></i>
+<span style="font-size:0.8em; font-weight:700;style="margin-bottom: -4px;""> <%= image_tag "upArrow.ico",:size=>'17x17'%> TOP</span>
+</span>
+</a>
+</div>
 	</body>
 
 	
